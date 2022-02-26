@@ -1,6 +1,7 @@
-# Ò»Ğ©Ñ§Ï°½Ì²Ä×Ô¼º×öµÄ´ğ°¸
+# ä¸€äº›å­¦ä¹ æ•™æè‡ªå·±åšçš„ç­”æ¡ˆ
 ### - [C Primer Plus](https://github.com/Thirup2/Answer/tree/main/C%20Primer%20Plus)
-   - [µÚÒ»ÕÂ](https://github.com/Thirup2/Answer/tree/main/C%20Primer%20Plus/%E7%AC%AC%E4%B8%80%E7%AB%A0)
-   - [µÚ¶şÕÂ](https://github.com/Thirup2/Answer/tree/main/C%20Primer%20Plus/%E7%AC%AC%E4%BA%8C%E7%AB%A0)
-   - [µÚÈıÕÂ](https://github.com/Thirup2/Answer/tree/main/C%20Primer%20Plus/%E7%AC%AC%E4%B8%89%E7%AB%A0)
-   - [µÚËÄÕÂ](https://github.com/Thirup2/Answer/tree/main/C%20Primer%20Plus/%E7%AC%AC%E5%9B%9B%E7%AB%A0)
+   - [ç¬¬ä¸€ç« ](https://github.com/Thirup2/Answer/tree/main/C%20Primer%20Plus/%E7%AC%AC%E4%B8%80%E7%AB%A0)
+   - [ç¬¬äºŒç« ](https://github.com/Thirup2/Answer/tree/main/C%20Primer%20Plus/%E7%AC%AC%E4%BA%8C%E7%AB%A0)
+   - [ç¬¬ä¸‰ç« ](https://github.com/Thirup2/Answer/tree/main/C%20Primer%20Plus/%E7%AC%AC%E4%B8%89%E7%AB%A0)
+   - [ç¬¬å››ç« ](https://github.com/Thirup2/Answer/tree/main/C%20Primer%20Plus/%E7%AC%AC%E5%9B%9B%E7%AB%A0)
+   - [ç¬¬äº”ç« ](https://github.com/Thirup2/Answer/tree/main/C%20Primer%20Plus/%E7%AC%AC%E4%BA%94%E7%AB%A0)
