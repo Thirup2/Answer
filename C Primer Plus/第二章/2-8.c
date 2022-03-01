@@ -2,16 +2,16 @@
 #define O "one"
 #define T "two"
 #define TH "three"
-void one_three(void);       //´òÓ¡Ò»µ½Èı,¶şÓÃÁíÒ»¸öº¯Êı´òÓ¡
-void two(void);             //´òÓ¡¶ş
+void one_three(void);       //æ‰“å°ä¸€åˆ°ä¸‰,äºŒç”¨å¦ä¸€ä¸ªå‡½æ•°æ‰“å°
+void two(void);             //æ‰“å°äºŒ
 int main(void)
 {
-    //´òÓ¡
+    //æ‰“å°
     printf("starting now:\n");
     one_three();
     printf("done!\n");
 
-    //º¯Êı·µ»ØÖµ
+    //å‡½æ•°è¿”å›å€¼
     return 0;
 }
 void one_three(void)

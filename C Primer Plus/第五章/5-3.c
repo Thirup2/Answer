@@ -2,19 +2,19 @@
 #define DPW 7
 int main(void)
 {
-    //¶¨ÒåÖµ
+    //å®šä¹‰å€¼
     int days;
     int week,day;
 
-    //»ñÈ¡Öµ
-    printf("ÇëÊäÈëÒ»¸öÌìÊı(<=0 to quit):");
+    //è·å–å€¼
+    printf("è¯·è¾“å…¥ä¸€ä¸ªå¤©æ•°(<=0 to quit):");
     while(scanf("%d",&days)==1&&days>0){
         week = days / DPW;
         day = days % DPW;
         printf("%d days are %d weeks, %d days.\n",days,week,day);
-        printf("ÇëÊäÈëÏÂÒ»¸öÌìÊı(<=0 to quit):");
+        printf("è¯·è¾“å…¥ä¸‹ä¸€ä¸ªå¤©æ•°(<=0 to quit):");
     }
 
-    //º¯Êı·µ»ØÖµ
+    //å‡½æ•°è¿”å›å€¼
     return 0;
 }

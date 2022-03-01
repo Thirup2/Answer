@@ -2,17 +2,17 @@
 void Temperatures(double);
 int main(void)
 {
-    //¶¨ÒåÖµ
+    //å®šä¹‰å€¼
     double tem;
 
-    //»ñÈ¡Öµ
-    printf("ÇëÊäÈëÒ»¸ö»ªÊÏÎÂ¶È:");
+    //è·å–å€¼
+    printf("è¯·è¾“å…¥ä¸€ä¸ªåæ°æ¸©åº¦:");
     while(scanf("%lf",&tem)==1){
         Temperatures(tem);
-        printf("ÇëÊäÈëÏÂÒ»¸ö»ªÊÏÎÂ¶È:");
+        printf("è¯·è¾“å…¥ä¸‹ä¸€ä¸ªåæ°æ¸©åº¦:");
     }
 
-    //º¯Êı·µ»ØÖµ
+    //å‡½æ•°è¿”å›å€¼
     return 0;
 }
 void Temperatures(double n)
@@ -24,5 +24,5 @@ void Temperatures(double n)
     double C,K;
     C = FIVE/NINE*(n-THTW);
     K = C + KK;
-    printf("%g »ªÊÏ¶È = %g ÉãÊÏ¶È = %g ¿ªÊÏ¶È\n",n,C,K);
+    printf("%g åæ°åº¦ = %g æ‘„æ°åº¦ = %g å¼€æ°åº¦\n",n,C,K);
 }

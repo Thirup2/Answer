@@ -3,22 +3,22 @@ void jolly(void);
 void deny(void);
 int main(void)
 {
-    //´òÓ¡Ç°ÈıÌõÏûÏ¢
+    //æ‰“å°å‰ä¸‰æ¡æ¶ˆæ¯
     jolly();
     jolly();
     jolly();
 
-    //´òÓ¡ºóÒ»ÌõÏûÏ¢
+    //æ‰“å°åä¸€æ¡æ¶ˆæ¯
     deny();
 
-    //º¯Êı·µ»ØÖµ
+    //å‡½æ•°è¿”å›å€¼
     return 0;
 }
-void jolly(void)        //´òÓ¡Ç°ÈıÌõÏûÏ¢
+void jolly(void)        //æ‰“å°å‰ä¸‰æ¡æ¶ˆæ¯
 {
     printf("For he's a jolly good fellow!\n");
 }
-void deny(void)         //´òÓ¡ºóÒ»ÌõÏûÏ¢
+void deny(void)         //æ‰“å°åä¸€æ¡æ¶ˆæ¯
 {
     printf("Which nobody can deny!\n");
 }

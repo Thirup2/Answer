@@ -1,17 +1,17 @@
 #include <stdio.h>
 int main(void)
 {
-    //¶¨ÒåÖµ
+    //å®šä¹‰å€¼
     double some;
 
-    //»ñÈ¡Öµ
-    printf("ÇëÊäÈëÒ»¸öÊı:");
+    //è·å–å€¼
+    printf("è¯·è¾“å…¥ä¸€ä¸ªæ•°:");
     scanf("%lf",&some);
 
-    //´òÓ¡Öµ
+    //æ‰“å°å€¼
     printf("a. The input is %.1lf or %.1le.\n",some,some);
     printf("b. The input is %+.3lf or %.3LE.\n",some,some);
 
-    //º¯Êı·µ»ØÖµ
+    //å‡½æ•°è¿”å›å€¼
     return 0;
 }

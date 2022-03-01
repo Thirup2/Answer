@@ -3,10 +3,10 @@
 #define DPY 365
 int main(void)
 {
-    //´òÓ¡ÄêÁäºÍÌìÊı
-    printf("ÄêÁä:%d\n",AGE);
-    printf("ÌìÊı:%d\n",AGE*DPY);
+    //æ‰“å°å¹´é¾„å’Œå¤©æ•°
+    printf("å¹´é¾„:%d\n",AGE);
+    printf("å¤©æ•°:%d\n",AGE*DPY);
 
-    //º¯Êı·µ»ØÖµ
+    //å‡½æ•°è¿”å›å€¼
     return 0;
 }

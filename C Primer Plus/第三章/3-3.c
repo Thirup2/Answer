@@ -1,11 +1,11 @@
 #include <stdio.h>
 int main(void)
 {
-    //´òÓ¡
+    //æ‰“å°
     printf("\a");
     printf("Startled by the sudden sound, Sally shouted,\n");
     printf("\"By the Great Pumpkin, what was that!\"\n");
 
-    //º¯Êı·µ»ØÖµ
+    //å‡½æ•°è¿”å›å€¼
     return 0;
 }

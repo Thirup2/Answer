@@ -1,16 +1,16 @@
 #include <stdio.h>
 int main(void)
 {
-    //¶¨ÒåÖµ
+    //å®šä¹‰å€¼
     char ch;
 
-    //»ñÈ¡Öµ
-    printf("ÇëÊäÈëÒ»¸öASCIIÂë:");
+    //è·å–å€¼
+    printf("è¯·è¾“å…¥ä¸€ä¸ªASCIIç :");
     scanf("%d",&ch);
 
-    //´òÓ¡Öµ
-    printf("ASCIIÂë:%d\n×Ö·û:%c\n",ch,ch);
+    //æ‰“å°å€¼
+    printf("ASCIIç :%d\nå­—ç¬¦:%c\n",ch,ch);
 
-    //º¯Êı·µ»ØÖµ
+    //å‡½æ•°è¿”å›å€¼
     return 0;
 }

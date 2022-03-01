@@ -1,22 +1,22 @@
 #include <stdio.h>
-#define BPB 8           //Ò»×Ö½Ú8Î»
+#define BPB 8           //ä¸€å­—èŠ‚8ä½
 int main(void)
 {
-    //¶¨ÒåÖµ
+    //å®šä¹‰å€¼
     float mbps,mb,time;
 
-    //»ñÈ¡Öµ
-    printf("ÇëÊäÈëÎÄ¼ş´óĞ¡(MB):");
+    //è·å–å€¼
+    printf("è¯·è¾“å…¥æ–‡ä»¶å¤§å°(MB):");
     scanf("%f",&mb);
-    printf("½ÓÏÂÀ´ÇëÊäÈëÎÄ¼ş´«ÊäËÙ¶È(Mb/s):");
+    printf("æ¥ä¸‹æ¥è¯·è¾“å…¥æ–‡ä»¶ä¼ è¾“é€Ÿåº¦(Mb/s):");
     scanf("%f",&mbps);
 
-    //¼ÆËãÖµ
+    //è®¡ç®—å€¼
     time = mb * BPB / mbps;
 
-    //´òÓ¡Öµ
+    //æ‰“å°å€¼
     printf("At %.2f megabits per second, a file of %.2f megabytes\ndownloads in %.2f seconds.\n",mbps,mb,time);
 
-    //º¯Êı·µ»ØÖµ
+    //å‡½æ•°è¿”å›å€¼
     return 0;
 }

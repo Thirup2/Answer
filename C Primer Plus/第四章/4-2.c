@@ -2,19 +2,19 @@
 #include <string.h>
 int main(void)
 {
-    //¶¨ÒåÖµ
+    //å®šä¹‰å€¼
     char name[40];
 
-    //»ñÈ¡Öµ
-    printf("ÇëÊäÈëÄãµÄĞÕÃû:");
+    //è·å–å€¼
+    printf("è¯·è¾“å…¥ä½ çš„å§“å:");
     scanf("%s",name);
 
-    //´òÓ¡Öµ
+    //æ‰“å°å€¼
     printf("\"%s\"\n",name);
     printf("\"%20s\"\n",name);
     printf("\"%-20s\"\n",name);
     printf("\"%*s\"\n",strlen(name)+3,name);
 
-    //º¯Êı·µ»ØÖµ
+    //å‡½æ•°è¿”å›å€¼
     return 0;
 }

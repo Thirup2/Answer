@@ -1,22 +1,22 @@
 #include <stdio.h>
-#define SPY 3.156e7     //Ò»ÄêµÄÃëÊı
+#define SPY 3.156e7     //ä¸€å¹´çš„ç§’æ•°
 int main(void)
 {
-    //¶¨ÒåÖµ
+    //å®šä¹‰å€¼
     int age;
     double seconds;
 
-    //»ñÈ¡Öµ
-    printf("ÇëÊäÈëÄãµÄÄêÁä:");
+    //è·å–å€¼
+    printf("è¯·è¾“å…¥ä½ çš„å¹´é¾„:");
     scanf("%d",&age);
 
-    //¼ÆËãÖµ
+    //è®¡ç®—å€¼
     seconds = age * SPY;
 
-    //´òÓ¡Öµ
-    printf("ÄãµÄÄêÁäÊÇ:%d\n",age);
-    printf("¶ÔÓ¦µÄÃëÊıÊÇ:%leÃë\n",seconds);
+    //æ‰“å°å€¼
+    printf("ä½ çš„å¹´é¾„æ˜¯:%d\n",age);
+    printf("å¯¹åº”çš„ç§’æ•°æ˜¯:%leç§’\n",seconds);
 
-    //º¯Êı·µ»ØÖµ
+    //å‡½æ•°è¿”å›å€¼
     return 0;
 }

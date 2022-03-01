@@ -1,21 +1,21 @@
 #include <stdio.h>
-#define CPF 2.54        //Ò»Ó¢´çÀåÃ×Êı
+#define CPF 2.54        //ä¸€è‹±å¯¸å˜ç±³æ•°
 int main(void)
 {
-    //¶¨ÒåÖµ
+    //å®šä¹‰å€¼
     double height;
     double c_height;
 
-    //»ñÈ¡Öµ
-    printf("ÇëÊäÈëÄúµÄÉí¸ß(Ó¢´ç):");
+    //è·å–å€¼
+    printf("è¯·è¾“å…¥æ‚¨çš„èº«é«˜(è‹±å¯¸):");
     scanf("%lf",&height);
 
-    //¼ÆËã
+    //è®¡ç®—
     c_height = height * CPF;
 
-    //´òÓ¡
-    printf("ÄúµÄÉí¸ß = %gÀåÃ×\n",c_height);
+    //æ‰“å°
+    printf("æ‚¨çš„èº«é«˜ = %gå˜ç±³\n",c_height);
 
-    //º¯Êı·µ»ØÖµ
+    //å‡½æ•°è¿”å›å€¼
     return 0;
 }

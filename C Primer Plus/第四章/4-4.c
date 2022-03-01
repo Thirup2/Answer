@@ -1,19 +1,19 @@
 #include <stdio.h>
 int main(void)
 {
-    //¶¨ÒåÖµ
+    //å®šä¹‰å€¼
     char name[40];
     double height;
 
-    //»ñÈ¡Öµ
-    printf("ÇëÊäÈëÄãµÄĞÕÃû:");
+    //è·å–å€¼
+    printf("è¯·è¾“å…¥ä½ çš„å§“å:");
     scanf("%s",name);
-    printf("%s,ÏÖÔÚÇëÊäÈëÄãµÄÉí¸ß(Ó¢´ç):",name);
+    printf("%s,ç°åœ¨è¯·è¾“å…¥ä½ çš„èº«é«˜(è‹±å¯¸):",name);
     scanf("%lf",&height);
 
-    //´òÓ¡Öµ
+    //æ‰“å°å€¼
     printf("%s, you are %g feet tall\n",name,height);
 
-    //º¯Êı·µ»ØÖµ
+    //å‡½æ•°è¿”å›å€¼
     return 0;
 }

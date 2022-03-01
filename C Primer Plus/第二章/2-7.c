@@ -1,9 +1,9 @@
 #include <stdio.h>
 #define SMI "Smile!"
-void sm(void);      //´òÓ¡"Smile!"
+void sm(void);      //æ‰“å°"Smile!"
 int main(void)
 {
-    //´òÓ¡
+    //æ‰“å°
     sm();sm();sm();
     printf("\n");
     sm();sm();
@@ -11,7 +11,7 @@ int main(void)
     sm();
     printf("\n");
 
-    //º¯Êı·µ»ØÖµ
+    //å‡½æ•°è¿”å›å€¼
     return 0;
 }
 void sm(void)

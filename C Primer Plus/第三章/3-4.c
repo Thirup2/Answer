@@ -1,20 +1,20 @@
 #include <stdio.h>
 int main(void)
 {
-    //¶¨ÒåÖµ
+    //å®šä¹‰å€¼
     double some;
 
-    //»ñÈ¡Öµ
+    //è·å–å€¼
     printf("Enter a floating-point value: ");
     scanf("%lf",&some);
 
-    //µÚÒ»ÖÖÊä³ö¸ñÊ½
+    //ç¬¬ä¸€ç§è¾“å‡ºæ ¼å¼
     printf("fixed-point notation: %lf\n",some);
-    //µÚ¶şÖÖÊä³ö¸ñÊ½
+    //ç¬¬äºŒç§è¾“å‡ºæ ¼å¼
     printf("exponential notation: %le\n",some);
-    //µÚÈıÖÖÊä³ö¸ñÊ½
+    //ç¬¬ä¸‰ç§è¾“å‡ºæ ¼å¼
     printf("p notation: %.2la\n",some);
 
-    //º¯Êı·µ»ØÖµ
+    //å‡½æ•°è¿”å›å€¼
     return 0;
 }

@@ -1,18 +1,18 @@
 #include <stdio.h>
 int main(void)
 {
-    //¶¨ÒåÖµ
+    //å®šä¹‰å€¼
     char f_name[40],l_name[40];
 
-    //»ñÈ¡Öµ
-    printf("ÇëÊäÈëÄãµÄĞÕ:");
+    //è·å–å€¼
+    printf("è¯·è¾“å…¥ä½ çš„å§“:");
     scanf("%s",f_name);
-    printf("OK, ½ÓÏÂÀ´ÇëÊäÈëÄãµÄÃû×Ö:");
+    printf("OK, æ¥ä¸‹æ¥è¯·è¾“å…¥ä½ çš„åå­—:");
     scanf("%s",l_name);
 
-    //´òÓ¡Öµ
-    printf("OK,ÄãµÄÃû×ÖÊÇ:%s%s\n",f_name,l_name);
+    //æ‰“å°å€¼
+    printf("OK,ä½ çš„åå­—æ˜¯:%s%s\n",f_name,l_name);
 
-    //º¯Êı·µ»ØÖµ
+    //å‡½æ•°è¿”å›å€¼
     return 0;
 }

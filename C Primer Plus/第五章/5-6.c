@@ -1,20 +1,20 @@
 #include <stdio.h>
 int main(void)
 {
-    //¶¨ÒåÖµ
+    //å®šä¹‰å€¼
     int day,count;
     int sum;
 
-    //»ñÈ¡Öµ
-    printf("ÇëÊäÈë×¬µÄÌìÊı(<=0 to quit):");
+    //è·å–å€¼
+    printf("è¯·è¾“å…¥èµšçš„å¤©æ•°(<=0 to quit):");
     while(scanf("%d",&day)==1&&day>0){
         for(count=0,sum=0;count<=day;count++){
             sum+=count*count;
         }
-        printf("Ò»¹²ÊÇ:%dÔª\n",sum);
-        printf("ÇëÊäÈëÁíÒ»¸ö×¬Ç®ÌìÊı(<=0 to quit):");
+        printf("ä¸€å…±æ˜¯:%då…ƒ\n",sum);
+        printf("è¯·è¾“å…¥å¦ä¸€ä¸ªèµšé’±å¤©æ•°(<=0 to quit):");
     }
 
-    //º¯Êı·µ»ØÖµ
+    //å‡½æ•°è¿”å›å€¼
     return 0;
 }

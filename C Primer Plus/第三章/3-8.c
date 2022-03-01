@@ -1,28 +1,28 @@
 #include <stdio.h>
-#define BPP 2       //Ò»Æ·ÍÑ±­Êı
-#define APB 8       //Ò»±­°»Ë¾Êı
-#define DPA 2       //Ò»°»Ë¾´óÌÀÉ×Êı
-#define CPD 3       //Ò»´óÌÀÉ×²èÉ×Êı
+#define BPP 2       //ä¸€å“è„±æ¯æ•°
+#define APB 8       //ä¸€æ¯ç›å¸æ•°
+#define DPA 2       //ä¸€ç›å¸å¤§æ±¤å‹ºæ•°
+#define CPD 3       //ä¸€å¤§æ±¤å‹ºèŒ¶å‹ºæ•°
 int main(void)
 {
-    //¶¨ÒåÖµ
+    //å®šä¹‰å€¼
     double B;
     double P,A,D,C;
 
-    //»ñÈ¡Öµ
-    printf("ÇëÊäÈë±­Êı:");
+    //è·å–å€¼
+    printf("è¯·è¾“å…¥æ¯æ•°:");
     scanf("%lf",&B);
 
-    //¼ÆËãÖµ
+    //è®¡ç®—å€¼
     P = B / BPP;
     A = B * APB;
     D = A * DPA;
     C = D * CPD;
 
-    //´òÓ¡
-    printf("%g±­ = %gÆ·ÍÑ = %g°»Ë¾ = %g´óÌÀÉ× = %g²èÉ×\n",B,P,A,D,C);
+    //æ‰“å°
+    printf("%gæ¯ = %gå“è„± = %gç›å¸ = %gå¤§æ±¤å‹º = %gèŒ¶å‹º\n",B,P,A,D,C);
 
 
-    //º¯Êı·µ»ØÖµ
+    //å‡½æ•°è¿”å›å€¼
     return 0;
 }

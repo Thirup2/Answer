@@ -1,13 +1,13 @@
 #include <stdio.h>
-#define C_F 30.48       //Ò»Ó¢³ß30.48ÀåÃ×
-#define F_I 12          //Ò»Ó¢³ß12Ó¢´ç
+#define C_F 30.48       //ä¸€è‹±å°º30.48åŽ˜ç±³
+#define F_I 12          //ä¸€è‹±å°º12è‹±å¯¸
 int main(void)
 {
-    //¶¨ÒåÖµ
+    //å®šä¹‰å€¼
     double cm,in;
     int feet;
 
-    //»ñÈ¡Öµ
+    //èŽ·å–å€¼
     printf("Enter a height in centimeters:");
     while(scanf("%lf",&cm)==1&&cm>0){
         in=cm/C_F*F_I;
@@ -16,9 +16,9 @@ int main(void)
         printf("%.1lf cm = %d feet, %.1lf inches\n",cm,feet,in);
         printf("Enter a height in centimeters (<=0 to quit):");
     }
-    //Ñ­»·½áÊø
+    //å¾ªçŽ¯ç»“æŸ
     printf("bye\n");
 
-    //º¯Êý·µ»ØÖµ
+    //å‡½æ•°è¿”å›žå€¼
     return 0;
 }

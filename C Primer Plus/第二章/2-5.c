@@ -3,8 +3,8 @@
 #define R "Russia"
 #define I "India"
 #define C "China"
-void br(void);      //´òÓ¡"Brazil, Russia"
-void ic(void);      //´òÓ¡"India, China\n"
+void br(void);      //æ‰“å°"Brazil, Russia"
+void ic(void);      //æ‰“å°"India, China\n"
 int main(void)
 {
     br();
@@ -14,7 +14,7 @@ int main(void)
     br();
     printf("\n");
 
-    //º¯Êı·µ»ØÖµ
+    //å‡½æ•°è¿”å›å€¼
     return 0;
 }
 void br(void)

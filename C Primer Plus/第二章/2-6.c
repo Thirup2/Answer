@@ -1,17 +1,17 @@
 #include <stdio.h>
 int main(void)
 {
-    //¶¨ÒåÖµ
+    //å®šä¹‰å€¼
     int toes = 10;
     int toes2,toes_2;
 
-    //¼ÆËãÖµ
+    //è®¡ç®—å€¼
     toes2=2*toes;
     toes_2=toes*toes;
 
-    //´òÓ¡Öµ
+    //æ‰“å°å€¼
     printf("toes = %d\ntoes x 2 = %d\ntoes ^ 2 = %d\n",toes,toes2,toes_2);
     
-    //º¯Êı·µ»ØÖµ
+    //å‡½æ•°è¿”å›å€¼
     return 0;
 }

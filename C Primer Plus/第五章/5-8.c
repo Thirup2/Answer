@@ -1,10 +1,10 @@
 #include <stdio.h>
 int main(void)
 {
-    //¶¨ÒåÖµ
+    //å®šä¹‰å€¼
     int one,two,res;
 
-    //»ñÈ¡Öµ
+    //è·å–å€¼
     printf("This program computes moduli.\n");
     printf("Enter an integer to serve as the second operand:");
     scanf("%d",&one);
@@ -15,9 +15,9 @@ int main(void)
         printf("Enter next number for first operand (<=0 to quit):");
     }
 
-    //Ñ­»·½áÊø
+    //å¾ªç¯ç»“æŸ
     printf("Done\n");
 
-    //º¯Êı·µ»ØÖµ
+    //å‡½æ•°è¿”å›å€¼
     return 0;
 }

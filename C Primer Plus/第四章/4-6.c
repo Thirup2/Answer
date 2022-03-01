@@ -2,21 +2,21 @@
 #include <string.h>
 int main(void)
 {
-    //¶¨ÒåÖµ
+    //å®šä¹‰å€¼
     char f_name[40],l_name[40];
     
-    //»ñÈ¡Öµ
-    printf("ÇëÊäÈëÄãµÄĞÕ:");
+    //è·å–å€¼
+    printf("è¯·è¾“å…¥ä½ çš„å§“:");
     scanf("%s",f_name);
-    printf("ÇëÊäÈëÄãµÄÃû×Ö:");
+    printf("è¯·è¾“å…¥ä½ çš„åå­—:");
     scanf("%s",l_name);
 
-    //´òÓ¡Öµ
+    //æ‰“å°å€¼
     printf("%s %s\n",f_name,l_name);
     printf("%*d %*d\n",strlen(f_name),strlen(f_name),strlen(l_name),strlen(l_name));
     printf("%s %s\n",f_name,l_name);
     printf("%-*d %-*d\n",strlen(f_name),strlen(f_name),strlen(l_name),strlen(l_name));
 
-    //º¯Êı·µ»ØÖµ
+    //å‡½æ•°è¿”å›å€¼
     return 0;
 }

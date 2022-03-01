@@ -1,18 +1,18 @@
 #include <stdio.h>
-#define F_N "ÌÆ"
-#define L_N "´«Ë³"
+#define F_N "å”"
+#define L_N "ä¼ é¡º"
 int main(void)
 {
-    //Ò»´Îprintf()´òÓ¡Ò»ĞĞ
+    //ä¸€æ¬¡printf()æ‰“å°ä¸€è¡Œ
     printf("%s%s\n",F_N,L_N);
 
-    //Ò»´Îprintf()´òÓ¡Á½ĞĞ
+    //ä¸€æ¬¡printf()æ‰“å°ä¸¤è¡Œ
     printf("%s\n%s\n",F_N,L_N);
 
-    //Á½´Îprintf()´òÓ¡Ò»ĞĞ
+    //ä¸¤æ¬¡printf()æ‰“å°ä¸€è¡Œ
     printf("%s",F_N);
     printf("%s\n",L_N);
 
-    //º¯Êı·µ»ØÖµ
+    //å‡½æ•°è¿”å›å€¼
     return 0;
 }

@@ -2,19 +2,19 @@
 #define SMH 60
 int main(void)
 {
-    //¶¨ÒåÖµ
+    //å®šä¹‰å€¼
     int min_tot;
     int min,hour;
 
-    //»ñÈ¡Öµ
-    printf("ÇëÊäÈë×ÜµÄ·ÖÖÓÊı(<=0 to quit):");
+    //è·å–å€¼
+    printf("è¯·è¾“å…¥æ€»çš„åˆ†é’Ÿæ•°(<=0 to quit):");
     while(scanf("%d",&min_tot)==1&&min_tot>0){
         min=min_tot%SMH;
         hour=min_tot/SMH;
-        printf("%d·ÖÖÓ = %dĞ¡Ê±%d·ÖÖÓ\n",min_tot,hour,min);
-        printf("ÇëÊäÈëÏÂÒ»¸ö×Ü·ÖÖÓÊı(<=0 to quit):");
+        printf("%dåˆ†é’Ÿ = %då°æ—¶%dåˆ†é’Ÿ\n",min_tot,hour,min);
+        printf("è¯·è¾“å…¥ä¸‹ä¸€ä¸ªæ€»åˆ†é’Ÿæ•°(<=0 to quit):");
     }
 
-    //º¯Êı·µ»ØÖµ
+    //å‡½æ•°è¿”å›å€¼
     return 0;
 }
