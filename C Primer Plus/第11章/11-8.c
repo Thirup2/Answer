@@ -1,44 +1,43 @@
 #include <stdio.h>
 #include <string.h>
-#define SIZE 40
-char *string_in(char *s1,char *s2);
+#define SIZE 80
+char *string_in(char *st,char *sub);
 int main(void)
 {
-    char s1[SIZE];
-    char s2[SIZE];
-    char *ch;
-    puts("请输入s1:");
-    gets(s1);
-    puts("请输入s2:");
-    while(gets(s2)!=NULL&&s1!=NULL){
-        if((ch=string_in(s1,s2))!=NULL){
-            puts(ch);
-        }else{
-            puts("没有");
-        }
-        puts("请输入s1:");
-        gets(s1);
-        puts("请输入s2:");
+    char main_string[SIZE],sub[SIZE];
+    char *p=NULL;
+    printf("Enter a String as main string (blank to quit.):");
+    fgets(main_string,SIZE,stdin);
+    printf("Enter a sub string to find in main:");
+    fgets(sub,SIZE,stdin);
+    while(*main_string!='\n'){
+        p=string_in(main_string,sub);
+        printf("Done!\nNow the position of sub string is:");
+        printf("%p\n",p);
+        printf("Another? Enter a String as main string (blank to quit.):");
+        fgets(main_string,SIZE,stdin);
+        printf("Enter a sub string to find in main:");
+        fgets(sub,SIZE,stdin);
     }
 
     return 0;
 }
-char *string_in(char *s1,char *s2)
+
+char *string_in(char *st,char *sub)
 {
-    int i=0;int j=0;
-    char *n;
-    while(i<strlen(s1)&&j<strlen(s2)&&s2!=NULL&&s1!=NULL){
-        if(s1[i]==s2[j]){
-            n=s1+i-strlen(s2)+1;
-            i++;
-            j++;
+    int count=0;
+    int src_len=strlen(sub);
+    while(*st!='\0'&&count<src_len){
+        if(*(st+count)==*(sub+count)){
+            count++;
         }else{
-            i++;
-            j=0;
-            n=NULL;
+            count=0;
+            st++;
         }
     }
-    return n;
+    if(count==src_len){
+        return st;
+    }else{
+        return NULL;
+    }
 }
-//问题一:考虑"this"和"hs"的例子,程序会返回"没有"
-//问题二:函数中n赋值的位置

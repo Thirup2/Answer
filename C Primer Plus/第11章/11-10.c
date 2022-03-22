@@ -1,33 +1,37 @@
 #include <stdio.h>
-#define SIZE 40
-char *delete_space(char *input);
+#include <string.h>
+#define SIZE 80
+char *trim_str(char *st);
 int main(void)
 {
-    char input[SIZE];
-    puts("请输入:");
-    while(gets(input)!=NULL){
-        puts(delete_space(input));
+    char test_string[SIZE];
+    char *p=NULL;
+    printf("Enter a string (blank to quit.):");
+    fgets(test_string,SIZE,stdin);
+    while(*test_string!='\n'){
+        p=trim_str(test_string);
+        printf("Done!\nNow the trim string is :");
+        printf("%s\n",test_string);
+        printf("Another? Enter a string (blank to quit):");
+        fgets(test_string,SIZE,stdin);
     }
 
     return 0;
 }
-char *delete_space(char *input)
+char *trim_str(char *st)
 {
-    char *some=NULL;
-    int i=0;
-    int j=0;
-    while(input[i]!='\0'){
-        if(input[i]==' '){
-            i++;
+    char *head=st;
+    int count =0;
+    while(*st!='\0'){
+        if(*st!=' '){
+            *head++=*st++;
         }else{
-            *(some+j)=*(input+i);
-            i++;
-            j++;
+            st++;
+            count++;
         }
     }
-    *(some+j)='\0';
-
-    return some;
+    while(count--){
+        *head++='\0';
+    }
+    return st;
 }
-//问题一:循环条件
-//问题二:异常终止

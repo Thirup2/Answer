@@ -1,25 +1,33 @@
 #include <stdio.h>
 #include <string.h>
-#define SIZE 40
-void remo(char *input,int n);
+#define SIZE 80
+char *invert_str(char *st);
 int main(void)
 {
-    char input[SIZE];
-    puts("请输入:");
-    while(gets(input)!=NULL){
-        remo(input,strlen(input));
-        puts(input);
-        puts("请输入:");
+    char test_string[SIZE];
+    char *p=NULL;
+    printf("Enter a string (enter to quit.):");
+    fgets(test_string,SIZE,stdin);
+    while(*test_string!='\n'){
+        p=invert_str(test_string);
+        printf("Done!\nNow the invert string is :");
+        printf("%s\n",test_string);
+        printf("Another? Enter a string (enter to quit.):");
+        fgets(test_string,SIZE,stdin);
     }
 
     return 0;
 }
-void remo(char *input,int n)
+
+char *invert_str(char *st)
 {
-    char some;
-    for(int i=0;i<n/2;i++){
-        some=input[i];
-        input[i]=input[n-i-1];
-        input[n-i-1]=some;
+    int length=strlen(st);
+    char invert[length];
+    for(int i=0;i<length;i++){
+        *(invert+i)=*(st+length-1-i);
     }
+    for(int i=0;i<length;i++){
+        *(st+i)=*(invert+i);
+    }
+    return st;
 }
