@@ -1,28 +1,42 @@
 #include <stdio.h>
-#define SIZE1 40
-#define SIZE2 10
-char *mystrncpy(char *target,char *source,int n);
+#include <string.h>
+#define SIZE 80
+
+char* mystrncpy(char * dest, char *src,int n);
 int main(void)
 {
-    char source[SIZE1];
-    char target[SIZE2+1];
-    puts("请输入:");
-    while(gets(source)!=NULL){
-        puts(mystrncpy(target,source,SIZE2));
-        puts("请输入:");
+    char destination[SIZE],source[SIZE];
+    int i=0;
+    printf("Enter a String as s source (blank to quit.):");
+    fgets(source,SIZE,stdin);
+    printf("Enter number of char you need to copy:");
+    scanf("%d",&i);
+    while(*source!='\n'){
+        mystrncpy(destination,source,i);
+        printf("Done!\nNow the dest string is:");
+        puts(destination);
+        while(getchar()!='\n'){
+            break;
+        }
+        printf("Another? Enter a String as s source(blank to quit.):");
+        fgets(source,SIZE,stdin);
+        printf("Enter number of char you need to copy:");
+        scanf("%d",&i);
     }
-
+    
     return 0;
 }
-char *mystrncpy(char *target,char *source,int n)
+
+char *mystrncpy(char *dest,char *src,int n)
 {
-    for(int i=0;i<n;i++){
-        if((source+i)!=NULL){
-            *(target+i)=*(source+i);
-        }else{
-            *(target+i)='\0';
+    int count=0;
+    while(*src!='\0'&&count<n){
+        *(dest+count++)=*src++;
+    }
+    if(count<n){
+        while(count<n){
+            *(dest+count++)='\0';
         }
     }
-    *(target+n+1)='\0';
-    return target;
+    return dest;
 }
