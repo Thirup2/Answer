@@ -1,1 +1,0 @@
-/* 单链表接口函数定义List_SingleLink.c */
