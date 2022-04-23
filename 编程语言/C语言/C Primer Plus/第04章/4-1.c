@@ -1,18 +1,13 @@
 #include <stdio.h>
 int main(void)
 {
-    //定义值
-    char f_name[40],l_name[40];
+    char f_name[20];
+    char l_name[20];
+    printf("请输入您的名和姓:\n");
+    while(scanf("%s %s",f_name,l_name)==2){
+        printf("YourName: %s %s\n",f_name,l_name);
+        printf("请输入您的名和姓:\n");
+    }
 
-    //获取值
-    printf("请输入你的姓:");
-    scanf("%s",f_name);
-    printf("OK, 接下来请输入你的名字:");
-    scanf("%s",l_name);
-
-    //打印值
-    printf("OK,你的名字是:%s%s\n",f_name,l_name);
-
-    //函数返回值
     return 0;
 }

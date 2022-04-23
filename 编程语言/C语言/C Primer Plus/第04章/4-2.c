@@ -2,19 +2,15 @@
 #include <string.h>
 int main(void)
 {
-    //定义值
     char name[40];
+    printf("请输入您的名字:\n");
+    while(scanf("%s",name)==1){
+        printf("\"%s\"\n",name);
+        printf("\"%20s\"\n",name);
+        printf("\"%-20s\"\n",name);
+        printf("\"%*s\"\n",strlen(name)+3,name);
+        printf("请输入您的名字:\n");
+    }
 
-    //获取值
-    printf("请输入你的姓名:");
-    scanf("%s",name);
-
-    //打印值
-    printf("\"%s\"\n",name);
-    printf("\"%20s\"\n",name);
-    printf("\"%-20s\"\n",name);
-    printf("\"%*s\"\n",strlen(name)+3,name);
-
-    //函数返回值
     return 0;
 }

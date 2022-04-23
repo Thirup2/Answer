@@ -1,19 +1,13 @@
 #include <stdio.h>
 int main(void)
 {
-    //定义值
+    float height;
     char name[40];
-    double height;
+    printf("请输入您的身高和姓名(英寸):\n");
+    while(scanf("%f %s",&height,name)==2){
+        printf("%s, you are %g feet tall\n",name,height/12);
+        printf("请输入您的身高和姓名(英寸):\n");
+    }
 
-    //获取值
-    printf("请输入你的姓名:");
-    scanf("%s",name);
-    printf("%s,现在请输入你的身高(英寸):",name);
-    scanf("%lf",&height);
-
-    //打印值
-    printf("%s, you are %g feet tall\n",name,height);
-
-    //函数返回值
     return 0;
 }
