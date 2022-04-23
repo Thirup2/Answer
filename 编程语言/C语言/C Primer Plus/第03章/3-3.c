@@ -1,11 +1,9 @@
 #include <stdio.h>
+#define PRI "Startled by the sudden sound, Sally shouted,"
+#define PRI2 "By the Great Pumpkin, what was that!"
 int main(void)
 {
-    //打印
-    printf("\a");
-    printf("Startled by the sudden sound, Sally shouted,\n");
-    printf("\"By the Great Pumpkin, what was that!\"\n");
+    printf("\a%s\n\"%s\"\n",PRI,PRI2);
 
-    //函数返回值
     return 0;
 }

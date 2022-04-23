@@ -1,17 +1,10 @@
 #include <stdio.h>
 int main(void)
 {
-    //定义值
-    int toes = 10;
-    int toes2,toes_2;
+    int toes=10;
+    printf("toes = %d\n",toes);
+    printf("toes*2 = %d\n",toes*2);
+    printf("toes^2 = %d\n",toes*toes);
 
-    //计算值
-    toes2=2*toes;
-    toes_2=toes*toes;
-
-    //打印值
-    printf("toes = %d\ntoes x 2 = %d\ntoes ^ 2 = %d\n",toes,toes2,toes_2);
-    
-    //函数返回值
     return 0;
 }

@@ -1,18 +1,14 @@
 #include <stdio.h>
-#define F_N "唐"
-#define L_N "传顺"
+#define F_Name "Tang"
+#define L_Name "Chuanshun"
 int main(void)
 {
-    //一次printf()打印一行
-    printf("%s%s\n",F_N,L_N);
+    printf("%s %s\n",L_Name,F_Name);
 
-    //一次printf()打印两行
-    printf("%s\n%s\n",F_N,L_N);
+    printf("%s\n%s\n",L_Name,F_Name);
 
-    //两次printf()打印一行
-    printf("%s",F_N);
-    printf("%s\n",L_N);
+    printf("%s ",L_Name);
+    printf("%s\n",F_Name);
 
-    //函数返回值
     return 0;
 }

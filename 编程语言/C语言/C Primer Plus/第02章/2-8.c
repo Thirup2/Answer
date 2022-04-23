@@ -1,26 +1,24 @@
 #include <stdio.h>
-#define O "one"
-#define T "two"
-#define TH "three"
-void one_three(void);       //打印一到三,二用另一个函数打印
-void two(void);             //打印二
+#define One "one"
+#define Two "two"
+#define Three "three"
+void one_three(void);
+void two(void);
 int main(void)
 {
-    //打印
     printf("starting now:\n");
     one_three();
     printf("done!\n");
 
-    //函数返回值
     return 0;
 }
 void one_three(void)
 {
-    printf("one\n");
+    printf("%s\n",One);
     two();
-    printf("three\n");
+    printf("%s\n",Three);
 }
 void two(void)
 {
-    printf("two\n");
+    printf("%s\n",Two);
 }

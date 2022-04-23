@@ -1,28 +1,17 @@
 #include <stdio.h>
-#define BPP 2       //一品脱杯数
-#define APB 8       //一杯盎司数
-#define DPA 2       //一盎司大汤勺数
-#define CPD 3       //一大汤勺茶勺数
+#define B_P 2       //1 品脱 = 2 杯
+#define A_B 8       //1 杯 = 8 盎司
+#define D_A 2       //1 盎司 = 2 大汤勺
+#define C_D 3       //1 大汤勺 = 3 茶勺
 int main(void)
 {
-    //定义值
-    double B;
-    double P,A,D,C;
+    float b_num;
+    printf("请输入杯数:\n");
+    while(scanf("%f",&b_num)==1){
+        printf("%g 杯 = %g 品脱 = %g 盎司 = %g 大汤勺 = %g 茶勺\n",
+                b_num,b_num/B_P,b_num*A_B,b_num*A_B*D_A,b_num*A_B*D_A*C_D);
+        printf("请输入杯数:\n");
+    }
 
-    //获取值
-    printf("请输入杯数:");
-    scanf("%lf",&B);
-
-    //计算值
-    P = B / BPP;
-    A = B * APB;
-    D = A * DPA;
-    C = D * CPD;
-
-    //打印
-    printf("%g杯 = %g品脱 = %g盎司 = %g大汤勺 = %g茶勺\n",B,P,A,D,C);
-
-
-    //函数返回值
     return 0;
 }

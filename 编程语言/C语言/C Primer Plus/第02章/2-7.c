@@ -1,20 +1,18 @@
 #include <stdio.h>
-#define SMI "Smile!"
-void sm(void);      //打印"Smile!"
+#define SM "Smile!"
+void Smile(void);
 int main(void)
 {
-    //打印
-    sm();sm();sm();
+    Smile();Smile();Smile();
     printf("\n");
-    sm();sm();
+    Smile();Smile();
     printf("\n");
-    sm();
+    Smile();
     printf("\n");
 
-    //函数返回值
     return 0;
 }
-void sm(void)
+void Smile(void)
 {
-    printf("%s",SMI);
+    printf("%s",SM);
 }
