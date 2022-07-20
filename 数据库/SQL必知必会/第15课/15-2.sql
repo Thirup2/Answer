@@ -1,0 +1,2 @@
+CREATE TABLE Orders_copy AS SELECT * FROM Orders;
+CREATE TABLE OI_copy AS SELECT * FROM OrderItems;
