@@ -2,10 +2,9 @@
 #include "Sales_item.h"
 int main()
 {
-    Sales_item book1,book2;
-    std::cout << "请输入两个ISBN相同的Sales_item对象:" <<std::endl;
-    std::cin >> book1 >> book2;
-    std::cout << book1 + book2 << std::endl;
-
+    Sales_item item1, item2;
+    while (std::cin >> item1 >> item2) {
+        std::cout << item1 + item2 << std::endl;
+    }
     return 0;
 }

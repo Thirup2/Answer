@@ -1,10 +1,10 @@
-#include <iostream>
 #include "Sales_item.h"
+#include <iostream>
 int main()
 {
-    Sales_item book;
-    while(std::cin >> book){
-        std::cout << book << std::endl;
+    Sales_item item;
+    while (std::cin >> item) {
+        std::cout << item << std::endl;
     }
 
     return 0;

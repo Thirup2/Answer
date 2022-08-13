@@ -1,18 +1,21 @@
 #include <iostream>
 int main()
 {
-    int n1,n2;
-    int temp;
-    std::cout << "Please enter two integer numbers:" << std::endl;
-    std::cin >> n1 >> n2;
-    if(n1>n2){
-        temp=n1;
-        n1=n2;
-        n2=temp;
+    int m, n;
+    std::cout << "请输入两个整数作为范围: " << std::endl;
+    std::cin >> m >> n;
+    int max, min;
+    if (m > n) {
+        max = m;
+        min = n;
+    } else {
+        max = n;
+        min = m;
     }
-    while(++n1<n2){
-        std::cout << n1 << std::endl;
+    for (; min <= max; ++min) {
+        std::cout << min << " ";
     }
+    std::cout << std::endl;
 
     return 0;
 }

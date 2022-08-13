@@ -1,12 +1,11 @@
 #include <iostream>
 int main()
 {
-    int sum=0;
-    int value=0;
-    while(std::cin >> value){
-        sum+=value;
+    int sum = 0, val;
+    while (std::cin >> val) {
+        sum += val;
     }
-    std::cout << "The sum of your enter is : " << sum << std::endl;
+    std::cout << "输入值的和是: " << sum << std::endl;
 
     return 0;
 }

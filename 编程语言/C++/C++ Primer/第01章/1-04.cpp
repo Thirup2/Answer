@@ -1,10 +1,10 @@
 #include <iostream>
-int main(void)
+int main()
 {
-    std::cout << "请输入两个数,我将求出它们的积:" << std::endl;
-    int n1,n2;
-    std::cin >> n1 >> n2;
-    std::cout << n1 << " * " << n2 << " = " << n1*n2 << std::endl;
+    int va1, va2;
+    std::cout << "请输入两个整数: " << std::endl;
+    std::cin >> va1 >> va2;
+    std::cout << va1 << " * " << va2 << " = " << va1 * va2 << std::endl;
 
     return 0;
 }

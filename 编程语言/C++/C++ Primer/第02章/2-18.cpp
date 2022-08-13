@@ -1,13 +1,14 @@
 #include <iostream>
-int main(void)
+int main()
 {
-    int a=40;
-    int * p=nullptr;
-    std::cout << p << std::endl;
-    p=&a;
-    std::cout << *p << std::endl;
-    *p=50;
-    std::cout << *p << std::endl;
+    int i = 20;
+    int j = 34;
+    int *p = &i;
+    std::cout << "*p = " << *p << "; p = " << p << std::endl;
+    p = &j;
+    std::cout << "*p = " << *p << "; p = " << p << std::endl;
+    *p = 35;
+    std::cout << "*p = " << *p << "; p = " << p << std::endl;
 
     return 0;
 }

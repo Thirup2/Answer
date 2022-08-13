@@ -1,13 +1,15 @@
+/* 1.4.1节练习1.9 */
 #include <iostream>
+using std::cout;
+using std::endl;
 int main()
 {
     int sum = 0;
     int i = 50;
     while (i <= 100) {
-        sum += i;
-        i++;
+        sum += i++;
     }
-    std::cout << "The sum of 50 to 100 is " << sum << std::endl;
+    cout << sum << endl;
 
     return 0;
 }

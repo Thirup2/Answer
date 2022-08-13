@@ -1,20 +1,21 @@
 #include <iostream>
 int main()
 {
-    int val,curval;
-    if(std::cin >> curval){
-        int count=1;
-        while(std::cin >> val){
-            if(curval==val){
-                count++;
-            }else{
-                std::cout << curval << " occurs " << count << " times." << std::endl;
-                curval=val;
-                count=1;
+    int currVal = 0, val = 0;
+    if (std::cin >> currVal) {
+        int cnt = 1;
+        while (std::cin >> val) {
+            if (val == currVal) {
+                ++cnt;
+            } else {
+                std::cout << currVal << " occurs "
+                    << cnt << " times" << std::endl;
+                currVal = val;
+                cnt = 1;
             }
         }
-        std::cout << curval << " occurs " << count << " times." << std::endl;
+        std::cout << currVal << " occurs "
+            << cnt << " times" << std::endl;
     }
-
     return 0;
 }

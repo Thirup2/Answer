@@ -1,16 +1,14 @@
 #include <iostream>
-int main(void)
+int main()
 {
-    int v1,v2;
-    std::cout << "Enter two numbers:" << std::endl;
-    std::cin >> v1 >> v2;
-    std::cout << "The sum of ";
-    std::cout << v1;
-    std::cout << " and ";
-    std::cout << v2;
-    std::cout << " is ";
-    std::cout << v1+v2;
-    std::cout << std::endl;
+    std::cout << "请输入两个整数: " << std::endl;
+    int m, n;
+    std::cin >> m >> n;
+    std::cout << m;
+    std::cout << " * ";
+    std::cout << n;
+    std::cout << " = ";
+    std::cout << m * n << std::endl;
 
     return 0;
 }
