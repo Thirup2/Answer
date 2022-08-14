@@ -85,7 +85,7 @@ int ArrayInsert(Array *array, int i, ElemType const *elem);
 /*
 ** 操作: 按序删除值, 并将被删除值赋给第三参数
 ** 参数: 数组指针, 删除位序
-** 返回值: 若数组指针为NULL, 返回-1. 若位序不合理, 返回1.
+** 返回值: 若数组指针为NULL, 返回-1. 若位序不合理, 返回1. 
 */
 int ArrayDelete(Array *array, int i, ElemType *elem);
 
