@@ -1,0 +1,12 @@
+﻿cl : 命令行  warning D9025: 正在重写“/sdl”(用“/GS-”)
+  Array.c
+  driver.c
+E:\Github\Myself\Answer\数据结构\大话数据结构\1 线性表\1 数组\1 一维数组\driver.c(112,20): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+E:\Github\Myself\Answer\数据结构\大话数据结构\1 线性表\1 数组\1 一维数组\driver.c(115,17): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+E:\Github\Myself\Answer\数据结构\大话数据结构\1 线性表\1 数组\1 一维数组\driver.c(165,20): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+E:\Github\Myself\Answer\数据结构\大话数据结构\1 线性表\1 数组\1 一维数组\driver.c(213,20): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+E:\Github\Myself\Answer\数据结构\大话数据结构\1 线性表\1 数组\1 一维数组\driver.c(216,17): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+E:\Github\Myself\Answer\数据结构\大话数据结构\1 线性表\1 数组\1 一维数组\driver.c(267,20): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+E:\Github\Myself\Answer\数据结构\大话数据结构\1 线性表\1 数组\1 一维数组\driver.c(292,20): warning C4996: 'scanf': This function or variable may be unsafe. Consider using scanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  正在生成代码...
+  1 一维数组.vcxproj -> E:\Github\Myself\Answer\数据结构\大话数据结构\1 线性表\1 数组\x64\Debug\1 一维数组.exe
