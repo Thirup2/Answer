@@ -8,4 +8,4 @@ Array.o : Array.h
 
 .PHONY : clean
 clean :
-	del Array.exe $(objects)
+	rm Array $(objects)

@@ -8,4 +8,4 @@ driver.o: SqQueue.h
 
 .PHONY : clean
 clean:
-	del SqQueue.exe $(Objects)
+	rm SqQueue $(Objects)

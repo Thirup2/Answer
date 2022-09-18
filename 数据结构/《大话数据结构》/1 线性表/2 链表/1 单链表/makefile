@@ -8,4 +8,4 @@ LinkList.o : LinkList.h
 
 .PHONY : clean
 clean :
-	del LinkList.exe $(objects)
+	rm LinkList $(objects)

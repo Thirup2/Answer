@@ -8,4 +8,4 @@ SqStack.o : SqStack.h
 
 .PHONY : clean
 clean :
-	del SqStack.exe $(Objects)
+	rm SqStack $(Objects)

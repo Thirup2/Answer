@@ -8,4 +8,4 @@ LinkStack.o: LinkStack.h
 
 .PHONY: clean
 clean:
-	del LinkStack.exe $(Objects)
+	rm LinkStack $(Objects)

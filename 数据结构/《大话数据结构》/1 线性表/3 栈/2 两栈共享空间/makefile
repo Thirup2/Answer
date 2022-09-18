@@ -8,4 +8,4 @@ SqDulStack.o : SqDulStack.h
 
 .PHONY : clean
 clean :
-	del SqDulStack.exe $(Objects)
+	rm SqDulStack $(Objects)

@@ -8,4 +8,4 @@ LinkQueue.o: LinkQueue.h
 
 .PHONY: clean
 clean:
-	del LinkQueue.exe $(Objects)
+	rm LinkQueue $(Objects)

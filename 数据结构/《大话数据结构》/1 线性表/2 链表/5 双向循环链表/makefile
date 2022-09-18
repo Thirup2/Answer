@@ -8,4 +8,4 @@ DulCyList.o : DulCyList.h
 
 .PHONY : clean
 clean : 
-	del DulCyList.exe $(Objects)
+	rm DulCyList $(Objects)

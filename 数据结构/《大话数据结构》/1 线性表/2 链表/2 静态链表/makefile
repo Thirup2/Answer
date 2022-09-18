@@ -8,4 +8,4 @@ StaticList.o : StaticList.h
 
 .PHONY : clean
 clean :
-	del StaticList.exe $(objects)
+	rm StaticList $(objects)

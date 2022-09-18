@@ -8,4 +8,4 @@ DoubleList.o : DoubleList.h
 
 .PHONY : clean
 clean :
-	del DoubleList.exe $(Objects)
+	rm DoubleList $(Objects)

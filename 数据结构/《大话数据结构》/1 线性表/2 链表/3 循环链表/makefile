@@ -8,4 +8,4 @@ CycleList.o : CycleList.h
 
 .PHONY : clean
 clean :
-	del CycleList.exe $(Objects)
+	rm CycleList $(Objects)
