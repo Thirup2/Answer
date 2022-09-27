@@ -28,40 +28,40 @@ int main(void)
         exit(EXIT_FAILURE);
     }
     int now = first;
-    for (int i = 0; i < N; i++) {
+    int cnt = 0;
+    for (cnt = 0; cnt < N && list[cnt - 1].next_add != -1; cnt++) {
         for (int j = 0; j < n; j++) {
             if (elem_arr[j].address == now) {
-                list[i] = elem_arr[j];
+                list[cnt] = elem_arr[j];
                 now = elem_arr[j].next_add;
                 break;
             }
         }
     }
-    list[N - 1].next_add = -1;
     free(elem_arr);
     // 转换list
-    ElemType *copy = (ElemType *) malloc(N * sizeof(ElemType));
-    for (int i = 0, m = 0; m < N / K; m++) {
+    ElemType *copy = (ElemType *) malloc(cnt * sizeof(ElemType));
+    for (int i = 0, m = 0; m < cnt / K; m++) {
         for (int j = (m + 1) * K - 1; j >= m * K; j--) {
             copy[i].address = list[j].address;
             copy[i].data = list[j].data;
             i++;
         }
     }
-    for (int i = N / K * K; i < N; i++) {
+    for (int i = cnt / K * K; i < cnt; i++) {
         copy[i].address = list[i].address;
         copy[i].data = list[i].data;
     }
-    for (int i = 0; i < N - 1; i++) {
+    for (int i = 0; i < cnt - 1; i++) {
         copy[i].next_add = copy[i + 1].address;
     }
-    copy[N - 1].next_add = -1;
+    copy[cnt - 1].next_add = -1;
 
     // 输出list
-    for (int i = 0; i < N - 1; i++) {
+    for (int i = 0; i < cnt - 1; i++) {
         printf("%05d %d %05d\n", copy[i].address, copy[i].data, copy[i].next_add);
     }
-    printf("%05d %d %d", copy[N - 1].address, copy[N - 1].data, copy[N - 1].next_add);
+    printf("%05d %d %d", copy[cnt - 1].address, copy[cnt - 1].data, copy[cnt - 1].next_add);
 
     free(list);
     free(copy);
