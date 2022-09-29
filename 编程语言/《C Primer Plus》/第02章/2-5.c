@@ -1,6 +1,4 @@
 #include <stdio.h>
-#define IC "India, China"
-#define BR "Brazil, Russia"
 void br(void);
 void ic(void);
 int main(void)
@@ -16,9 +14,9 @@ int main(void)
 }
 void br(void)
 {
-    printf("%s",BR);
+    printf("Brazil, Russia");
 }
 void ic(void)
 {
-    printf("%s\n",IC);
+    printf("India, China\n");
 }

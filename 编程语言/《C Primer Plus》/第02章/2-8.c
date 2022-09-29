@@ -1,7 +1,4 @@
 #include <stdio.h>
-#define One "one"
-#define Two "two"
-#define Three "three"
 void one_three(void);
 void two(void);
 int main(void)
@@ -14,11 +11,11 @@ int main(void)
 }
 void one_three(void)
 {
-    printf("%s\n",One);
+    printf("one\n");
     two();
-    printf("%s\n",Three);
+    printf("three\n");
 }
 void two(void)
 {
-    printf("%s\n",Two);
+    printf("two\n");
 }

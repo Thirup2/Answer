@@ -1,11 +1,10 @@
 #include <stdio.h>
-#define Year 365
+#define DPY 365
+#define AGE 20
 int main(void)
 {
-    int age;
-    printf("Please enter your age:\n");
-    scanf("%d",&age);
-    printf("%d ages = %d days\n",age,Year*age);
+    printf("年龄: %d\n", AGE);
+    printf("天数: %d\n", AGE * DPY);
 
     return 0;
 }

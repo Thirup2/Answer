@@ -1,11 +1,10 @@
 #include <stdio.h>
-#define SM "Smile!"
 void Smile(void);
 int main(void)
 {
-    Smile();Smile();Smile();
+    Smile(); Smile(); Smile();
     printf("\n");
-    Smile();Smile();
+    Smile(); Smile();
     printf("\n");
     Smile();
     printf("\n");
@@ -14,5 +13,5 @@ int main(void)
 }
 void Smile(void)
 {
-    printf("%s",SM);
+    printf("Smile!");
 }

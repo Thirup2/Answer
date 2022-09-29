@@ -1,14 +1,12 @@
 #include <stdio.h>
-#define F_Name "Tang"
-#define L_Name "Chuanshun"
+#define FNAME "唐"
+#define LNAME "传顺"
 int main(void)
 {
-    printf("%s %s\n",L_Name,F_Name);
-
-    printf("%s\n%s\n",L_Name,F_Name);
-
-    printf("%s ",L_Name);
-    printf("%s\n",F_Name);
+    printf("%s%s\n", FNAME, LNAME);
+    printf("%s\n%s\n", FNAME, LNAME);
+    printf("%s", FNAME);
+    printf("%s\n", LNAME);
 
     return 0;
 }
