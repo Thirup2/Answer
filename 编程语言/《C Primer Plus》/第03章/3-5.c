@@ -1,13 +1,12 @@
 #include <stdio.h>
-#define Sec_Year 3.156e7
+#define SPY 3.156e7
 int main(void)
 {
+    printf("请输入您的年龄: ");
     int age;
-    printf("请输入您的年龄:\n");
-    while(scanf("%d",&age)==1){
-        printf("%d ages = %g seconds\n",age,age*Sec_Year);
-        printf("请输入您的年龄:\n");
-    }
+    scanf("%d", &age);
+    printf("年龄: %d\n", age);
+    printf("秒数: %g\n", age * SPY);
 
     return 0;
 }

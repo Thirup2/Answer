@@ -1,13 +1,11 @@
 #include <stdio.h>
-#define CM_IN 2.54
+#define CmPFoot 2.54
 int main(void)
 {
-    float inch;
-    printf("请输入您的身高(英寸):\n");
-    while(scanf("%f",&inch)==1){
-        printf("%g inches = %g cm\n",inch,inch*CM_IN);
-        printf("请输入您的身高(英寸):\n");
-    }
+    printf("请输入您的身高(/英寸): ");
+    double foot;
+    scanf("%lf", &foot);
+    printf("%gfoot = %gcm\n", foot, foot * CmPFoot);
 
     return 0;
 }

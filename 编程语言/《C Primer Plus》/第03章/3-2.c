@@ -1,11 +1,11 @@
 #include <stdio.h>
 int main(void)
 {
-    int n;
-    printf("please enter an ASCII code:\n");
-    while(scanf("%d",&n)==1){
-        printf("%c\n",n);
-    }
+    printf("请输入一个ASCII码: ");
+    int asc;
+    scanf("%d", &asc);
+    printf("ASCII: %d\n", asc);
+    printf("char: %c\n", asc);
 
     return 0;
 }
