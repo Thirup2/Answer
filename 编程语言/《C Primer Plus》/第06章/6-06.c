@@ -1,23 +1,22 @@
 #include <stdio.h>
-int pyfh(int);
-int lifh(int);
 int main(void)
 {
-    int mini,maxi;
-    printf("请输入你想要求平方和立方的整数范围:");
-    scanf("%d %d",&mini,&maxi);
-    printf("%-10s%-10s%-10s\n","x","x^2","x^3");
-    for(;mini<=maxi;mini++){
-        printf("%-10d%-10d%-10d\n",mini,pyfh(mini),lifh(mini));
+    int min, max;
+    printf("请输入两个整数作为上下限: ");
+    scanf("%d %d", &min, &max);
+    if (min > max) {
+        int temp;
+        temp = max;
+        max = min;
+        min = temp;
     }
-
+    printf("----------------------------------\n");
+    printf("|%-10s|%-10s|%-10s|\n", "Integer", "Sqaure", "Cubic");
+    printf("----------------------------------\n");
+    while (min <= max) {
+        printf("|%-10d|%-10d|%-10d|\n", min, min * min, min * min * min);
+        printf("----------------------------------\n");
+        min++;
+    }
     return 0;
-}
-int pyfh(int i)
-{
-    return i*i;
-}
-int lifh(int i)
-{
-    return i*i*i;
 }

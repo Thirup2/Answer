@@ -1,16 +1,13 @@
 #include <stdio.h>
-#define row 5
-#define wtp '$'
+#define SYM '$'
 int main(void)
 {
-    //打印
-    for(int i=1;i<=row;i++){
-        for(int j=1;j<=i;j++){
-            printf("%c",wtp);
+    for (int i = 0; i < 5; i++) {
+        for (int j = 0; j <= i; j++) {
+            printf("%c", SYM);
         }
         printf("\n");
     }
 
-    //函数返回值
     return 0;
 }

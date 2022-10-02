@@ -1,17 +1,24 @@
 #include <stdio.h>
-#define NUM 8
+int In_pow(int x, int y);
 int main(void)
 {
-    int two[NUM];
-    two[0]=1;
-    for(int i=1;i<=NUM;i++){
-        two[i]=two[i-1]*2;
+    int square[8];
+    for (int i = 0; i < 8; i++) {
+        square[i] = In_pow(2, i);
     }
-    int i=0;
-    do{
-        printf("2^%d = %d\n",i,two[i]);
-        i++;
-    }while(i<NUM);
+    int i = 0;
+    do {
+        printf("%d ", square[i++]);
+    } while (i < 7);
+    printf("%d\n", square[i]);
 
     return 0;
+}
+int In_pow(int x, int y)
+{
+    int result = 1;
+    for (int i = 0; i < y; i++) {
+        result *= x;
+    }
+    return result;
 }

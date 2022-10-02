@@ -1,22 +1,22 @@
 #include <stdio.h>
-int SquareSum(int,int);
+int work(int a, int b);
 int main(void)
 {
-    int m,n;
-    printf("Enter lower and upper integer limits:");
-    while(scanf("%d %d",&m,&n)==2&&m<n){
-        printf("The sums of the squares from %d to %d is %d\n",m*m,n*n,SquareSum(m,n));
-        printf("Enter next set of limits:");
+    int a, b;
+    printf("Enter lower and upper integer limits: ");
+    while (scanf("%d %d", &a, &b) == 2 && a < b) {
+        printf("The sums of the squares from %d to %d is %d\n", a * a, b * b, work(a, b));
+        printf("Enter next set of limits: ");
     }
     printf("Done\n");
 
     return 0;
 }
-int SquareSum(int m,int n)
+int work(int a, int b)
 {
-    int sum;
-    for(;m<=n;m++){
-        sum+=m*m;
+    int sum = a * a;
+    for (int i = a + 1; i <= b; i++) {
+        sum += i * i;
     }
     return sum;
 }

@@ -1,24 +1,22 @@
 #include <stdio.h>
-#define NUM 8
 int main(void)
 {
-    double some1[NUM];
-    double some2[NUM];
-    printf("请输入8个整数");
-    for(int i=0;i<NUM;i++){
-        scanf("%lf",&some1[i]);
+    double arr[8];
+    for (int i = 0; i < 8; i++) {
+        scanf("%lf", &arr[i]);
     }
-    some2[0]=some1[0];
-    for(int i=1;i<NUM;i++){
-        some2[i]=some2[i-1]+some1[i];
+    double copy[8];
+    copy[0] = arr[0];
+    for (int i = 1; i < 8; i++) {
+        copy[i] = copy[i - 1] + arr[i];
     }
-    for(int i=0;i<NUM;i++){
-        printf("%-10lf",some1[i]);
+    for (int i = 0; i < 8; i++) {
+        printf("%-10g", arr[i]);
     }
     printf("\n");
-    for(int i=0;i<NUM;i++){
-        printf("%-10lf",some2[i]);
+    for (int i = 0; i < 8; i++) {
+        printf("%-10g", copy[i]);
     }
-
+    printf("\n");
     return 0;
 }

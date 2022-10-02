@@ -1,23 +1,46 @@
 #include <stdio.h>
+double seq1(int n);
+double seq2(int n);
 int main(void)
 {
-    unsigned long long times;
-    double sum,sum1,sum2;
-    double be= 1.0;
-    printf("请输入运算次数:");
-    scanf("%llu",&times);
-    for(int i=0;i<times;i++){
-        sum1+=1.0/(be+i);
+    int N;
+    while (scanf("%d", &N) == 1 && N > 0) {
+        printf("1.0 + 1.0/2.0 + 1.0/3.0 + 1.0/4.0 + ...\n");
+        printf("times: %d\n", N);
+        printf("result: %g\n", seq1(N));
+        printf("1.0 - 1.0/2.0 + 1.0/3.0 - 1.0/4.0 + ...\n");
+        printf("times: %d\n", N);
+        printf("result: %g\n", seq2(N));
+        printf("Please enter next times: ");
     }
-    for(int i=0;i<times;i++){
-        if(i%2==0){
-            sum2+=1.0/(be+i);
-        }else{
-            sum2-=1.0/(be+i);
-        }
-    }
-    sum=sum1+sum2;
-    printf("程序运行了%llu次\n序列1之和:%lf\n序列2之和:%lf\n两序列之和:%lf\n",times,sum1,sum2,sum);
+    printf("Bye!\n");
 
     return 0;
+}
+double seq1(int n)
+{
+    double mother = 1.0;
+    double son = 1.0;
+    double sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum += son / mother;
+        mother += 1.0;
+    }
+    return sum;
+}
+double seq2(int n)
+{
+    double mother = 1.0;
+    double son = 1.0;
+    double sum = 0;
+    for (int i = 0; i < n; i++) {
+        if (i % 2 == 0) {
+            sum += son / mother;
+            mother += 1.0;
+        } else {
+            sum -= son / mother;
+            mother += 1.0;
+        }
+    }
+    return sum;
 }

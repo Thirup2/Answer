@@ -1,13 +1,11 @@
 #include <stdio.h>
 int main(void)
 {
-    char f_name[20];
-    char l_name[20];
-    printf("请输入您的名和姓:\n");
-    while(scanf("%s %s",f_name,l_name)==2){
-        printf("YourName: %s %s\n",f_name,l_name);
-        printf("请输入您的名和姓:\n");
-    }
+    char fname[20];
+    char lname[20];
+    printf("Please Enter your first name and last name: ");
+    scanf("%s %s", fname, lname);
+    printf("Hello, %s %s\n", lname, fname);
 
     return 0;
 }

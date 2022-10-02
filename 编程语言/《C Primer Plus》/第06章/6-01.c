@@ -1,20 +1,15 @@
 #include <stdio.h>
-#define NUM 26
 int main(void)
 {
-    //定义值
-    char ch[26];
-    char t;
-    int i;
-
-    //赋值
-    for(t='a',i=0;i<NUM;i++,t++){
-        ch[i]=t;
+    char sletter[26];
+    char ch = 'a';
+    for (int i = 0; i < 26; i++) {
+        sletter[i] = ch++;
     }
-    for(i=0;i<NUM;i++){
-        printf("%c",ch[i]);
+    for (int i = 0; i < 25; i++) {
+        printf("%c ", sletter[i]);
     }
+    printf("%c\n", sletter[25]);
 
-    //函数返回值
     return 0;
 }

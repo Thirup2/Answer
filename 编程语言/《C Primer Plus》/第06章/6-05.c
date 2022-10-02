@@ -1,17 +1,18 @@
 #include <stdio.h>
-#define ROWS 5
 int main(void)
 {
-    int ch;;
-    for(int i=0;i<ROWS;i++){
-        for(int j=4;j>i;j--){
+    int levels;
+    printf("请输入要打印的行数: ");
+    scanf("%d", &levels);
+    for (int i = 0; i < levels; i++) {
+        for (int j = levels - i - 1; j > 0; j--) {
             printf(" ");
         }
-        for(int j=0,ch='A';j<i;j++,ch++){
-            printf("%c",ch);
+        for (int j = 0; j <= i; j++) {
+            printf("%c", 'A' + j);
         }
-        for(int j=0,ch='A'+i;j<=i;j++,ch--){
-            printf("%c",ch);
+        for (int j = 0; j < i; j++) {
+            printf("%c", 'A' + i - j - 1);
         }
         printf("\n");
     }

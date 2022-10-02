@@ -1,17 +1,20 @@
 #include <stdio.h>
-double makeresult(double,double);
+double work(double n1, double n2);
 int main(void)
 {
-    double m,n;
-    printf("请输入两个浮点数:");
-    while(scanf("%lf %lf",&m,&n)==2){
-        printf("( m - n ) / ( m * n ) = %lf\n",makeresult(m,n));
-        printf("请输入两个浮点数");
+    double d1, d2;
+    while (scanf("%lf %lf", &d1, &d2) == 2) {
+        if (d1 * d2 == 0) {
+            printf("作为被除数的乘积为0, 请重新输入: ");
+            continue;
+        }
+        printf("(%g - %g) / (%g * %g) = %g\n", d1, d2, d1, d2, work(d1, d2));
+        printf("请输入下一组数据(按q退出): ");
     }
 
     return 0;
 }
-double makeresult(double m,double n)
+double work(double n1, double n2)
 {
-    return ((m-n)/(m*n));
+    return (n1 - n2) / (n1 * n2);
 }
