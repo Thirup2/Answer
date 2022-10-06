@@ -1,1 +1,1 @@
-Location--Problems/数据结构与算法/PAT(Basic Level) Practice(中文)
+地址：https://pintia.cn/problem-sets/994805260223102976/exam/problems/type/7

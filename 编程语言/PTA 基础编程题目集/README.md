@@ -1,1 +1,1 @@
-Location--Problems/编程语言/PTA基础编程题目集
+地址：https://pintia.cn/problem-sets/14/exam/problems/type/6

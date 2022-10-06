@@ -1,1 +1,3 @@
-Location--Answer/计算机系统/深入理解计算机系统
+- 书籍：《深入理解计算机系统》，原书第3版
+- 作者：Randal E. Bryant，David R. O'Hallaron
+- 出版社：机械工业出版社

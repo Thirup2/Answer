@@ -1,1 +1,3 @@
-Location--Answer/数据结构/算法
+- 书籍：《算法》，第4版
+- 作者：Robert Sedgewick，Kevin Wayne
+- 出版社：人民邮电出版社

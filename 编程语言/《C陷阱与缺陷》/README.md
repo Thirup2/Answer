@@ -1,1 +1,3 @@
-Location--Answer/编程语言/C语言/C陷阱与缺陷
+- 书籍：《C陷阱与缺陷》
+- 作者：Andrew Koenig
+- 出版社：人民邮电出版社

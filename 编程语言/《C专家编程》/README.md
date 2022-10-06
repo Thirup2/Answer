@@ -1,1 +1,3 @@
-Location--Answer/编程语言/C语言/C专家编程
+- 书籍：《C专家编程》
+- 作者：Peter Van Der Linden
+- 出版社：人民邮电出版社

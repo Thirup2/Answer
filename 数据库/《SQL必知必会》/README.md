@@ -1,1 +1,3 @@
-Location--Answer/数据库/SQL必知必会
+- 书籍：《SQL必知必会》，第5版
+- 作者：Ben Forta
+- 出版社：人民邮电出版社

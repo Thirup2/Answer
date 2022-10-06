@@ -1,1 +1,3 @@
-Location--Answer/编程语言/C语言/C Primer Plus
+- 书籍：《C Primer Plus》，第6版，中文版
+- 作者：Stephen Prata
+- 出版社：人民邮电出版社

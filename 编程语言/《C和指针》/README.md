@@ -1,1 +1,3 @@
-Location--Answer/编程语言/C语言/C和指针
+- 书籍：《C和指针》
+- 作者：Kenneth Reek
+- 出版社：人民邮电出版社

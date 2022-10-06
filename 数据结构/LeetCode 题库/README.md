@@ -1,1 +1,1 @@
-Location--Problems/数据结构与算法/LeetCode 题库
+地址：https://leetcode.cn/problemset/all/

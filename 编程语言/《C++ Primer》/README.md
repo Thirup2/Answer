@@ -1,1 +1,3 @@
-Location--Answer/编程语言/C++/C++ Primer
+- 书籍：《C++ Primer》，第5版，中文版
+- 作者：Stanley B. Lippman，Josee Lajoie，Barbara E. Moo
+- 出版社：电子工业出版社

@@ -1,1 +1,1 @@
-Location--Problems/数据结构与算法/PTA数据结构与算法题目集(中文)
+地址：https://pintia.cn/problem-sets/15/exam/problems/type/6
