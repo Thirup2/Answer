@@ -1,11 +1,11 @@
-objects = driver.o Array.o
+Objects = Array.o Main.o
 
-Array : $(objects)
-	cc -o Array $(objects)
+Array: $(Objects)
+	cc -o Array $(Objects)
 
-driver.o : Array.h
-Array.o : Array.h
+Array.o: Array.h
+Main.o: Array.h
 
-.PHONY : clean
-clean :
-	rm Array $(objects)
+.PHONY: clean
+clean:
+	rm Array $(Objects)

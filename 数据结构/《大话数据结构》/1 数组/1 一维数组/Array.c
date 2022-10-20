@@ -1,236 +1,219 @@
-/* 一维数组接口函数文件Array.c */
+/* 一维数组接口函数定义文件Array.c */
+
 /* 包含头文件 */
 #include "Array.h"
 
-
-/* 数据处理函数定义 */
+/* 数据元素处理函数定义 */
 
 /*
-** 操作: 比较两数据元素是否相同
-** 参数: 两个元素为将要进行比较的数据元素, 以指针形式传入
-** 返回值: 若参数一为NULL返回-1, 若参数二为NULL, 返回-2; 若两数据元素相同, 返回0, 不相同则返回1
+** 操作: 比较两个元素是否相同
+** 参数: 两个元素的指针
+** 返回值:
+** 1. 若相同, 返回true
+** 2. 否则, 返回false
 */
-int CompareElems(ElemType const *data, ElemType const *elem)
+bool CompareElem(ElemType *elem1, ElemType *elem2)
 {
-    if (!data) {
-        return -1;          // 参数一为NULL
+    if (elem1->x == elem2->x && elem1->y == elem2->y) {
+        return true;
     }
-    if (!elem) {
-        return -2;          // 参数二为NULL
-    }
-    if (*data == *elem) {
-        return 0;           // 两元素相同
-    } else {
-        return 1;           // 两元素不同
-    }
+    return false;
 }
 
 /*
-** 操作: 将一个数据元素的值赋值给另一个数据元素
-** 参数: 第一个参数是被修改的元素, 第二个参数是用于修改的值. 两元素都以指针形式传入
-** 返回值: 参数一为NULL, 返回-1, 若参数二为NULL, 返回-2; 操作成功返回0
+** 操作: 交换两个数据元素的值
+** 参数: 两个数据元素
 */
-int ChangeElem(ElemType *data, ElemType const *elem)
+void ExchangeElem(ElemType *elem, ElemType *data)
 {
-    if (!data) {
-        return -1;          // 某参数为NULL
-    }
-    if (!elem) {
-        return -2;          // 参数二为NULL
-    }
-    *data = *elem;
-    return 0;
+    elem->x = data->x;
+    elem->y = data->y;
 }
 
 /*
-** 操作: 将一个数据元素显示出来
-** 参数: 将要显示的元素的指针
-** 返回值: 若指针为NULL, 返回false, 否则返回true
+** 操作: 打印一个数据元素
+** 参数: 数据元素指针
 */
-bool ShowElem(ElemType const *data)
+void PrintElem(ElemType *elem)
 {
-    if (!data) {
-        return false;           // 参数为NULL
-    }
-    printf("%d ", *data);
-    return true;
+    printf("(%d, %d) ", elem->x, elem->y);
 }
 
+/*
+** 操作: 读取一个数据元素
+** 参数: 存放地址
+*/
+void ScanElem(ElemType *elem)
+{
+    printf("请输入数据元素值(按\"x, y\"的格式输入): ");
+    scanf("%d, %d", &(elem->x), &(elem->y));
+}
 
-/* 接口函数定义 */
+/* 一维数组接口函数定义 */
 
 /*
-** 操作: 初始化一个一维数组. 数组长度置为0
-** 参数: 一个准备初始化的数组指针
-** 返回值: 若参数为NULL, 返回false, 否则进行初始化并返回true
+** 操作: 初始化数组
+** 1. 创建一个空的线性表
+** 2. 表长为1, 即哨兵位
+** 返回值: 初始化的数组
 */
-bool InitArray(Array *array)
+PArray InitArray(void)
 {
+    PArray array = (PArray) malloc(sizeof(Array));
     if (!array) {
-        return false;       // 参数为NULL
+        exit(EXIT_FAILURE);
+    }
+    array->data = (ElemType *) malloc(sizeof(ElemType));
+    if (!array->data) {
+        exit(EXIT_FAILURE);
     }
     array->length = 0;
-    return true;
-}
-
-/*
-** 操作: 清空数组
-** 参数: 待操作的数组指针
-** 返回值: 若参数为NULL, 返回false, 否则执行操作返回true
-*/
-bool ClearArray(Array *array)
-{
-    if (!array) {
-        return false;
-    }
-    array->length = 0;
-    return true;
+    return array;
 }
 
 /*
 ** 操作: 判断数组是否为空
-** 参数: 指向数组的指针
-** 返回值: 若参数为NULL, 返回-1; 若数组为空, 返回0, 否则返回非0
+** 参数: 数组
+** 返回值:
+** 1. 若为空(只含有哨兵位)返回true
+** 2. 否则返回false
 */
-int ArrayEmpty(Array const *array)
+bool ArrayEmpty(PArray array)
 {
-    if (!array) {
-        return -1;
+    if (ArrayLength(array) == 0) {
+        return true;
     }
-    return array->length;
+    return false;
 }
 
 /*
-** 操作: 打印数组当前所有值
-** 参数: 指向数组的指针
-** 返回值: 若参数为NULL, 返回false; 否则执行操作返回true
+** 操作: 将数组清空
+** 参数: 数组
 */
-bool ArrayTraverse(Array const *array)
+void ClearArray(PArray array)
 {
-    if (!array) {
-        return false;
-    }
-    if (array->length != 0) {
-        for (int i = 0; i < array->length; ++i) {
-            ShowElem(&(array->data[i]));
-        }
-    }
-    printf("\n");
-    return true;
+    array->data = (ElemType *) realloc(array->data, sizeof(ElemType));
+    array->length = 0;
 }
 
 /*
-** 操作: 插入值
-** 参数: 指向数组的指针, 即将插入的位序, 以及即将插入的新值的指针
-** 返回值: 若数组指针为NULL, 返回-1. 若新值指针为NULL, 返回-2. 若数组已满, 返回1. 若位序不合理, 返回2. 操作成功返回0
+** 操作: 销毁数组
+** 参数: 数组
 */
-int ArrayInsert(Array *array, int i, ElemType const *elem)
+void DestroyArray(PArray array)
 {
-    if (!array) {
+    free(array->data);
+    free(array);
+}
+
+/*
+** 操作: 返回数组中第i个位置的元素
+** 参数:
+** 1. 数组
+** 2. 位置i
+** 3. 用于返回值的指针
+** 返回值:
+** 1. 若查找位置不合理, 返回1
+** 2. 若数组为空, 返回-1
+** 3. 否则查找成功返回0
+*/
+int GetElem(PArray array, int i, ElemType *elem)
+{
+    if (ArrayEmpty(array)) {
         return -1;
     }
-    if (!elem) {
-        return -2;
-    }
-    if (array->length == MAXSIZE) {
+    if (i<1 || i>ArrayLength(array)) {
         return 1;
     }
-    if (i <= 0 || i > array->length + 1) {
-        return 2;
-    }
-    for (int j = array->length; j >= i; j--) {
-        array->data[j] = array->data[j - 1];
-    }
-    array->data[i - 1] = *elem;
-    array->length++;
+    ExchangeElem(elem, &(array->data[i]));
     return 0;
 }
 
 /*
-** 操作: 按序删除值, 并将被删除值赋给第三参数
-** 参数: 数组指针, 删除位序
-** 返回值: 若数组指针为NULL, 返回-1. 若返回参数为NULL, 返回-2. 若位序不合理, 返回1.
+** 操作: 定位元素在数组中的位置
+** 参数:
+** 1. 数组
+** 2. 需要定位的元素
+** 返回值:
+** 1. 若数组为空, 返回-1
+** 2. 若元素不存在, 返回0
+** 3. 否则查找成功返回位序
 */
-int ArrayDelete(Array *array, int i, ElemType *elem)
+int LocateElem(PArray array, ElemType *elem)
 {
-    if (!array) {
+    if (ArrayEmpty(array)) {
         return -1;
     }
-    if (!elem) {
-        return -2;
+    array->data[0].x = elem->x;
+    array->data[0].y = elem->y;
+    int i = ArrayLength(array);
+    while (!CompareElem(elem, &(array->data[i]))) {
+        i--;
     }
-    if (i <= 0 || i > array->length) {
+    return i;
+}
+
+/*
+** 操作: 插入元素到数组第i个位置
+** 参数:
+** 1. 数组
+** 2. 位置i
+** 3. 待插入元素
+** 返回值:
+** 1. 若数组已满返回-1
+** 2. 若插入位置不合理返回1
+** 3. 否则执行操作返回0
+*/
+int ArrayInsert(PArray array, int i, ElemType *elem)
+{
+    if (i<1 || i>ArrayLength(array) + 1) {
         return 1;
     }
-    *elem = array->data[i - 1];
-    for (; i < array->length; ++i) {
-        array->data[i - 1] = array->data[i];
+    array->data = (ElemType *) realloc(array->data, (ArrayLength(array) + 2) * sizeof(ElemType));
+    if (!array->data) {
+        return -1;
+    }
+    array->length++;
+    for (int n = ArrayLength(array); n > i; n--) {
+        ExchangeElem(&(array->data[n]), &(array->data[n - 1]));
+    }
+    ExchangeElem(&(array->data[i]), elem);
+    return 0;
+}
+
+/*
+** 操作: 删除数组中第i个位置的元素
+** 参数:
+** 1. 数组
+** 2. 位置i
+** 3. 用于返回被删除的元素
+** 返回值:
+** 1. 若数组为空返回-1
+** 2. 若删除位置不合理返回1
+** 3. 否则执行操作返回0
+*/
+int ArrayDelete(PArray array, int i, ElemType *elem)
+{
+    if (ArrayLength(array) == 0) {
+        return -1;
+    }
+    if (i<1 || i>ArrayLength(array)) {
+        return 1;
+    }
+    ExchangeElem(elem, &(array->data[i]));
+    for (; i < array->length; i++) {
+        ExchangeElem(&(array->data[i]), &(array->data[i + 1]));
     }
     array->length--;
     return 0;
 }
 
 /*
-** 操作: 按序更改值, 并将被更改值赋给第四参数
-** 参数: 数组指针, 待更改位序, 待替换值, 被替换值
-** 返回值: 若数组指针为NULL, 返回-1. 若位序不合理, 返回-2. 若被替换值为NULL, 返回-3. 若替换值为NULL, 返回-4. 操作成功返回0
+** 操作: 返回数组的长度(有效值个数)
+** 参数: 数组
+** 返回值: 数组的长度
 */
-int ArrayChange(Array *array, int i, ElemType const *elem, ElemType *data)
+int ArrayLength(PArray array)
 {
-    if (!array) {
-        return -1;
-    }
-    if (!data) {
-        return -3;
-    }
-    if (!elem) {
-        return -4;
-    }
-    if (i <= 0 || i > array->length) {
-        return -2;
-    }
-    *data = array->data[i - 1];
-    array->data[i - 1] = *elem;
-    return 0;
-}
-
-/*
-** 操作: 查找某个值的位序
-** 参数: 数组指针, 待查找值
-** 返回值: 待查找值在数组中的位序. 若数组指针为NULL, 返回-1. 若待查找值为NULL, 返回-2. 若不存在该值返回0
-*/
-int ArrayLocate(Array *array, ElemType const *elem)
-{
-    if (!array) {
-        return -1;
-    }
-    if (!elem) {
-        return -2;
-    }
-    for (int i = 0; i < array->length; ++i) {
-        if (array->data[i] == *elem) {
-            return i + 1;
-        }
-    }
-    return 0;
-}
-
-/*
-** 操作: 查找某个位序的值, 并将该值赋给第三参数
-** 参数: 数组指针, 待查位序, 被查找值
-** 返回值: 若数组指针为NULL, 返回-1. 若待查值为NULL, 返回-2. 若位序不合理, 返回-3. 否则返回0
-*/
-int ArraySearch(Array *array, int i, ElemType *elem)
-{
-    if (!array) {
-        return -1;
-    }
-    if (!elem) {
-        return -2;
-    }
-    if (i <= 0 || i > array->length) {
-        return -3;
-    }
-    *elem = array->data[i - 1];
-    return 0;
+    return array->length;
 }
