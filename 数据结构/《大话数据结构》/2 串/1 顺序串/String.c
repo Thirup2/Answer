@@ -1,4 +1,4 @@
-/* 字符串接口函数定义源文件String.c */
+/* 字符串接口函数文件String.c */
 
 /* 包含头文件 */
 #include "String.h"
@@ -6,43 +6,55 @@
 /* 局部函数原型 */
 
 /*
-** 操作: 根据子串写入next数组, 用于Index_KMP函数中子串的回溯
-** 参数:
-** 1. 字符串
-** 2. 数组指针
+** 操作: 计算next数组
 */
-void get_next(String S, int **next);
+void get_next(PtrString T, int *next);
 
 /*
-** 操作: get_next函数的改进版
+** 操作: 优化后的get_next操作
 */
-void get_nextval(String S, int **nextval);
+void get_nextval(PtrString T, int *nextval);
 
-/* 动态分配实现字符串的API定义 */
+/* 字符串接口函数定义 */
 
 /*
-** 操作: 创建一个字符串
-** 1. 将每一个元素都初始化为0
+** 操作: 打印一个字符
+*/
+void PrintChar(ElemType *ch)
+{
+    printf("%c", *ch);
+}
+
+/*
+** 操作: 创建一个字符串, 使字符串只含下标为0的值, 不使用
 ** 参数: 一个字符串类型的值
 */
-void InitString(PTRS S)
+PtrString InitString(void)
 {
-    *S = (String) calloc(INITSIZE, sizeof(char));
-    if (!(*S)) {
+    PtrString string = (PtrString) malloc(sizeof(String));
+    if (!string) {
         exit(EXIT_FAILURE);
     }
+    string->string = (ElemType *) malloc(sizeof(ElemType));
+    if (!string->string) {
+        exit(EXIT_FAILURE);
+    }
+    string->length = 0;
+    return string;
 }
 
 /*
 ** 操作: 打印一个字符串
 ** 参数: 字符串类型的值
 */
-void PrintString(String S)
+void PrintString(PtrString S)
 {
-    printf("%s\n", S);
+    if (!StringEmpty(S)) {
+        for (int i = 1; i <= StringLength(S); i++) {
+            PrintChar(&(S->string[i]));
+        }
+    }
 }
-
-/* 字符串接口函数定义 */
 
 /*
 ** 操作: 用字符串常量初始化或赋值字符串
@@ -50,15 +62,16 @@ void PrintString(String S)
 ** 1. 待赋值字符串
 ** 2. 字符串常量
 */
-void StrAssign(PTRS S, char *T)
+void StrAssign(PtrString S, char *T)
 {
-    int len = StringLength(T);
-    *S = (String) realloc(*S, (len + 1) * sizeof(char));
-    if (!(*S)) {
+    int len = strlen(T);
+    S->string = (ElemType *) realloc(S->string, (len + 2) * sizeof(ElemType));
+    if (!S->string) {
         exit(EXIT_FAILURE);
     }
-    for (int i = 0; i < len + 1; i++) {
-        (*S)[i] = T[i];
+    S->length = len;
+    for (int i = 0; i <= StringLength(S); i++) {
+        S->string[i + 1] = T[i];
     }
 }
 
@@ -68,33 +81,38 @@ void StrAssign(PTRS S, char *T)
 ** 1. 待赋值字符串
 ** 2. 字符串类型值
 */
-void StrCopy(PTRS S, String T)
+void StrCopy(PtrString S, PtrString T)
 {
-    int len = StringLength(T);
-    *S = (String) realloc(*S, (len + 1) * sizeof(char));
-    if (!(*S)) {
+    S->string = (ElemType *) realloc(S->string, (T->length + 2) * sizeof(ElemType));
+    if (!S->string) {
         exit(EXIT_FAILURE);
     }
-    for (int i = 0; i < len + 1; i++) {
-        (*S)[i] = T[i];
+    for (int i = 0; i <= T->length; i++) {
+        S->string[i + 1] = T->string[i + 1];
     }
+    S->length = T->length;
 }
 
 /*
 ** 操作: 清空字符串
 ** 参数: 字符串类型值
 */
-void ClearString(String S)
+void ClearString(PtrString S)
 {
-    S[0] = '\0';
+    S->string = (ElemType *) realloc(S->string, sizeof(ElemType));
+    if (!S->string) {
+        exit(EXIT_FAILURE);
+    }
+    S->length = 0;
 }
 
 /*
 ** 操作: 销毁字符串
 ** 参数: 字符串类型值
 */
-void DestroyString(String S)
+void DestroyString(PtrString S)
 {
+    free(S->string);
     free(S);
 }
 
@@ -105,9 +123,9 @@ void DestroyString(String S)
 ** 1. 若字符串为空, 则返回true
 ** 2. 否则返回false
 */
-bool StringEmpty(String S)
+bool StringEmpty(PtrString S)
 {
-    if (S[0] == '\0') {
+    if (StringLength(S) == 0) {
         return true;
     }
     return false;
@@ -118,13 +136,9 @@ bool StringEmpty(String S)
 ** 参数: 字符串类型值
 ** 返回值: 字符串的长度
 */
-int StringLength(String S)
+int StringLength(PtrString S)
 {
-    int cnt = 0;
-    for (int i = 0; S[i] != '\0'; i++) {
-        cnt++;
-    }
-    return cnt;
+    return S->length;
 }
 
 /*
@@ -135,31 +149,17 @@ int StringLength(String S)
 ** 2. 若第一个参数小, 则返回负数, 值为第一个不相等字符位序
 ** 3. 若第一个参数大, 则返回正数, 值为第一个不相等字符位序
 */
-int StringCompare(String S, String T)
+int StringCompare(PtrString S, PtrString T)
 {
-    int len, lens, lent;
-    lens = StringLength(S);
-    lent = StringLength(T);
-    int flag;
-    if (lens == lent) {
-        flag = 0;
-        len = lens;
-    } else if (lens < lent) {
-        flag = -1;
-        len = lens;
-    } else {
-        flag = 1;
-        len = lent;
-    }
-    int i = 0;
-    for (i = 0; i < len; i++) {
-        if (S[i] > T[i]) {
-            return i + 1;
-        } else if (S[i] < T[i]) {
+    int len = StringLength(S) > StringLength(T) ? StringLength(T) : StringLength(S);
+    for (int i = 0; i < len; i++) {
+        if (S->string[i + 1] < T->string[i + 1]) {
             return -(i + 1);
+        } else if (S->string[i + 1] > T->string[i + 1]) {
+            return i + 1;
         }
     }
-    return flag * (i + 1);
+    return 0;
 }
 
 /*
@@ -169,25 +169,20 @@ int StringCompare(String S, String T)
 ** 2. 用于联接的前部分内容
 ** 3. 用于联接的后部分内容
 */
-void Concat(PTRS T, String S1, String S2)
+void Concat(PtrString T, PtrString S1, PtrString S2)
 {
-    int lenS1, lenS2;
-    lenS1 = StringLength(S1);
-    lenS2 = StringLength(S2);
-    *T = (String) realloc(*T, (lenS1 + lenS2 + 1) * sizeof(char));
-    if (!(*T)) {
+    int len = StringLength(S1) + StringLength(S2);
+    T->string = (ElemType *) realloc(T->string, (len + 2) * sizeof(ElemType));
+    if (!T->string) {
         exit(EXIT_FAILURE);
     }
-    for (int i = 0; i < lenS1 + lenS2 + 1; i++) {
-        for (int j = 0; j < lenS1; j++) {
-            (*T)[i] = S1[j];
-            i++;
-        }
-        for (int j = 0; j < lenS2 + 1; j++) {
-            (*T)[i] = S2[j];
-            i++;
-        }
+    for (int i = 1; i <= StringLength(S1); i++) {
+        T->string[i] = S1->string[i];
     }
+    for (int i = StringLength(S1) + 1, j = 1; j <= StringLength(S2) + 1; j++, i++) {
+        T->string[i] = S2->string[j];
+    }
+    T->length = len;
 }
 
 /*
@@ -202,24 +197,23 @@ void Concat(PTRS T, String S1, String S2)
 ** 2. 若子串长度不合理返回2
 ** 3. 否则执行操作返回0
 */
-int SubString(PTRS Sub, String S, int pos, int len)
+int SubString(PtrString Sub, PtrString S, int pos, int len)
 {
-    int lens = StringLength(S);
-    if (pos < 1 || pos > lens) {
+    if (pos<1 || pos>StringLength(S)) {
         return 1;
     }
-    if ((pos + len - 1) < 1 || (pos + len - 1) > lens) {
+    if ((pos + len) < 1 || (pos + len) > StringLength(S)) {
         return 2;
     }
-    *Sub = (String) realloc(*Sub, (len + 1) * sizeof(char));
-    int i = 0;
-    while (i < len) {
-        for (int j = pos - 1; j < pos + len - 1; j++) {
-            (*Sub)[i] = S[j];
-            i++;
-        }
+    Sub->string = (ElemType *) realloc(Sub->string, (len + 2) * sizeof(ElemType));
+    if (!Sub->string) {
+        exit(EXIT_FAILURE);
     }
-    (*Sub)[i] = '\0';
+    for (int i = 0, j = pos; i < len; i++, j++) {
+        Sub->string[i + 1] = S->string[j];
+    }
+    Sub->string[len + 1] = '\0';
+    Sub->length = len;
     return 0;
 }
 
@@ -233,24 +227,21 @@ int SubString(PTRS Sub, String S, int pos, int len)
 ** 1. 若查找成功, 返回位置的值
 ** 2. 若未找到该子串, 则返回0
 */
-int Index(String S, String T, int pos)
+int Index(PtrString S, PtrString T, int pos)
 {
-    if (pos<1 || pos>StringLength(S)) {
-        return -1;
-    }
-    int i = pos - 1;
-    int j = 0;
-    while (S[i] != '\0' && T[j] != '\0') {
-        if (S[i] == T[j]) {
-            i++;
-            j++;
+    int i = pos;
+    int j = 1;
+    while (i <= StringLength(S) && j <= StringLength(T)) {
+        if (S->string[i] == T->string[j]) {
+            ++i;
+            ++j;
         } else {
-            i = i - j + 1;
-            j = 0;
+            i = i - j + 2;
+            j = 1;
         }
     }
-    if (T[j] == 0) {
-        return i - j + 1;
+    if (j > StringLength(T)) {
+        return i - StringLength(T);
     } else {
         return 0;
     }
@@ -259,14 +250,14 @@ int Index(String S, String T, int pos)
 /*
 ** 操作: 用KMP算法实现的Index
 */
-int Index_KMP(String S, String T, int pos)
+int Index_KMP(PtrString S, PtrString T, int pos)
 {
-    int *next = NULL;
-    get_nextval(T, &next);
-    int i = pos - 1;
-    int j = 0;
-    while (j == -1 || (S[i] != '\0' && T[j] != '\0')) {
-        if (j == -1 || S[i] == T[j]) {
+    int i = pos;
+    int j = 1;
+    int *next = (int *) malloc((StringLength(T) + 1) * sizeof(int));
+    get_nextval(T, next);
+    while (i <= StringLength(S) && j <= StringLength(T)) {
+        if (j == 0 || S->string[i] == T->string[j]) {
             ++i;
             ++j;
         } else {
@@ -274,8 +265,8 @@ int Index_KMP(String S, String T, int pos)
         }
     }
     free(next);
-    if (T[j] == '\0') {
-        return i - j + 1;
+    if (j > StringLength(T)) {
+        return i - StringLength(T);
     } else {
         return 0;
     }
@@ -289,21 +280,20 @@ int Index_KMP(String S, String T, int pos)
 ** 3. 用于替换的字符串
 ** 返回值: 被替换的子串个数
 */
-int Replace(PTRS S, String T, String V)
+int Replace(PtrString S, PtrString T, PtrString V)
 {
-    int n = 1;
-    int lent = StringLength(T);
-    int lenv = 0;
+    int len_s = StringLength(S);
+    int len_t = StringLength(T);
+    int len_v = StringLength(V);
+    int pos_ind;
+    int pos_rep = 1;
     int cnt = 0;
-    while ((n = Index(*S, T, n + lenv - 1)) != 0) {
-        if (lenv == 0) {
-            lenv = StringLength(V);
-        }
-        StrDelete(S, n, lent);
-        StrInsert(S, n, V);
+    while (pos_ind = Index_KMP(S, T, pos_rep)) {
+        StrDelete(S, pos_ind, len_t);
+        StrInsert(S, pos_ind, V);
+        pos_rep = pos_ind + len_v;
         cnt++;
     }
-
     return cnt;
 }
 
@@ -317,36 +307,24 @@ int Replace(PTRS S, String T, String V)
 ** 1. 若插入位置不合理返回1
 ** 2. 否则执行操作返回0
 */
-int StrInsert(PTRS S, int pos, String T)
+int StrInsert(PtrString S, int pos, PtrString T)
 {
-    int lens, lent;
-    lens = StringLength(*S);
-    lent = StringLength(T);
-    if (pos<1 || pos>lens + 1) {
+    if (pos<1 || pos>StringLength(S) + 1) {
         return 1;
     }
-    String V = (String) calloc(lens + lent + 1, sizeof(char));
-    if (!V) {
+    int len_s = StringLength(S);
+    int len_t = StringLength(T);
+    S->string = (ElemType *) realloc(S->string, (len_s + len_t + 2) * sizeof(ElemType));
+    if (!S->string) {
         exit(EXIT_FAILURE);
     }
-    for (int i = 0; i < lens + lent + 1; i++) {
-        for (int j = 0; j < lens + 1; j++) {
-            if (j == pos - 1) {
-                for (int q = 0; q < lent; q++) {
-                    V[i++] = T[q];
-                }
-            }
-            V[i++] = (*S)[j];
-        }
+    for (int i = len_s + len_t + 1; i >= pos + len_t; i--) {
+        S->string[i] = S->string[i - len_t];
     }
-    *S = (String) realloc(*S, (lens + lent + 1) * sizeof(char));
-    if (!(*S)) {
-        exit(EXIT_FAILURE);
+    for (int i = pos, j = 0; j < len_t; j++, i++) {
+        S->string[i] = T->string[j + 1];
     }
-    for (int i = 0; i < lens + lent + 1; i++) {
-        (*S)[i] = V[i];
-    }
-    free(V);
+    S->length = len_s + len_t;
     return 0;
 }
 
@@ -361,93 +339,63 @@ int StrInsert(PTRS S, int pos, String T)
 ** 2. 若删除长度不合理返回2
 ** 3. 否则执行操作返回0
 */
-int StrDelete(PTRS S, int pos, int len)
+int StrDelete(PtrString S, int pos, int len)
 {
-    int lens;
-    lens = StringLength(*S);
-    if (pos<1 || pos>lens) {
+    if (pos<1 || pos>StringLength(S)) {
         return 1;
     }
-    if ((pos + len - 1) < 1 || (pos + len - 1) > lens) {
+    if ((pos + len) < 1 || (pos + len) > StringLength(S)) {
         return 2;
     }
-    int length = lens - len;
-    String V = (String) calloc(length + 1, sizeof(char));
-    if (!V) {
+    for (int i = pos, j = pos + len; j <= S->length + 1; j++, i++) {
+        S->string[i] = S->string[j];
+    }
+    S->string = (ElemType *) realloc(S->string, (StringLength(S) - len + 2) * sizeof(ElemType));
+    if (!S->string) {
         exit(EXIT_FAILURE);
     }
-    for (int i = 0; i < length + 1; i++) {
-        for (int j = 0; j < lens + 1; j++) {
-            if (j == pos - 1) {
-                j += len;
-            }
-            V[i++] = (*S)[j];
-        }
-    }
-    *S = (String) realloc(*S, (length + 1) * sizeof(char));
-    if (!(*S)) {
-        exit(EXIT_FAILURE);
-    }
-    for (int i = 0; i < length + 1; i++) {
-        (*S)[i] = V[i];
-    }
-    free(V);
+    S->length = StringLength(S) - len;
     return 0;
 }
 
 /* 局部函数定义 */
 
 /*
-** 操作: 根据子串写入next数组, 用于Index_KMP函数中子串的回溯
-** 参数:
-** 1. 字符串
-** 2. 数组指针
+** 操作: 计算next数组
 */
-void get_next(String S, int **next)
+void get_next(PtrString T, int *next)
 {
-    int len = StringLength(S);
-    *next = (int *) calloc(len, sizeof(int));
-    if (!(*next)) {
-        exit(EXIT_FAILURE);
-    }
-    (*next)[0] = -1;
-    int i = 0;
-    int k = -1;
-    while (i < len - 1) {
-        if (k == -1 || S[i] == S[k]) {
-            ++k;
+    int i = 1, k = 0;
+    next[1] = 0;
+    while (i < StringLength(T)) {
+        if (k == 0 || T->string[i] == T->string[k]) {
             ++i;
-            (*next)[i] = k;
+            ++k;
+            next[i] = k;
         } else {
-            k = (*next)[k];
+            k = next[k];
         }
     }
 }
 
 /*
-** 操作: get_next函数的改进版
+** 操作: 优化后的get_next操作
 */
-void get_nextval(String S, int **nextval)
+void get_nextval(PtrString T, int *nextval)
 {
-    int len = StringLength(S);
-    *nextval = (int *) calloc(len, sizeof(int));
-    if (!(*nextval)) {
-        exit(EXIT_FAILURE);
-    }
-    (*nextval)[0] = -1;
-    int i = 0;
-    int k = -1;
-    while (i < len - 1) {
-        if (k == -1 || S[i] == S[k]) {
+    int i = 1, k = 0;
+    nextval[1] = 0;
+    while (i < StringLength(T)) {
+        if (k == 0 || T->string[i] == T->string[k]) {
             ++i;
             ++k;
-            if (S[i] != S[k]) {
-                (*nextval)[i] = k;
+            if (T->string[i] != T->string[k]) {
+                nextval[i] = k;
             } else {
-                (*nextval)[i] = (*nextval)[k];
+                nextval[i] = nextval[k];
             }
         } else {
-            k = (*nextval)[k];
+            k = nextval[k];
         }
     }
 }
