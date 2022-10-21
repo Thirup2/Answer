@@ -1,9 +1,9 @@
-objects = driver.o LinkList.o
+objects = Main.o LinkList.o
 
 LinkList : $(objects)
 	cc -o LinkList $(objects)
 
-driver.o : LinkList.h
+Main.o : LinkList.h
 LinkList.o : LinkList.h
 
 .PHONY : clean
