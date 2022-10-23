@@ -1,7 +1,7 @@
-/* 链表测试程序源文件Main.c, 和LinkList.c一起编译 */
+/* 链表测试程序源文件Main.c, 和StaticList.c一起编译 */
 
 /* 包含头文件 */
-#include "LinkList.h"
+#include "StaticList.h"
 
 /* 链表测试模块函数原型 */
 void ShowList(List list);

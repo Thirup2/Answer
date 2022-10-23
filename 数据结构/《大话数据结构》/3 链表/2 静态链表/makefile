@@ -1,9 +1,9 @@
-objects = driver.o StaticList.o
+objects = Main.o StaticList.o
 
 StaticList : $(objects)
 	cc -o StaticList $(objects)
 
-driver.o : StaticList.h
+Main.o : StaticList.h
 StaticList.o : StaticList.h
 
 .PHONY : clean

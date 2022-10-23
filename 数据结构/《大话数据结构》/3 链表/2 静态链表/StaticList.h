@@ -8,157 +8,156 @@
 #include <stdlib.h>
 
 /* 数据结构定义 */
-#define MAXSIZE 1000                // 静态链表初始内存大小
-struct elem
+#define MAXSIZE 1000
+#define HEAD MAXSIZE-1
+#define PRELIST 0
+
+struct items
 {
     int x;
     int y;
-};                                  // 数据项
-typedef struct elem ElemType;       // 数据元素类型
-struct node
-{
-    ElemType data;                  // 数据域
-    int next;                       // 链
 };
-typedef struct node Node;           // 结点类型
-typedef Node StaticList[MAXSIZE];   // 静态链表类型
-#define LENGTH [MAXSIZE-1].data.x   // 最后一个元素的数据域的x成员为表长
+typedef struct items ElemType;
+
+struct component
+{
+    ElemType data;
+    int cur;
+};
+typedef struct component Component;
+typedef Component *PtrComponent;
+
+struct list
+{
+    PtrComponent array;
+    int length;
+};
+typedef struct list LinkList;
+typedef LinkList *List;
+
 
 /* 数据元素处理函数原型 */
 
 /*
-** 操作: 比较两个数据元素是否相同
-** 参数: 两个数据元素
+** 操作: 比较两个数据元素
+** 参数: 两个数据元素指针
 ** 返回值:
-** 1. 若参数指针错误则打印错误信息并退出;
-** 2. 若两元素相同则返回true;
-** 3. 若两元素不相同则返回false
+** 1. 若相同返回true
+** 2. 否则返回false
 */
-bool CompareElems(ElemType const *elem1, ElemType const *elem2);
+bool CompareElem(ElemType *elem1, ElemType *elem2);
 
 /*
-** 操作: 将一个数据元素赋值给另一个数据元素
-** 参数: 两个数据元素
-** 返回值:
-** 1. 若参数指针错误则打印错误信息并退出;
+** 操作: 给数据元素赋值
+** 参数:
+** 1. 被赋值的元素
+** 2. 用于赋值的元素
 */
-void ChangeElem(ElemType *elem, ElemType const *data);
+void CopyElem(ElemType *elem, ElemType *data);
 
 /*
-** 操作: 打印一个数据元素的内容
+** 操作: 打印一个数据元素
 ** 参数: 一个数据元素
-** 返回值:
-** 1. 若参数指针错误则打印错误信息并退出;
 */
-void ShowElem(ElemType const *elem);
-
-/* 静态链表接口函数原型 */
+void PrintElem(ElemType *elem);
 
 /*
-** 操作: 判断静态链表是否为空
-** 参数: 一个静态链表
-** 返回值:
-** 1. 若参数指针错误则打印错误信息并退出;
-** 2. 若链表为空则返回true
-** 3. 不为空返回false
+** 操作: 读取一个数据元素
+** 参数: 一个元素指针
 */
-bool ListEmpty(StaticList list);
+void ScanElem(ElemType *elem);
+
+/* 链表接口函数原型 */
 
 /*
-** 操作: 返回静态链表的长度
-** 参数: 一个静态链表
-** 返回值:
-** 1. 若参数指针错误则打印错误信息并退出;
-** 2. 返回链表的长度
+** 操作: 初始化操作, 建立一个空链表(包含一个头结点)
+** 返回值: 链表指针类型
 */
-int ListLength(StaticList list);
+List InitList(void);
 
 /*
-** 操作: 打印静态链表所有元素的内容
-** 参数: 一个静态链表
+** 操作: 判断链表是否为空
+** 参数: 链表指针
 ** 返回值:
-** 1. 若参数指针错误则打印错误信息并退出;
+** 1. 若链表为空返回true
+** 2. 否则返回false
 */
-void ListTraverse(StaticList list);
+bool ListEmpty(List list);
 
 /*
-** 操作: 初始化静态链表, 初始化内容如下:
-** 1. 各元素的next成员初始化为下一个元素的下标, 最后一个元素初始化为0
-** 2. list.LENGTH初始化为0
-** 参数: 一个链表指针
-** 返回值:
-** 1. 若参数指针错误则打印错误信息并退出;
+** 操作: 将链表清空
+** 参数: 链表指针
 */
-void InitList(StaticList list);
+void ClearList(List list);
 
 /*
-** 操作: 插入元素, 具体操作如下:
-** 1. 在指定位置插入元素
-** 2. 表长++
-** 参数: 一个链表指针, 一个位序, 一个待插入元素指针
-** 返回值:
-** 1. 若参数指针错误则打印错误信息并退出;
-** 2. 若链表已满返回-1;
-** 3. 若插入位序不合理则返回1;
-** 4. 否则执行操作并返回0
+** 操作: 销毁链表
+** 参数: 链表指针
 */
-int ListInsert(StaticList list, int i, ElemType const *elem);
+void DestroyList(List list);
 
 /*
-** 操作: 删除元素, 具体操作如下:
-** 1. 将待删除位置的元素赋给第三参数
-** 2. 删除指定位置的元素
-** 3. 表长--
-** 参数: 一个链表指针, 一个待删除位序, 一个待返回指针
+** 操作: 返回链表中第i个位置的元素
+** 参数:
+** 1. 链表指针
+** 2. 位置i
+** 3. 用于返回元素的指针
 ** 返回值:
-** 1. 若参数指针错误则打印错误信息并退出;
-** 2. 若链表为空则返回-1;
-** 3. 若位序不合理则返回1;
-** 4. 否则执行操作并返回0
+** 1. 若链表为空, 返回-1
+** 2. 若位置不合理, 返回1
+** 3. 否则执行操作返回0
 */
-int ListDelete(StaticList list, int i, ElemType *elem);
+int GetElem(List list, int i, ElemType *elem);
 
 /*
-** 操作: 修改元素, 具体操作如下:
-** 1. 将待修改元素赋值给第四参数
-** 2. 用第三参数修改待修改位序的元素
-** 参数: 一个链表指针, 一个待修改位序, 一个用于修改的元素指针, 一个待返回的元素指针
+** 操作: 定位元素在链表中的位置
+** 参数:
+** 1. 链表指针
+** 2. 待定位的元素指针
 ** 返回值:
-** 1. 若参数指针错误则打印错误信息并退出;
-** 2. 若链表为空返回-1;
-** 3. 若待修改位序不合理返回1;
-** 4. 否则执行操作返回0
+** 1. 若链表为空则返回-1
+** 2. 若无该元素返回0
+** 3. 否则返回该元素的位序
 */
-int ListChange(StaticList list, int i, ElemType const *data, ElemType *elem);
+int LocateElem(List list, ElemType *elem);
 
 /*
-** 操作: 查找元素位序
-** 参数: 一个链表指针, 一个待查找元素指针
+** 操作: 插入元素到链表
+** 参数:
+** 1. 链表指针
+** 2. 插入位序
+** 3. 插入元素
 ** 返回值:
-** 1. 若参数指针错误则打印错误信息并退出;
-** 2. 若链表为空返回-1;
-** 3. 若待查找元素不存在返回0;
-** 4. 否则返回该元素的位序
+** 1. 若链表已满返回-1
+** 2. 若插入位序不合理返回1
+** 3. 否则执行操作返回0
 */
-int LocateElem(StaticList list, ElemType const *elem);
+int ListInsert(List list, int i, ElemType *elem);
 
 /*
-** 操作: 查找元素, 并将该元素赋值给待返回参数
-** 参数: 一个链表指针, 一个待查找位序, 一个待返回的元素指针
+** 操作: 删除链表中第i个位置的元素
+** 参数:
+** 1. 链表指针
+** 2. 删除位序
+** 3. 用于返回的元素
 ** 返回值:
-** 1. 若参数指针错误则打印错误信息并退出;
-** 2. 若链表为空返回-1;
-** 3. 若查找位序不合理返回1;
-** 4. 否则执行操作返回0
+** 1. 若链表为空返回-1
+** 2. 若删除位序不合理返回1
+** 3. 否则执行操作返回0
 */
-int ListSearch(StaticList list, int i, ElemType *elem);
+int ListDelete(List list, int i, ElemType *elem);
 
 /*
-** 操作: 销毁或清空链表
-** 参数: 一个链表指针
-** 返回值:
-** 1. 若参数指针错误则打印错误信息并退出;
+** 操作: 返回链表的元素个数
+** 参数: 链表指针
+** 返回值: 链表元素个数
 */
-void ClearList(StaticList list);
+int ListLength(List list);
+
+/*
+** 操作: 打印链表元素
+** 参数: 链表指针
+*/
+void PrintList(List list);
 
 #endif
