@@ -1,9 +1,9 @@
-Objects = driver.o CycleList.o
+Objects = Main.o CycleList.o
 
 CycleList : $(Objects)
 	cc -o CycleList $(Objects)
 
-driver.o : CycleList.h
+Main.o : CycleList.h
 CycleList.o : CycleList.h
 
 .PHONY : clean
