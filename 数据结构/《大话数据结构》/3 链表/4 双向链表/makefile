@@ -1,9 +1,9 @@
-Objects = driver.o DoubleList.o
+Objects = Main.o DoubleList.o
 
 DoubleList : $(Objects)
 	cc -o DoubleList $(Objects)
 
-driver.o : DoubleList.h
+Main.o : DoubleList.h
 DoubleList.o : DoubleList.h
 
 .PHONY : clean
