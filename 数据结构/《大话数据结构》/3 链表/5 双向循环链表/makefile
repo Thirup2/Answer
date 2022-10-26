@@ -1,9 +1,9 @@
-Objects = driver.o DulCyList.o
+Objects = Main.o DulCyList.o
 
 DulCyList : $(Objects)
 	cc -o DulCyList $(Objects)
 
-driver.o : DulCyList.h
+Main.o : DulCyList.h
 DulCyList.o : DulCyList.h
 
 .PHONY : clean
