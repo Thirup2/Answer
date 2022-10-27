@@ -14,136 +14,105 @@ struct items
     int y;
 };
 typedef struct items ElemType;
+
 #define MAXSIZE 20
 struct stack
 {
     ElemType data[MAXSIZE];
-    int top;
+    int length;
 };
-typedef struct stack SqStack;
+typedef struct stack Stack;
+typedef Stack *PtrStack;
 
 /* 数据元素处理函数原型 */
 
 /*
-** 操作: 更改数据元素值
+** 操作: 赋值操作
 ** 参数:
-** 1. 待更改的数据元素;
-** 2. 用于更改的数据元素
-** 返回值:
-** 1. 若参数指针错误则打印错误信息并退出
+** 1. 被赋值元素
+** 2. 用于赋值的元素
 */
-void ChangeElem(ElemType *elem, ElemType const *data);
+void CopyElem(ElemType *elem, ElemType *data);
 
 /*
 ** 操作: 打印一个数据元素
-** 参数:
-** 1. 一个即将打印的数据元素
-** 返回值:
-** 1. 若参数指针错误则打印错误信息并退出
+** 参数: 待打印数据元素指针
 */
-void PrintElem(ElemType const *elem);
+void PrintElem(ElemType *elem);
 
-/* 顺序栈函数定义原型 */
+/* 栈接口函数原型 */
 
 /*
-** 操作: 判断顺序栈是否为空
-** 参数:
-** 1. 一个顺序栈指针
-** 返回值:
-** 1. 若参数指针错误则打印错误信息并退出
-** 2. 若为空则返回true
-** 3. 否则返回false
+** 操作: 初始化操作, 建立一个空栈
+** 返回值: 一个栈指针
 */
-bool StackEmpty(SqStack const *stack);
+PtrStack InitStack(void);
 
 /*
-** 操作: 返回栈中元素个数
-** 参数:
-** 1. 一个顺序栈指针
-** 返回值:
-** 1. 若参数指针错误则打印错误信息并退出
-** 2. 否则返回栈中元素个数
+** 操作: 若栈存在, 则销毁它
+** 参数: 栈指针
 */
-int StackLength(SqStack const *stack);
+void DestroyStack(PtrStack stack);
 
 /*
-** 操作: 打印顺序栈的内容
-** 参数:
-** 1. 一个顺序栈指针
-** 返回值:
-** 1. 若参数指针错误则打印错误信息并退出
+** 操作: 将栈清空
+** 参数: 栈指针
 */
-void PrintStack(SqStack const *stack);
+void ClearStack(PtrStack stack);
 
 /*
-** 操作: 初始化顺序栈
-** 1. top置为-1
-** 参数:
-** 1. 一个顺序栈指针
+** 操作: 判断栈是否为空
+** 参数: 栈指针
 ** 返回值:
-** 1. 若参数指针错误则打印错误信息并退出
+** 1. 若栈为空, 返回true
+** 2. 否则返回false
 */
-void InitStack(SqStack *stack);
+bool StackEmpty(PtrStack stack);
 
 /*
-** 操作: 清空栈
-** 1. 将top置为-1
+** 操作: 若栈存在且非空, 则返回栈顶元素
 ** 参数:
-** 1. 一个顺序栈指针
+** 1. 栈指针
+** 2. 用于返回元素的指针
 ** 返回值:
-** 1. 若参数指针错误则打印错误信息并退出
+** 1. 若栈为空, 返回-1
+** 2. 否则执行操作返回0
 */
-void ClearStack(SqStack *stack);
+int GetTop(PtrStack stack, ElemType *elem);
 
 /*
-** 操作: 销毁栈
-** 1. 将top置为-1
+** 操作: 若栈存在, 则插入元素到栈顶
 ** 参数:
-** 1. 一个顺序栈指针
+** 1. 栈指针
+** 2. 用于插入的元素
 ** 返回值:
-** 1. 若参数指针错误则打印错误信息并退出
+** 1. 若栈已满返回-1
+** 2. 否则执行操作返回0
 */
-void DestroyStack(SqStack *stack);
+int Push(PtrStack stack, ElemType *elem);
 
 /*
-** 操作: 获取栈顶元素
-** 1. 若栈存在且非空, 用elem返回stack的栈顶元素
+** 操作: 删除栈顶元素并返回其值
 ** 参数:
-** 1. 一个顺序栈指针
-** 2. 一个用于返回元素的数据元素指针
+** 1. 栈指针
+** 2. 用于返回值的元素
 ** 返回值:
-** 1. 若参数指针错误则打印错误信息并退出
-** 2. 若顺序栈为空, 返回-1
-** 3. 否则执行操作返回0
+** 1. 若栈为空返回-1
+** 2. 否则执行操作返回0
 */
-int GetTop(SqStack const *stack, ElemType *elem);
+int Pop(PtrStack stack, ElemType *elem);
 
 /*
-** 操作: 插入元素
-** 1. 若栈存在, 插入新元素elem到栈中并成为栈顶元素
-** 2. top++
-** 参数:
-** 1. 一个顺序栈指针
-** 2. 一个用于插入的数据元素指针
-** 返回值:
-** 1. 若参数指针错误则打印错误信息并退出
-** 2. 若顺序栈已满, 返回-1
-** 3. 否则执行操作返回0
+** 操作: 返回栈的元素个数
+** 参数: 栈指针
+** 返回值: 栈的元素个数
 */
-int Push(SqStack *stack, ElemType const *elem);
+int StackLength(PtrStack stack);
 
 /*
-** 操作: 删除元素
-** 1. 删除栈中栈顶元素, 并用elem返回其值
-** 2. top--
-** 参数:
-** 1. 一个顺序栈指针
-** 2. 用于返回值的数据元素
-** 返回值:
-** 1. 若参数指针错误则打印错误信息并退出
-** 2. 若顺序栈为空, 返回-1
-** 3. 否则执行操作返回0
+** 操作: 打印栈内容
+** 参数: 栈指针
 */
-int Pop(SqStack *stack, ElemType *elem);
+void PrintStack(PtrStack stack);
 
 #endif
