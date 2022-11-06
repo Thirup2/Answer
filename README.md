@@ -11,6 +11,8 @@
    - [《大话数据结构》](https://github.com/Thirup2/Answer/tree/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E3%80%8A%E5%A4%A7%E8%AF%9D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E3%80%8B)
    - [《算法》](https://github.com/Thirup2/Answer/tree/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E3%80%8A%E7%AE%97%E6%B3%95%E3%80%8B)
    - [《数据结构与算法分析：C语言描述》](https://github.com/Thirup2/Answer/tree/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E3%80%8A%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E5%88%86%E6%9E%90%EF%BC%9AC%E8%AF%AD%E8%A8%80%E6%8F%8F%E8%BF%B0%E3%80%8B)
+   - [《剑指offer：名企面试官精讲典型编程题》](https://github.com/Thirup2/Answer/tree/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E3%80%8A%E5%89%91%E6%8C%87offer%EF%BC%9A%E5%85%B8%E5%9E%8B%E7%BC%96%E7%A8%8B%E9%A2%98%E3%80%8B)
+   - [《剑指offer：数据结构与算法名企面试题精讲》](https://github.com/Thirup2/Answer/tree/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E3%80%8A%E5%89%91%E6%8C%87offer%EF%BC%9A%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E3%80%8B)
    - [PTA 数据结构课程练习--陈越](https://github.com/Thirup2/Answer/tree/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/PTA%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E8%AF%BE%E7%A8%8B%E7%BB%83%E4%B9%A0--%E9%99%88%E8%B6%8A)
    - [PTA 数据结构与算法题目集(中文)](https://github.com/Thirup2/Answer/tree/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/PTA%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E9%A2%98%E7%9B%AE%E9%9B%86(%E4%B8%AD%E6%96%87))
    - [PTA Data Structures and Algorithms(English)](https://github.com/Thirup2/Answer/tree/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/PTA%20Data%20Structures%20and%20Algorithms(English))
@@ -34,5 +36,12 @@
 ### - [计算机系统](https://github.com/Thirup2/Answer/tree/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F)
    - [《深入理解计算机系统》](https://github.com/Thirup2/Answer/tree/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/%E3%80%8A%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E3%80%8B)
    - [《计算机组成原理》](https://github.com/Thirup2/Answer/tree/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/%E3%80%8A%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86%E3%80%8B)
+   - [《现代操作系统》](https://github.com/Thirup2/Answer/tree/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/%E3%80%8A%E7%8E%B0%E4%BB%A3%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%E3%80%8B)
+   - [《计算机组成与设计：硬件/软件接口》](https://github.com/Thirup2/Answer/tree/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F/%E3%80%8A%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E4%B8%8E%E8%AE%BE%E8%AE%A1%E3%80%8B)
+
+### - [计算机网络](https://github.com/Thirup2/Answer/tree/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C)
+
+- [《计算机网络：自顶向下方法》](https://github.com/Thirup2/Answer/tree/main/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E3%80%8A%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%EF%BC%9A%E8%87%AA%E9%A1%B6%E5%90%91%E4%B8%8B%E6%96%B9%E6%B3%95%E3%80%8B)
+
 ### - [数据库](https://github.com/Thirup2/Answer/tree/main/%E6%95%B0%E6%8D%AE%E5%BA%93)
    - [《SQL必知必会》](https://github.com/Thirup2/Answer/tree/main/%E6%95%B0%E6%8D%AE%E5%BA%93/%E3%80%8ASQL%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A%E3%80%8B)
