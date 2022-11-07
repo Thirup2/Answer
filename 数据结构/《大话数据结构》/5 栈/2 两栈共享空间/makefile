@@ -1,9 +1,9 @@
-Objects = driver.o SqDulStack.o
+Objects = Main.o SqDulStack.o
 
 SqDulStack : $(Objects)
 	cc -o SqDulStack $(Objects)
 
-driver.o : SqDulStack.h
+Main.o : SqDulStack.h
 SqDulStack.o : SqDulStack.h
 
 .PHONY : clean
