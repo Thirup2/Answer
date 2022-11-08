@@ -12,128 +12,114 @@ struct items
 {
     int x;
     int y;
-};                                      // 数据项结构
-typedef struct items ElemType;          // 数据元素类型
+};
+typedef struct items ElemType;
 
 struct node
 {
-    ElemType data;                      // 数据域
-    struct node *next;                  // 指针域
+    ElemType data;
+    struct node *next;
 };
-typedef struct node Node;               // 结点类型
-typedef Node *PNode;                    // 结点指针
+typedef struct node Node;
+typedef Node *PtrNode;
 
 struct stack
 {
-    PNode top;                          // 头指针兼栈顶指针
-    int length;                         // 链栈长度
+    PtrNode top;
+    int length;
 };
-typedef struct stack LinkStack;         // 链栈类型
+typedef struct stack Stack;
+typedef Stack *PtrStack;
 
-/* 元素处理函数原型 */
+/* 数据元素处理函数原型 */
 
 /*
-** 操作: 更改数据元素的值
+** 操作: 赋值操作
 ** 参数:
-** 1. 待更改的元素指针
-** 2. 用于更改的元素指针
+** 1. 被赋值元素
+** 2. 用于赋值的元素
 */
-void ChangeElem(ElemType *elem, ElemType const *data);
+void CopyElem(ElemType *elem, ElemType *data);
 
 /*
 ** 操作: 打印一个数据元素
-** 参数: 待打印的数据元素
+** 参数: 待打印数据元素指针
 */
-void PrintElem(ElemType const *elem);
+void PrintElem(ElemType *elem);
 
-/* 链栈接口函数原型 */
+/* 栈接口函数原型 */
 
 /*
-** 操作: 判断链栈是否为空
-** 参数: 链栈指针
+** 操作: 初始化操作, 建立一个空栈
+** 返回值: 一个栈指针
+*/
+PtrStack InitStack(void);
+
+/*
+** 操作: 若栈存在, 则销毁它
+** 参数: 栈指针
+*/
+void DestroyStack(PtrStack stack);
+
+/*
+** 操作: 将栈清空
+** 参数: 栈指针
+*/
+void ClearStack(PtrStack stack);
+
+/*
+** 操作: 判断栈是否为空
+** 参数: 栈指针
 ** 返回值:
-** 1. 若链栈为空, 则返回true
-** 2. 若链栈非空, 则返回false
+** 1. 若栈为空, 返回true
+** 2. 否则返回false
 */
-bool StackEmpty(LinkStack const *stack);
+bool StackEmpty(PtrStack stack);
 
 /*
-** 操作: 获取链栈的元素个数
-** 参数: 链栈指针
-** 返回值: 链栈的元素个数
-*/
-int StackLength(LinkStack const *stack);
-
-/*
-** 操作: 打印链栈所有元素
-** 参数: 链栈指针
-*/
-void ShowStack(LinkStack const *stack);
-
-/*
-** 操作: 初始化操作
-** 1. 栈顶指针设置为空
-** 2. 链栈长度设置为0
-** 参数: 链栈指针
-*/
-void InitStack(LinkStack *stack);
-
-/*
-** 操作: 插入新元素到栈顶
-** 1. 新建结点: 数据域用参数二填充, 指针域指向上一个栈顶
-** 2. 栈顶指针指向新结点
-** 3. 链栈长度加1
+** 操作: 若栈存在且非空, 则返回栈顶元素
 ** 参数:
-** 1. 链栈指针
-** 2. 用于插入的数据元素指针
+** 1. 栈指针
+** 2. 用于返回元素的指针
 ** 返回值:
-** 1. 若链栈已满返回-1
-** 2. 若插入成功返回0
+** 1. 若栈为空, 返回-1
+** 2. 否则执行操作返回0
 */
-int Push(LinkStack *stack, ElemType const *elem);
+int GetTop(PtrStack stack, ElemType *elem);
 
 /*
-** 操作: 删除栈顶元素
-** 1. 将栈顶元素交给用于返回的元素指针
-** 2. 栈顶指针指向后一个结点
-** 3. 链栈长度减1
-** 4. 释放被删除结点
+** 操作: 若栈存在, 则插入元素到栈顶
 ** 参数:
-** 1. 链栈指针
-** 2. 用于返回的数据元素指针
+** 1. 栈指针
+** 2. 用于插入的元素
 ** 返回值:
-** 1. 若链栈为空返回-1
-** 2. 若删除成功返回0
+** 1. 若栈已满返回-1
+** 2. 否则执行操作返回0
 */
-int Pop(LinkStack *stack, ElemType *elem);
+int Push(PtrStack stack, ElemType *elem);
 
 /*
-** 操作: 获取栈顶元素
+** 操作: 删除栈顶元素并返回其值
 ** 参数:
-** 1. 链栈指针
-** 2. 用于返回的数据元素指针
+** 1. 栈指针
+** 2. 用于返回值的元素
 ** 返回值:
-** 1. 若链栈为空返回-1
-** 2. 返回成功返回0
+** 1. 若栈为空返回-1
+** 2. 否则执行操作返回0
 */
-int GetTop(LinkStack const *stack, ElemType *elem);
+int Pop(PtrStack stack, ElemType *elem);
 
 /*
-** 操作: 清空链栈
-** 1. 将所有结点空间释放, 仅保留头结点(本例未设置头结点)
-** 2. 栈顶指针指向头结点
-** 3. 链栈长度设置为0
-** 参数: 链栈指针
+** 操作: 返回栈的元素个数
+** 参数: 栈指针
+** 返回值: 栈的元素个数
 */
-void ClearStack(LinkStack *stack);
+int StackLength(PtrStack stack);
 
 /*
-** 操作: 销毁链栈
-** 1. 将所有结点空间释放, 包括头结点
-** 2. 栈顶指针指向NULL
-** 3. 链栈长度设置为0
-** 参数: 链栈指针
+** 操作: 打印栈内容
+** 参数: 栈指针
 */
-void DestroyStack(LinkStack *stack);
+void PrintStack(PtrStack stack);
 
 # endif

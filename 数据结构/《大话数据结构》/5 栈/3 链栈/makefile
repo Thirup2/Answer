@@ -1,9 +1,9 @@
-Objects = driver.o LinkStack.o
+Objects = Main.o LinkStack.o
 
 LinkStack: $(Objects)
 	cc -o LinkStack $(Objects)
 
-driver.o: LinkStack.h
+Main.o: LinkStack.h
 LinkStack.o: LinkStack.h
 
 .PHONY: clean
