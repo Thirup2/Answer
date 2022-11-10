@@ -1,10 +1,10 @@
-Objects = SqQueue.o driver.o
+Objects = SqQueue.o Main.o
 
 SqQueue: $(Objects)
 	cc -o SqQueue $(Objects)
 
 SqQueue.o: SqQueue.h
-driver.o: SqQueue.h
+Main.o: SqQueue.h
 
 .PHONY : clean
 clean:
