@@ -3,196 +3,185 @@
 /* 包含头文件 */
 #include "LinkQueue.h"
 
-/* 数据元素处理函数定义 */
+/* 数据元素处理函数原型 */
 
 /*
-** 操作: 更改数据元素的值
-** 参数:
-** 1. 待更改的数据元素指针
-** 2. 用于更改的数据元素指针
+** 操作：复制元素
+** 参数：
+** 1. 复制到的元素
+** 2. 被复制的元素
 */
-void ChangeElem(ElemType *elem, ElemType const *data)
+void CopyElem(ElemType *elem, const ElemType *data)
 {
     elem->x = data->x;
     elem->y = data->y;
 }
 
 /*
-** 操作: 打印一个数据元素
-** 参数: 待打印的数据元素指针
+** 操作：打印单个元素
+** 参数：待打印元素
 */
-void PrintElem(ElemType const *elem)
+void PrintElem(const ElemType *elem)
 {
     printf("(%d, %d) ", elem->x, elem->y);
 }
 
-/* 链队列接口函数定义 */
+/* 循环队列接口函数原型 */
 
 /*
-** 操作: 判断队列是否为空(不包含头结点)
-** 参数: 一个队列指针
-** 返回值:
-** 1. 若队列已初始化且为空返回true
-** 2. 若不为空返回false
+** 操作：创建一个新队列
+** 参数：队列大小
+** 返回值：创建的队列指针
 */
-bool QueueEmpty(LinkQueue const *queue)
+PtrQueue InitQueue(void)
 {
-    if (queue->front == queue->rear) {
+    PtrQueue queue = (PtrQueue) malloc(sizeof(Queue));
+    queue->head = NULL;
+    queue->last = NULL;
+    queue->length = 0;
+    return queue;
+}
+
+/*
+** 操作：销毁队列
+** 参数： 队列指针
+*/
+void DestroyQueue(PtrQueue queue)
+{
+    ClearQueue(queue);
+    free(queue);
+}
+
+/*
+** 操作：清空队列
+** 参数： 队列指针
+*/
+void ClearQueue(PtrQueue queue)
+{
+    PtrNode p = queue->head;
+    PtrNode s;
+    while (p) {
+        s = p;
+        p = p->next;
+        free(s);
+    }
+    queue->head = NULL;
+    queue->last = NULL;
+    queue->length = 0;
+}
+
+/*
+** 操作：判断队列是否为空
+** 参数： 队列指针
+** 返回值：
+** 1. 若队列为空则返回true
+** 2. 否则返回false
+*/
+bool QueueEmpty(PtrQueue queue)
+{
+    if (queue->length == 0 && queue->head == NULL && queue->last == NULL) {
         return true;
     }
     return false;
 }
 
 /*
-** 操作: 返回队列的长度(不包含头结点)
-** 参数: 一个队列指针
-** 返回值:
-** 1. 若队列未初始化则退出
+** 操作：返回队列的长度
+** 参数：队列指针
+** 返回值：
+** 1. 若队列为空返回0
 ** 2. 否则返回队列的长度
 */
-int QueueLength(LinkQueue const *queue)
+int QueueLength(PtrQueue queue)
 {
     return queue->length;
 }
 
 /*
-** 操作: 打印整个队列的值(不包含头结点)
-** 参数: 一个已初始化的队列指针
-*/
-void ShowQueue(LinkQueue const *queue)
-{
-    PNode p = queue->front->next;
-    while (p) {
-        PrintElem(&(p->data));
-        p = p->next;
-    }
-}
-
-/*
-** 操作: 初始化链队列
-** 1. 添加一个头结点
-** 2. 使front和rear都指向头结点
-** 3. length置为0
-** 参数: 一个队列指针
-*/
-void InitQueue(LinkQueue *queue)
-{
-    PNode p = (PNode) malloc(sizeof(Node));
-    if (!p) {
-        exit(EXIT_FAILURE);
-    }
-    p->next = NULL;
-    queue->front = p;
-    queue->rear = p;
-    queue->length = 0;
-}
-
-/*
-** 操作: 插入元素到队尾
-** 1. 添加一个结点
-** 2. 更改rear的指向
-** 3. length++
-** 参数:
+** 操作：插入元素到队尾
+** 参数：
 ** 1. 队列指针
-** 2. 待插入的元素指针
-** 返回值:
-** 1. 若队列已满则返回-1
+** 2. 待插入元素
+** 返回值：
+** 1. 若队列已满返回-1
 ** 2. 否则执行操作返回0
 */
-int EnQueue(LinkQueue *queue, ElemType const *elem)
+int EnQueue(PtrQueue queue, const ElemType *elem)
 {
-    PNode p = (PNode) malloc(sizeof(Node));
-    if (!p) {
+    PtrNode node = (PtrNode) malloc(sizeof(Node));
+    if (!node) {
         return -1;
     }
-    p->next = NULL;
-    ChangeElem(&(p->data), elem);
-    queue->rear->next = p;
-    queue->rear = p;
+    CopyElem(&(node->data), elem);
+    if (queue->length == 0) {
+        node->next = NULL;
+        queue->head = node;
+        queue->last = node;
+    } else {
+        node->next = queue->last->next;
+        queue->last->next = node;
+        queue->last = node;
+    }
     queue->length++;
     return 0;
 }
 
 /*
-** 操作: 删除队头元素
-** 1. 将队头元素赋给返回指针
-** 2. 更改front的指向
-** 3. length--
-** 4. 释放结点
-** 参数:
+** 操作：删除队头元素
+** 参数：
 ** 1. 队列指针
-** 2. 待返回的元素指针
-** 返回值:
+** 2. 用于返回的元素指针
+** 返回值：
 ** 1. 若队列为空返回-1
 ** 2. 否则执行操作返回0
 */
-int DeQueue(LinkQueue *queue, ElemType *elem)
+int DeQueue(PtrQueue queue, ElemType *elem)
 {
     if (QueueEmpty(queue)) {
         return -1;
     }
-    PNode p = queue->front->next;
-    ChangeElem(elem, &(p->data));
-    queue->front = p->next;
-    free(p);
+    PtrNode p = queue->head;
+    CopyElem(elem, &(p->data));
+    if (queue->length == 1) {
+        free(p);
+        queue->head = NULL;
+        queue->last = NULL;
+    } else {
+        queue->head = p->next;
+        free(p);
+    }
     queue->length--;
     return 0;
 }
 
 /*
-** 操作: 返回队头元素
-** 参数:
+** 操作：返回队头元素
+** 参数：
 ** 1. 队列指针
-** 2. 待返回的元素指针
-** 返回值:
+** 2. 用于返回的元素指针
+** 返回值：
 ** 1. 若队列为空返回-1
 ** 2. 否则执行操作返回0
 */
-int GetHead(LinkQueue const *queue, ElemType *elem)
+int GetHead(PtrQueue queue, ElemType *elem)
 {
     if (QueueEmpty(queue)) {
         return -1;
     }
-    ChangeElem(elem, &(queue->front->next->data));
+    CopyElem(elem, &(queue->head->data));
     return 0;
 }
 
 /*
-** 操作: 清空队列(保留头结点)
-** 1. 释放所有结点(除了头结点)
-** 2. 更改front和rear以及length
-** 返回值:
+** 操作：打印队列（从队头到队尾）
+** 参数：队列指针
 */
-void ClearQueue(LinkQueue *queue)
+void PrintQueue(PtrQueue queue)
 {
-    PNode p = queue->front->next;
-    PNode s;
+    PtrNode p = queue->head;
     while (p) {
-        s = p;
+        PrintElem(&(p->data));
         p = p->next;
-        free(s);
     }
-    queue->front->next = NULL;
-    queue->rear = queue->front;
-    queue->length = 0;
-}
-
-/*
-** 操作: 销毁队列(包括头结点)
-** 1. 释放所有结点(包括头结点)
-** 2. 更改front和rear以及length的值
-** 参数: 队列指针
-*/
-void DestroyQueue(LinkQueue *queue)
-{
-    PNode p = queue->front;
-    Pnode s;
-    while (p) {
-        s = p;
-        p = p->next;
-        free(s);
-    }
-    queue->front = NULL;
-    queue->rear = NULL;
-    queue->length = -1;
+    printf("\n");
 }

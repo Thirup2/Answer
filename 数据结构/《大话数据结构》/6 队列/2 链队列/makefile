@@ -1,9 +1,9 @@
-Objects = LinkQueue.o driver.o
+Objects = LinkQueue.o Main.o
 
 LinkQueue: $(Objects)
 	cc -o LinkQueue $(Objects)
 
-driver.o: LinkQueue.h
+Main.o: LinkQueue.h
 LinkQueue.o: LinkQueue.h
 
 .PHONY: clean
