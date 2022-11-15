@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #define MAXSIZE 512
 void written_amount(unsigned int amount, char *buffer);
+void Copy_num(char *copy, unsigned int three);
+void Copy_str(char *copy, const char *str);
 int main(int argc, char *argv[])
 {
     if (argc < 2) {
@@ -211,5 +213,133 @@ void written_amount_copy(unsigned int amount, char *buffer)
 /*
 ** 我的方法：
 ** 主要是将整个数字分为多个三位数，对于每个三位数来说，其表示不受位置的影响，为了buffer的写入位置不出错，应该返回一个字符串指针，交给主体函数复制
-** 另外，在主体函数中，还需要考虑在两个三位数中间的连接词，此处进行了限制，由于最大int数十亿级，故最大只做到十亿
+** 另外，在主体函数中，还需要考虑在两个三位数中间的连接词，此处进行了限制，由于最大int数为十亿级，故最大只做到十亿
+** 本函数采用非递归方法实现，应该还可以用递归方法实现，递归可以更好地扩展到更大的整数类型，感兴趣的可以去试试
 */
+void written_amount(unsigned int amount, char *buffer)
+{
+    static char *catch[4] = {"ZERO", "THOUSAND", "MILLION", "BILLION"};
+    static char copy[128];
+    static char *ptr_copy;
+    int before = 0;         // 用来判断输入的数是不是0
+    unsigned int three;
+    if ((three = amount / 1000000000) != 0) {
+        before++;
+        Copy_num(copy, three);
+        ptr_copy = copy;
+        while (*ptr_copy) {
+            *buffer++ = *ptr_copy++;
+        }
+        *buffer++ = ' ';
+        Copy_str(copy, catch[3]);
+        ptr_copy = copy;
+        while (*ptr_copy) {
+            *buffer++ = *ptr_copy++;
+        }
+        *buffer++ = ' ';
+        amount %= 1000000000;
+    }
+    if ((three = amount / 1000000) != 0) {
+        before++;
+        Copy_num(copy, three);
+        ptr_copy = copy;
+        while (*ptr_copy) {
+            *buffer++ = *ptr_copy++;
+        }
+        *buffer++ = ' ';
+        Copy_str(copy, catch[2]);
+        ptr_copy = copy;
+        while (*ptr_copy) {
+            *buffer++ = *ptr_copy++;
+        }
+        *buffer++ = ' ';
+        amount %= 1000000;
+    }
+    if ((three = amount / 1000) != 0) {
+        before++;
+        Copy_num(copy, three);
+        ptr_copy = copy;
+        while (*ptr_copy) {
+            *buffer++ = *ptr_copy++;
+        }
+        *buffer++ = ' ';
+        Copy_str(copy, catch[1]);
+        ptr_copy = copy;
+        while (*ptr_copy) {
+            *buffer++ = *ptr_copy++;
+        }
+        *buffer++ = ' ';
+        amount %= 1000;
+    }
+    if ((three = amount % 1000) != 0) {
+        before++;
+        Copy_num(copy, three);
+        ptr_copy = copy;
+        while (*ptr_copy) {
+            *buffer++ = *ptr_copy++;
+        }
+    }
+    if (before == 0) {
+        Copy_str(copy, catch[0]);
+        ptr_copy = copy;
+        while (*ptr_copy) {
+            *buffer++ = *ptr_copy++;
+        }
+    }
+    *buffer = '\0';
+}
+void Copy_num(char *copy, unsigned int three)
+{
+    static char *hundred = "HUNDRED";
+    static char *ties[] = {"TWENTY", "THIRTY", "FORTY", "FIFTY", "SIXTY", "SEVENTY", "EIGHTY", "NINETY"};
+    static char *teens[] = {"ONE", "TWO", "THREE", "FOUR", "FIVE", "SIX", "SEVEN", "EIGHT", "NINE", "TEN", "ELEVEN", "TWELVE", "THIRTEEN",
+                            "FOURTEEN", "FIFTEEN", "SIXTEEN", "SEVENTEEN", "EIGHTEEN", "NINETEEN"};
+    static char copy_str[16];
+    static char *ptr_copy;
+    unsigned int oot;
+    if ((oot = three / 100) != 0) {
+        Copy_str(copy_str, teens[oot - 1]);
+        ptr_copy = copy_str;
+        while (*ptr_copy) {
+            *copy++ = *ptr_copy++;
+        }
+        *copy++ = ' ';
+        Copy_str(copy_str, hundred);
+        ptr_copy = copy_str;
+        while (*ptr_copy) {
+            *copy++ = *ptr_copy++;
+        }
+        *copy++ = ' ';
+    }
+    if ((oot = three % 100) == 0) {
+        ;
+    } else if (oot < 20) {
+        Copy_str(copy_str, teens[oot - 1]);
+        ptr_copy = copy_str;
+        while (*ptr_copy) {
+            *copy++ = *ptr_copy++;
+        }
+    } else {
+        Copy_str(copy_str, ties[oot / 10 - 2]);
+        ptr_copy = copy_str;
+        while (*ptr_copy) {
+            *copy++ = *ptr_copy++;
+        }
+        if (oot % 10 != 0) {
+            *copy++ = ' ';
+            Copy_str(copy_str, teens[oot % 10 - 1]);
+            ptr_copy = copy_str;
+            while (*ptr_copy) {
+                *copy++ = *ptr_copy++;
+            }
+        }
+    }
+    *copy = '\0';
+}
+void Copy_str(char *copy, const char *str)
+{
+    while (*str) {
+        *copy++ = *str++;
+    }
+    *copy = '\0';
+}
