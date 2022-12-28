@@ -14,16 +14,22 @@
 */
 PtrArray InitArray(size_t size)
 {
+    // 首先分配定容数组结构的内存空间
     PtrArray array = (PtrArray) malloc(sizeof(Array));
     if (!array) {
         exit(EXIT_FAILURE);
     }
-    array->size = size;
-    array->length = 0;
-    array->data = (PtrElem) calloc(size + 1, sizeof(ElemType));
+
+    // 然后根据参数为数组分配空间
+    array->data = (PtrElem) calloc(size + 1, sizeof(ElemType));     // 大小比指定值大1，第一个元素留作哨兵
     if (!array->data) {
         exit(EXIT_FAILURE);
     }
+
+    // 初始化其他成员
+    array->size = size;
+    array->length = 0;
+    
     return array;
 }
 
@@ -118,17 +124,23 @@ size_t LocateElem(PtrArray array, cPtrElem elem)
 */
 int ArrayInsert(PtrArray array, size_t position, cPtrElem elem)
 {
+    // 判断数组是否已满
     if (ArrayLength(array) == array->size) {
         return -1;
     }
+
+    // 判断插入位置是否合理
     if (position < 1 || position > ArrayLength(array) + 1) {
         return 1;
     }
-    for (size_t i = ArrayLength(array); i >= position; i--) {
+
+    // 执行插入操作
+    for (size_t i = ArrayLength(array); i >= position; i--) {       // 若在中间插入，需要将后面的元素全部后移
         AssignElem(&array->data[i + 1], &array->data[i]);
     }
     AssignElem(&array->data[position], elem);
     array->length++;
+    
     return 0;
 }
 
@@ -145,17 +157,23 @@ int ArrayInsert(PtrArray array, size_t position, cPtrElem elem)
 */
 int ArrayDelete(PtrArray array, size_t position, PtrElem elem)
 {
+    // 判断数组是否为空
     if (ArrayEmpty(array)) {
         return -1;
     }
+
+    // 判断删除位置是否合理
     if (position < 1 || position > array->length) {
         return 1;
     }
+
+    // 执行删除操作
     AssignElem(elem, &array->data[position]);
-    for (size_t i = position; i < array->length; i++) {
+    for (size_t i = position; i < array->length; i++) {         // 若在中间删除，则该位置之后的元素全部需要前移
         AssignElem(&array->data[i], &array->data[i + 1]);
     }
     array->length--;
+
     return 0;
 }
 
