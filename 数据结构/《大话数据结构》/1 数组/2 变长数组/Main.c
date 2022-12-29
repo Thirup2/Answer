@@ -16,10 +16,9 @@ void EatChars(void);
 /* 主函数模块 */
 int main(void)
 {
-    size_t size;
-    printf("请输入您想要创建的数组大小：");
-    scanf("%lu", &size);
-    PtrArray array = InitArray(size);
+    printf("开始创建数组...\n");
+    PtrArray array = InitArray();
+    printf("创建成功！\n");
     ShowArray(array);
     Insert(array);
     Get(array);
@@ -54,10 +53,7 @@ void Insert(PtrArray array)
         if (ReadElem(&elem)) {
             printf("开始插入...\n");
             r = ArrayInsert(array, position, &elem);
-            if (r == ISFULL) {
-                printf("插入失败！\n数组已满，即将退出...\n");
-                break;
-            } else if (r == WRONGPOS) {
+            if (r == WRONGPOS) {
                 printf("插入位置不合理，请重新输入：");
                 continue;
             } else {
@@ -113,10 +109,6 @@ void Get(PtrArray array)
         r = GetElem(array, position, &elem);
         if (r == WRONGPOS) {
             printf("查询位置不合理，请重新输入：");
-            continue;
-        } else if (r == NOVALUE) {
-            printf("查询成功！\n该位置无值\n");
-            printf("继续查询请输入查询位置：");
             continue;
         } else if (r == ISEMPTY) {
             printf("查询失败！\n数组为空，即将退出...\n");

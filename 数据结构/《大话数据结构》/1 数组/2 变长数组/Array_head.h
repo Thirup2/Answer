@@ -1,4 +1,4 @@
-/* 定容数组类型头文件 */
+/* 变长数组类型头文件 */
 #ifndef _ARRAY_HEAD_H_
 #define _ARRAY_HEAD_H_
 
@@ -10,25 +10,23 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-/* 定容数组类型定义 */
+/* 变长数组类型定义 */
 struct array
 {
-    size_t size;
-    size_t length;
     PtrElem data;
+    size_t size;
 };
 typedef struct array Array;
 typedef Array *PtrArray;
 typedef const Array *cPtrArray;
 
-/* 定容数组函数接口 */
+/* 变长数组函数接口 */
 
 /*
-** 操作：初始化操作，建立一个空的定容数组
-** 参数：数组大小
+** 操作：初始化操作，建立一个空的变长数组
 ** 返回值：数组指针
 */
-PtrArray InitArray(size_t size);
+PtrArray InitArray(void);
 
 /*
 ** 操作：判断数组是否为空
@@ -60,8 +58,7 @@ void DestroyArray(PtrArray array);
 ** 返回值：
 ** 1. 若数组为空，返回ISEMPTY
 ** 2. 若指定位置不合理，返回WRONGPOS
-** 3. 若指定位置无值，返回NOVALUE
-** 4. 否则执行操作返回SUCCESS
+** 3. 否则执行操作返回SUCCESS
 */
 Status GetElem(cPtrArray array, size_t position, PtrElem elem);
 

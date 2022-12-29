@@ -1,4 +1,4 @@
-/* 定容数组接口实现 */
+/* 变长数组接口实现 */
 #ifndef _ARRAY_H_
 #define _ARRAY_H_
 
@@ -8,28 +8,26 @@
 /* 接口实现 */
 
 /*
-** 操作：初始化操作，建立一个空的定容数组
-** 参数：数组大小
+** 操作：初始化操作，建立一个空的变长数组
 ** 返回值：数组指针
 */
-PtrArray InitArray(size_t size)
+PtrArray InitArray(void)
 {
-    // 首先分配定容数组结构的内存空间
+    // 首先为数组结构分配空间
     PtrArray array = (PtrArray) malloc(sizeof(Array));
     if (!array) {
         exit(EXIT_FAILURE);
     }
 
-    // 然后根据参数为数组分配空间
-    array->data = (PtrElem) calloc(size + 1, sizeof(ElemType));     // 大小比指定值大1，第一个元素留作哨兵
+    // 然后为数组分配空间
+    array->data = (PtrElem) malloc(sizeof(ElemType));      // 首先分配一个元素空间，留作哨兵
     if (!array->data) {
         exit(EXIT_FAILURE);
     }
 
     // 初始化其他成员
-    array->size = size;
-    array->length = 0;
-    
+    array->size = 0;
+
     return array;
 }
 
@@ -42,6 +40,7 @@ PtrArray InitArray(size_t size)
 */
 bool ArrayEmpty(cPtrArray array)
 {
+    // 通过数组长度判断是否为空
     if (ArrayLength(array) == 0) {
         return true;
     }
@@ -54,7 +53,12 @@ bool ArrayEmpty(cPtrArray array)
 */
 void ClearArray(PtrArray array)
 {
-    array->length = 0;
+    // 清空除了哨兵之外的其他元素
+    array->data = (PtrElem) realloc(array->data, sizeof(ElemType));
+    if (!array->data) {
+        exit(EXIT_FAILURE);
+    }
+    array->size = 0;
 }
 
 /*
@@ -63,6 +67,7 @@ void ClearArray(PtrArray array)
 */
 void DestroyArray(PtrArray array)
 {
+    // 清空包括哨兵在内的所有元素，以及整个数组结构
     free(array->data);
     free(array);
 }
@@ -76,20 +81,21 @@ void DestroyArray(PtrArray array)
 ** 返回值：
 ** 1. 若数组为空，返回ISEMPTY
 ** 2. 若指定位置不合理，返回WRONGPOS
-** 3. 若指定位置无值，返回NOVALUE
-** 4. 否则执行操作返回SUCCESS
+** 3. 否则执行操作返回SUCCESS
 */
 Status GetElem(cPtrArray array, size_t position, PtrElem elem)
 {
+    // 判断数组是否为空
     if (ArrayEmpty(array)) {
         return ISEMPTY;
     }
+
+    // 判断指定位置是否合理
     if (position < 1 || position > array->size) {
         return WRONGPOS;
     }
-    if (position > ArrayLength(array)) {
-        return NOVALUE;
-    }
+
+    // 执行操作返回SUCCESS
     AssignElem(elem, &array->data[position]);
     return SUCCESS;
 }
@@ -105,9 +111,14 @@ Status GetElem(cPtrArray array, size_t position, PtrElem elem)
 */
 size_t LocateElem(PtrArray array, cPtrElem elem)
 {
+    // 布置哨兵
     AssignElem(&array->data[0], elem);
+
+    // 从数组尾开始往前遍历，直到匹配为止
     size_t i;
-    for (i = ArrayLength(array); !CompareElems(&array->data[i], elem); i--);
+    for (i = array->size; !CompareElems(&array->data[i], elem); i--);
+
+    // 返回匹配的位置，若为0，说明没有匹配值
     return i;
 }
 
@@ -118,29 +129,24 @@ size_t LocateElem(PtrArray array, cPtrElem elem)
 ** 2. 待插入的位置
 ** 3. 待插入的元素指针
 ** 返回值：
-** 1. 若数组已满返回ISFULL
-** 2. 若插入位置不合理返回WRONGPOS
-** 3. 否则执行操作返回SUCCESS
+** 1. 若插入位置不合理返回WRONGPOS
+** 2. 否则执行操作返回SUCCESS
 */
 Status ArrayInsert(PtrArray array, size_t position, cPtrElem elem)
 {
-    // 判断数组是否已满
-    if (ArrayLength(array) == array->size) {
-        return ISFULL;
-    }
-
     // 判断插入位置是否合理
-    if (position < 1 || position > ArrayLength(array) + 1) {
+    if (position < 1 || position > array->size + 1) {
         return WRONGPOS;
     }
 
     // 执行插入操作
-    for (size_t i = ArrayLength(array); i >= position; i--) {       // 若在中间插入，需要将后面的元素全部后移
-        AssignElem(&array->data[i + 1], &array->data[i]);
+    array->size++;
+    array->data = (PtrElem) realloc(array->data, (array->size + 1) * sizeof(ElemType));
+    for (size_t i = array->size; i > position; i--) {
+        AssignElem(&array->data[i], &array->data[i - 1]);
     }
     AssignElem(&array->data[position], elem);
-    array->length++;
-    
+
     return SUCCESS;
 }
 
@@ -163,16 +169,17 @@ Status ArrayDelete(PtrArray array, size_t position, PtrElem elem)
     }
 
     // 判断删除位置是否合理
-    if (position < 1 || position > array->length) {
+    if (position < 1 || position > array->size) {
         return WRONGPOS;
     }
 
     // 执行删除操作
     AssignElem(elem, &array->data[position]);
-    for (size_t i = position; i < array->length; i++) {         // 若在中间删除，则该位置之后的元素全部需要前移
+    for (size_t i = position; i < array->size; i++) {
         AssignElem(&array->data[i], &array->data[i + 1]);
     }
-    array->length--;
+    array->size--;
+    array->data = (PtrElem) realloc(array->data, (array->size + 1) * sizeof(ElemType));
 
     return SUCCESS;
 }
@@ -184,7 +191,7 @@ Status ArrayDelete(PtrArray array, size_t position, PtrElem elem)
 */
 size_t ArrayLength(cPtrArray array)
 {
-    return array->length;
+    return array->size;
 }
 
 /*
@@ -193,8 +200,8 @@ size_t ArrayLength(cPtrArray array)
 */
 void PrintArray(cPtrArray array)
 {
-    for (size_t i = 0; i < array->length; i++) {
-        PrintElem(&array->data[i + 1]);
+    for (size_t i = 1; i <= array->size; i++) {
+        PrintElem(&array->data[i]);
     }
     printf("\n");
 }

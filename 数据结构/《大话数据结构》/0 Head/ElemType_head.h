@@ -3,6 +3,7 @@
 #define _ELEMTYPE_HEAD_H_
 
 /* 包含头文件 */
+#include "Status.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
