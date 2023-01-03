@@ -40,7 +40,7 @@ PtrLL InitList(void)
 */
 bool ListEmpty(cPtrLL list)
 {
-    if (ListLength(list)) {
+    if (ListLength(list) == 0) {
         return true;
     }
     return false;
