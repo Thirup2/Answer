@@ -27,8 +27,8 @@
 
 | 类成员 | 定义                   |
 | ------ | ---------------------- |
-| `x`    | 落子的横坐标：`size_t` |
-| `y`    | 落子的纵坐标：`size_t` |
+| `x`    | 落子的横坐标：`int` |
+| `y`    | 落子的纵坐标：`int` |
 
 
 
@@ -38,8 +38,8 @@
 
 | 类成员        | 定义                               |
 | ------------- | ---------------------------------- |
-| `BoardSize`   | 棋盘的大小（正方形边长）：`size_t` |
-| `ChessCount`  | 棋子的个数：`size_t`               |
+| `BoardSize`   | 棋盘的大小（正方形边长）：`int` |
+| `ChessCount`  | 棋子的个数：`int`               |
 | `PenaltyArea` | 禁区矩阵：`bool **`                |
 | `Chesses`     | 棋子数组：`Chess *`                |
 
@@ -55,5 +55,9 @@
 |`GetRightGroups`|获取并输出所有有效位组合(主逻辑)|1. 棋盘|符合的组合个数|
 |`DownChess`|落子|1. 棋盘<br />2. 棋子序<br />3. 落子位置|void|
 |`UpChess`|提子|1. 棋盘<br />2. 棋子序|void|
-|`UpdatePenaltyArea`|更新禁区|1. 棋盘|void|
-|`GetNextPosition`|获取当前位置后第一个有效位置|1. 棋盘<br />2. 模式：1 更新上一个的下一个位序；0 获取当前未落子的棋子的第一个有效位置|位置，若无有效位置返回NULL|
+|`UpdatePenaltyArea`|更新禁区|1. 棋盘<br />2. 需要更新位置的棋子的当前位置|void|
+|`GetNextPosition`|获取当前位置后第一个有效位置|1. 棋盘<br />2. 需要更新位置的棋子的当前位置|位置，若无有效位置返回NULL|
+|`IsAllDown`|判断是否所有棋子都已落子|1. 棋盘|True or False|
+|`OutRightGroup`|输出一个无冲组合|1. 棋盘|void|
+|`IsItDown`|判断棋子是否已落子|1. 棋盘<br />2. 棋子序|True or False|
+
