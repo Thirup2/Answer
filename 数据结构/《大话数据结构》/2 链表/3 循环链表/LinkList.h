@@ -131,6 +131,7 @@ PtrLL InitList(void)
     if (!list) {
         exit(EXIT_FAILURE);
     }
+    // 不设置头结点
     list->head = NULL;
     list->last = NULL;
     return list;
