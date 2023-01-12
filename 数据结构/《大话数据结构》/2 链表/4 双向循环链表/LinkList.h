@@ -128,7 +128,15 @@ void PrintList(cPtrLL list);
 */
 PtrLL InitList(void)
 {
-    
+    PtrLL list = (PtrLL) malloc(sizeof(LinkList));
+    if (!list) {
+        exit(EXIT_FAILURE);
+    }
+    // 不设置头结点
+    list->head = NULL;
+    list->last = NULL;
+
+    return list;
 }
 
 /*
@@ -138,19 +146,43 @@ PtrLL InitList(void)
 ** 1. 若链表为空则返回true
 ** 2. 否则返回false
 */
-bool ListEmpty(cPtrLL list);
+bool ListEmpty(cPtrLL list)
+{
+    if (ListLength(list) == 0) {
+        return true;
+    }
+    return false;
+}
 
 /*
 ** 操作：清空链表
 ** 参数：链表指针
 */
-void ClearList(PtrLL list);
+void ClearList(PtrLL list)
+{
+    if (!ListEmpty(list)) {
+        PtrNode p = list->head;
+        PtrNode s;
+        while (p != list->last) {
+            s = p;
+            p = p->next;
+            free(s);
+        }
+        free(p);
+    }
+    list->head = NULL;
+    list->last = NULL;
+}
 
 /*
 ** 操作：销毁链表
 ** 参数：链表指针
 */
-void DestroyList(PtrLL list);
+void DestroyList(PtrLL list)
+{
+    ClearList(list);
+    free(list);
+}
 
 /*
 ** 操作：访问元素
@@ -163,7 +195,21 @@ void DestroyList(PtrLL list);
 ** 2. 若指定位置不合理返回WRONGPOS
 ** 3. 否则执行操作返回SUCCESS
 */
-Status GetElem(cPtrLL list, size_t position, PtrElem elem);
+Status GetElem(cPtrLL list, size_t position, PtrElem elem)
+{
+    if (ListEmpty(list)) {
+        return ISEMPTY;
+    }
+    if (position < 1 || position > ListLength(list)) {
+        return WRONGPOS;
+    }
+    PtrNode p = list->head;
+    while (--position) {
+        p = p->next;
+    }
+    AssignElem(elem, &p->data);
+    return SUCCESS;
+}
 
 /*
 ** 操作：查找元素
@@ -174,7 +220,27 @@ Status GetElem(cPtrLL list, size_t position, PtrElem elem);
 ** 1. 若未找到，返回位序
 ** 2. 否则返回0
 */
-size_t LocateElem(cPtrLL list, cPtrElem elem);
+size_t LocateElem(cPtrLL list, cPtrElem elem)
+{
+    size_t i = 0;
+    if (!ListEmpty(list)) {
+        PtrNode p = list->head;
+        i++;
+        while (p != list->last) {
+            if (CompareElems(elem, &p->data)) {
+                return i;
+            }
+            i++;
+            p = p->next;
+        }
+        if (CompareElems(elem, &p->data)) {
+            return i;
+        } else {
+            return 0;
+        }
+    }
+    return i;
+}
 
 /*
 ** 操作：插入元素
@@ -186,7 +252,45 @@ size_t LocateElem(cPtrLL list, cPtrElem elem);
 ** 1. 若插入位置不合理返回WRONGPOS
 ** 2. 否则执行操作返回SUCCESS
 */
-Status ListInsert(PtrLL list, size_t position, cPtrElem elem);
+Status ListInsert(PtrLL list, size_t position, cPtrElem elem)
+{
+    if (position < 1 || position > ListLength(list) + 1) {
+        return WRONGPOS;
+    }
+    PtrNode now = (PtrNode) malloc(sizeof(Node));
+    if (!now) {
+        exit(EXIT_FAILURE);
+    }
+    AssignElem(&now->data, elem);
+    if (ListEmpty(list)) {
+        list->head = now;
+        list->last = now;
+        now->next = now;
+        now->pre = now;
+    } else if (position == 1) {
+        now->next = list->head;
+        now->pre = list->last;
+        list->last->next = now;
+        list->head->pre = now;
+        list->head = now;
+    } else if (position == ListLength(list) + 1) {
+        now->next = list->head;
+        now->pre = list->last;
+        list->last->next = now;
+        list->head->pre = now;
+        list->last = now;
+    } else {
+        PtrNode p = list->head;
+        while (--position) {
+            p = p->next;
+        }
+        now->next = p;
+        now->pre = p->pre;
+        p->pre->next = now;
+        p->pre = now;
+    }
+    return SUCCESS;
+}
 
 /*
 ** 操作：删除元素
@@ -199,19 +303,80 @@ Status ListInsert(PtrLL list, size_t position, cPtrElem elem);
 ** 2. 若删除位置不合理返回WRONGPOS
 ** 3. 否则执行操作返回SUCCESS
 */
-Status ListDelete(PtrLL list, size_t position, PtrElem elem);
+Status ListDelete(PtrLL list, size_t position, PtrElem elem)
+{
+    if (ListEmpty(list)) {
+        return ISEMPTY;
+    }
+    if (position < 1 || position > ListLength(list)) {
+        return WRONGPOS;
+    }
+    if (ListLength(list) == 1) {
+        AssignElem(elem, &list->head->data);
+        free(list->head);
+        list->head = NULL;
+        list->last = NULL;
+    } else if (position == 1) {
+        AssignElem(elem, &list->head->data);
+        PtrNode p = list->head;
+        list->last->next = p->next;
+        p->next->pre = list->last;
+        list->head = p->next;
+        free(p);
+    } else if (position == ListLength(list)) {
+        AssignElem(elem, &list->last->data);
+        PtrNode p = list->last;
+        list->head->pre = p->pre;
+        p->pre->next = list->head;
+        list->last = p->pre;
+        free(p);
+    } else {
+        PtrNode p = list->head;
+        while (--position) {
+            p = p->next;
+        }
+        AssignElem(elem, &p->data);
+        p->pre->next = p->next;
+        p->next->pre = p->pre;
+        free(p);
+    }
+    return SUCCESS;
+}
 
 /*
 ** 操作：返回链表表长
 ** 参数：链表指针
 ** 返回值：链表表长
 */
-size_t ListLength(cPtrLL list);
+size_t ListLength(cPtrLL list)
+{
+    size_t len = 0;
+    PtrNode p = list->head;
+    while (p && p != list->last) {
+        len++;
+        p = p->next;
+    }
+    if (p) {
+        len++;
+    }
+    return len;
+}
 
 /*
 ** 操作：打印链表内容
 ** 参数：链表指针
 */
-void PrintList(cPtrLL list);
+void PrintList(cPtrLL list)
+{
+    PtrNode p = list->head;
+    while (p && p != list->last) {
+        PrintElem(&p->data);
+        p = p->next;
+    }
+    if (p) {
+        PrintElem(&p->data);
+    }
+    printf("\n");
+}
 
 #endif
