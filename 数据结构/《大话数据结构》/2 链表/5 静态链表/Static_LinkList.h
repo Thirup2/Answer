@@ -12,7 +12,9 @@
 
 /* 静态链表类型定义 */
 #define STATIC_NULL                     0
+// 根据后续定义的static_size_t的实际类型确定
 #define MAXSIZE                         USHRT_MAX
+// 使用时提供LinkList的实例作为参数
 #define MEMORY_POOL(LinkList_Instance)  LinkList_Instance[0].cur            // 备用链表的第一个元素下标
 #define HEAD(LinkList_Instance)         LinkList_Instance[MAXSIZE-1].cur    // 已用链表第一个元素下标
 
