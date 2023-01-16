@@ -20,6 +20,8 @@ int main(void)
     ShowQueue(queue);
     Insert(queue);
     Delete(queue);
+    Insert(queue);
+    Delete(queue);
     printf("开始清空队列...\n");
     ClearQueue(queue);
     ShowQueue(queue);
