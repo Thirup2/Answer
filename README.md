@@ -4,6 +4,7 @@
    - [《C专家编程》](https://github.com/Thirup2/Answer/tree/main/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/%E3%80%8AC%E4%B8%93%E5%AE%B6%E7%BC%96%E7%A8%8B%E3%80%8B)
    - [《C陷阱与缺陷》](https://github.com/Thirup2/Answer/tree/main/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/%E3%80%8AC%E9%99%B7%E9%98%B1%E4%B8%8E%E7%BC%BA%E9%99%B7%E3%80%8B)
    - [《C++ Primer》](https://github.com/Thirup2/Answer/tree/main/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/%E3%80%8AC%2B%2B%20Primer%E3%80%8B)
+   - [汇编语言](https://github.com/Thirup2/Answer/tree/main/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/%E3%80%8A%E6%B1%87%E7%BC%96%E8%AF%AD%E8%A8%80%E3%80%8B)
    - [PTA C语言基础--翁恺](https://github.com/Thirup2/Answer/tree/main/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/PTA%20C%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80--%E7%BF%81%E6%81%BA)
    - [PTA 基础编程题目集](https://github.com/Thirup2/Answer/tree/main/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/PTA%20%E5%9F%BA%E7%A1%80%E7%BC%96%E7%A8%8B%E9%A2%98%E7%9B%AE%E9%9B%86)
    - [C语言网 编程练习](https://github.com/Thirup2/Answer/tree/main/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/C%E8%AF%AD%E8%A8%80%E7%BD%91%20%E7%BC%96%E7%A8%8B%E7%BB%83%E4%B9%A0)
@@ -45,4 +46,15 @@
 
 ### - [数据库](https://github.com/Thirup2/Answer/tree/main/%E6%95%B0%E6%8D%AE%E5%BA%93)
 
+   - [《数据库系统概念》](https://github.com/Thirup2/Answer/tree/main/%E6%95%B0%E6%8D%AE%E5%BA%93/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5%E3%80%8B)
+   - [《SQL学习指南》](https://github.com/Thirup2/Answer/tree/main/%E6%95%B0%E6%8D%AE%E5%BA%93/%E3%80%8ASQL%E5%AD%A6%E4%B9%A0%E6%8C%87%E5%8D%97%E3%80%8B)
    - [《SQL必知必会》](https://github.com/Thirup2/Answer/tree/main/%E6%95%B0%E6%8D%AE%E5%BA%93/%E3%80%8ASQL%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A%E3%80%8B)
+   - [《MySQL必知必会》](https://github.com/Thirup2/Answer/tree/main/%E6%95%B0%E6%8D%AE%E5%BA%93/%E3%80%8AMySQL%E5%BF%85%E7%9F%A5%E5%BF%85%E4%BC%9A%E3%80%8B)
+
+### - [设计模式与架构](https://github.com/Thirup2/Answer/tree/main/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E6%9E%B6%E6%9E%84)
+
+- [《大话设计模式》](https://github.com/Thirup2/Answer/tree/main/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E4%B8%8E%E6%9E%B6%E6%9E%84/%E3%80%8A%E5%A4%A7%E8%AF%9D%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E3%80%8B)
+
+### - [其他](https://github.com/Thirup2/Answer/tree/main/%E5%85%B6%E4%BB%96)
+
+- [《编译原理》](https://github.com/Thirup2/Answer/tree/main/%E5%85%B6%E4%BB%96/%E3%80%8A%E7%BC%96%E8%AF%91%E5%8E%9F%E7%90%86%E3%80%8B)
