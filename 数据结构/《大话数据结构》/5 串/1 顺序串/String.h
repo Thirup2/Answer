@@ -2,12 +2,17 @@
 #ifndef _STRING_H_
 #define _STRING_H_
 
+/* 预定义 */
+// #define KMP
+#ifdef KMP
+// #define NEXT
+#endif
+
 /* 包含头文件 */
 #include "../../0 Head/Status.h"
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
-#include <stddef.h>
 #include <stdbool.h>
 #include <stdlib.h>
 
@@ -16,14 +21,11 @@ typedef char CHAR;
 typedef char *PCHAR;
 typedef const char *CPCHAR;
 
-struct string
-{
-    size_t length;
-    PCHAR string;               // 第一个元素不保存内容
-};
-typedef struct string STRING;
-typedef STRING *PSTRING;
-typedef const STRING *CPSTRING;
+typedef PCHAR STRING;
+typedef CPCHAR CSTRING;
+
+typedef signed char size_char;
+#define MAXSIZE 127
 
 /* 顺序串函数接口 */
 
@@ -32,26 +34,26 @@ typedef const STRING *CPSTRING;
 ** 参数：字符串常量
 ** 返回值：生成的字符串
 */
-PSTRING StrAssign(CPCHAR chars);
+STRING StrAssign(CPCHAR chars);
 
 /*
 ** 操作：根据字符串生成字符串
 ** 参数：字符串
 ** 返回值：新生成的字符串
 */
-PSTRING StrCopy(CPSTRING string);
+STRING StrCopy(CSTRING string);
 
 /*
 ** 操作：清空字符串
 ** 参数：字符串
 */
-void ClearString(PSTRING string);
+void ClearString(STRING string);
 
 /*
 ** 操作：销毁字符串
 ** 参数：字符串
 */
-void DestroyString(PSTRING string);
+void DestroyString(STRING string);
 
 /*
 ** 操作：判断字符串是否为空
@@ -60,14 +62,14 @@ void DestroyString(PSTRING string);
 ** 1. 若字符串为空返回true
 ** 2. 否则返回false
 */
-bool StringEmpty(CPSTRING string);
+bool StringEmpty(CSTRING string);
 
 /*
 ** 操作：返回字符串的长度
 ** 参数：字符串
 ** 返回值：字符串长度
 */
-size_t StrLength(CPSTRING string);
+size_char StrLength(CSTRING string);
 
 /*
 ** 操作：比较两个字符串
@@ -77,7 +79,7 @@ size_t StrLength(CPSTRING string);
 ** 2. 若第一个字符串等于第二个字符串，则返回值等于0
 ** 3. 若第一个字符串小于第二个字符串，则返回值小于0
 */
-int StrCompare(CPSTRING str1, CPSTRING str2);
+size_char StrCompare(CSTRING str1, CSTRING str2);
 
 /*
 ** 操作：连接两个字符串
@@ -86,7 +88,7 @@ int StrCompare(CPSTRING str1, CPSTRING str2);
 ** 2. 结果字符串的后段
 ** 返回值：连接后的字符串
 */
-PSTRING Concat(CPSTRING str1, CPSTRING str2);
+STRING Concat(CSTRING str1, CSTRING str2);
 
 /*
 ** 操作：返回子串
@@ -98,7 +100,7 @@ PSTRING Concat(CPSTRING str1, CPSTRING str2);
 ** 1. 若长度或位置不合理返回NULL
 ** 2. 否则返回该子串
 */
-PSTRING SubString(CPSTRING string, size_t pos, size_t len);
+STRING SubString(CSTRING string, size_char pos, size_char len);
 
 /*
 ** 操作：匹配字符串
@@ -111,7 +113,17 @@ PSTRING SubString(CPSTRING string, size_t pos, size_t len);
 ** 2. 若无匹配子串，返回-2
 ** 3. 否则返回匹配的位置
 */
-long long int Index(CPSTRING string, CPSTRING substring, size_t pos);
+size_char Index(CSTRING string, CSTRING substring, size_char pos);
+
+#ifdef KMP
+/*
+** 操作：填充next数组
+** 参数：
+** 1. 字符串
+** 2. 下标数组
+*/
+void get_next(CSTRING string, size_char *next);
+#endif
 
 /*
 ** 操作：替换子串
@@ -123,7 +135,7 @@ long long int Index(CPSTRING string, CPSTRING substring, size_t pos);
 ** 1. 若待替换子串为空串返回ISEMPTY
 ** 2. 否则执行操作返回SUCCESS
 */
-Status Replace(PSTRING string, CPSTRING substring, CPSTRING restring);
+Status Replace(STRING string, CSTRING substring, CSTRING restring);
 
 /*
 ** 操作：插入字符串
@@ -133,9 +145,10 @@ Status Replace(PSTRING string, CPSTRING substring, CPSTRING restring);
 ** 3. 插入的字符串
 ** 返回值：
 ** 1. 若插入位置不合理返回WRONGPOS
-** 2. 否则执行操作返回SUCCESS
+** 2. 若长度超过最大长度返回ISFULL
+** 3. 否则执行操作返回SUCCESS
 */
-Status StrInsert(PSTRING string, size_t pos, CPSTRING substring);
+Status StrInsert(STRING string, size_char pos, CSTRING substring);
 
 /*
 ** 操作：删除字符串
@@ -148,13 +161,13 @@ Status StrInsert(PSTRING string, size_t pos, CPSTRING substring);
 ** 2. 若删除长度或位置错误返回WRONGPOS
 ** 3. 否则执行操作返回SUCCESS
 */
-Status StrDelete(PSTRING string, size_t pos, size_t len);
+Status StrDelete(STRING string, size_char pos, size_char len);
 
 /*
 ** 操作：打印字符串
 ** 参数：字符串
 */
-void PrintString(CPSTRING string);
+void PrintString(CSTRING string);
 
 /* 接口实现 */
 
@@ -163,23 +176,23 @@ void PrintString(CPSTRING string);
 ** 参数：字符串常量
 ** 返回值：生成的字符串
 */
-PSTRING StrAssign(CPCHAR chars)
+STRING StrAssign(CPCHAR chars)
 {
     size_t len = strlen(chars);
-    PSTRING string = (PSTRING) malloc(sizeof(STRING));
+    if (len > MAXSIZE) {
+        return NULL;
+    }
+    STRING string = (STRING) malloc((len + 2) * sizeof(CHAR));
     if (!string) {
         exit(EXIT_FAILURE);
     }
-    string->length = len;
-    string->string = (PCHAR) malloc((len + 2) * sizeof(CHAR));
-    if (!string->string) {
-        exit(EXIT_FAILURE);
-    }
-    size_t i = 1;
+    size_char i = 0;
+    string[i++] = (size_char) len;
     while (i <= len) {
-        string->string[i] = chars[i - 1];
+        string[i] = chars[i - 1];
+        i++;
     }
-    string->string[i] = '\0';
+    string[i] = '\0';
     return string;
 }
 
@@ -188,20 +201,16 @@ PSTRING StrAssign(CPCHAR chars)
 ** 参数：字符串
 ** 返回值：新生成的字符串
 */
-PSTRING StrCopy(CPSTRING string)
+STRING StrCopy(CSTRING string)
 {
-    PSTRING strcopy = (PSTRING) malloc(sizeof(STRING));
+    size_t i = 0;
+    STRING strcopy = (STRING) malloc((StrLength(string) + 2) * sizeof(CHAR));
     if (!strcopy) {
         exit(EXIT_FAILURE);
     }
-    strcopy->length = string->length;
-    strcopy->string = (PCHAR) malloc((string->length + 2) * sizeof(CHAR));
-    if (!strcopy->string) {
-        exit(EXIT_FAILURE);
-    }
-    size_t i = 0;
-    while (i < string->length + 2) {
-        strcopy->string[i] = string->string[i];
+    while (i < StrLength(string) + 2) {
+        strcopy[i] = string[i];
+        i++;
     }
     return strcopy;
 }
@@ -210,23 +219,22 @@ PSTRING StrCopy(CPSTRING string)
 ** 操作：清空字符串
 ** 参数：字符串
 */
-void ClearString(PSTRING string)
+void ClearString(STRING string)
 {
-    string->length = 0;
-    string->string = (PCHAR) realloc(string->string, 2 * sizeof(CHAR));
-    if (!string->string) {
+    string = (STRING) realloc(string, 2 * sizeof(CHAR));
+    if (!string) {
         exit(EXIT_FAILURE);
     }
-    string->string[1] = '\0';
+    string[0] = 0;
+    string[1] = '\0';
 }
 
 /*
 ** 操作：销毁字符串
 ** 参数：字符串
 */
-void DestroyString(PSTRING string)
+void DestroyString(STRING string)
 {
-    free(string->string);
     free(string);
 }
 
@@ -237,9 +245,9 @@ void DestroyString(PSTRING string)
 ** 1. 若字符串为空返回true
 ** 2. 否则返回false
 */
-bool StringEmpty(CPSTRING string)
+bool StringEmpty(CSTRING string)
 {
-    if (string->length == 0) {
+    if (StrLength(string) == 0) {
         return true;
     }
     return false;
@@ -250,9 +258,9 @@ bool StringEmpty(CPSTRING string)
 ** 参数：字符串
 ** 返回值：字符串长度
 */
-size_t StrLength(CPSTRING string)
+size_char StrLength(CSTRING string)
 {
-    return string->length;
+    return string[0];
 }
 
 /*
@@ -263,19 +271,19 @@ size_t StrLength(CPSTRING string)
 ** 2. 若第一个字符串等于第二个字符串，则返回值等于0
 ** 3. 若第一个字符串小于第二个字符串，则返回值小于0
 */
-int StrCompare(CPSTRING str1, CPSTRING str2)
+size_char StrCompare(CSTRING str1, CSTRING str2)
 {
-    size_t i = 1;
-    size_t len = (StrLength(str1) > StrLength(str2)) ? StrLength(str2) : StrLength(str1);
-    while (i <= len + 1) {
-        if (toupper(str1->string[i]) > toupper(str2->string[i])) {
+    size_char len = (StrLength(str1) < StrLength(str2)) ? StrLength(str1) : StrLength(str2);
+    size_char i = 1;
+    while (i <= len) {
+        if (toupper(str1[i]) > toupper(str2[i])) {
             return i;
-        } else if (toupper(str1->string[i]) < toupper(str2->string[i])) {
+        } else if (toupper(str2[i]) > toupper(str1[i])) {
             return -i;
         } else {
-            if (str1->string[i] > str2->string[i]) {
+            if (str1[i] > str2[i]) {
                 return i;
-            } else if (str1->string[i] < str2->string[i]) {
+            } else if (str1[i] < str2[i]) {
                 return -i;
             } else {
                 i++;
@@ -294,28 +302,27 @@ int StrCompare(CPSTRING str1, CPSTRING str2)
 ** 2. 结果字符串的后段
 ** 返回值：连接后的字符串
 */
-PSTRING Concat(CPSTRING str1, CPSTRING str2)
+STRING Concat(CSTRING str1, CSTRING str2)
 {
-    size_t len = str1->length + str2->length;
-    PSTRING string = (PSTRING) malloc(sizeof(STRING));
+    size_t len = StrLength(str1) + StrLength(str2);
+    if (len > MAXSIZE) {
+        return NULL;
+    }
+    STRING string = (STRING) malloc((len + 2) * sizeof(CHAR));
     if (!string) {
         exit(EXIT_FAILURE);
     }
-    string->length = len;
-    string->string = (PCHAR) malloc((len + 2) * sizeof(CHAR));
-    if (!string->string) {
-        exit(EXIT_FAILURE);
-    }
-    size_t i = 1;
-    size_t j = 1;
-    while (j <= str1->length) {
-        string->string[i++] = str1->string[j++];
+    string[0] = (size_char) len;
+    size_char i = 1;
+    size_char j = 1;
+    while (j <= StrLength(str1)) {
+        string[i++] = str1[j++];
     }
     j = 1;
-    while (j <= str2->length) {
-        string->string[i++] = str2->string[j++];
+    while (j <= StrLength(str2)) {
+        string[i++] = str2[j++];
     }
-    string->string[i] = '\0';
+    string[j] = '\0';
     return string;
 }
 
@@ -329,27 +336,23 @@ PSTRING Concat(CPSTRING str1, CPSTRING str2)
 ** 1. 若长度或位置不合理返回NULL
 ** 2. 否则返回该子串
 */
-PSTRING SubString(CPSTRING string, size_t pos, size_t len)
+STRING SubString(CSTRING string, size_char pos, size_char len)
 {
-    if (pos < 1 || pos + len - 1 > string->length) {
+    if (pos < 1 || pos + len - 1 > StrLength(string)) {
         return NULL;
     }
-    PSTRING str = (PSTRING) malloc(sizeof(STRING));
-    if (!str) {
+    STRING substring = (STRING) malloc((len + 2) * sizeof(CHAR));
+    if (!substring) {
         exit(EXIT_FAILURE);
     }
-    str->length = len;
-    str->string = (PCHAR) malloc((len + 2) * sizeof(CHAR));
-    if (!str->string) {
-        exit(EXIT_FAILURE);
-    }
-    size_t i = 0;
+    substring[0] = len;
+    size_char i = 0;
     while (i < len) {
-        str->string[i + 1] = string->string[pos + i];
+        substring[i + 1] = string[pos + i];
         i++;
     }
-    str->string[i + 1] = '\0';
-    return str;
+    substring[i + 1] = '\0';
+    return substring;
 }
 
 /*
@@ -363,7 +366,29 @@ PSTRING SubString(CPSTRING string, size_t pos, size_t len)
 ** 2. 若无匹配子串，返回-2
 ** 3. 否则返回匹配的位置
 */
-long long int Index(CPSTRING string, CPSTRING substring, size_t pos);
+#ifndef KMP
+// 朴素的模式匹配算法
+size_char Index(CSTRING string, CSTRING substring, size_char pos);
+#else
+// KMP模式匹配算法
+size_char Index(CSTRING string, CSTRING substring, size_char pos);
+#endif
+
+#ifdef KMP
+/*
+** 操作：填充next数组
+** 参数：
+** 1. 字符串
+** 2. 下标数组
+*/
+#ifndef NEXT
+// 一般KMP模式匹配
+void get_next(CSTRING string, size_char *next);
+#else
+// 改进的KMP模式匹配
+void get_next(CSTRING string, size_char *next);
+#endif
+#endif
 
 /*
 ** 操作：替换子串
@@ -375,7 +400,21 @@ long long int Index(CPSTRING string, CPSTRING substring, size_t pos);
 ** 1. 若待替换子串为空串返回ISEMPTY
 ** 2. 否则执行操作返回SUCCESS
 */
-Status Replace(PSTRING string, CPSTRING substring, CPSTRING restring);
+Status Replace(STRING string, CSTRING substring, CSTRING restring)
+{
+    if (StringEmpty(substring)) {
+        return ISEMPTY;
+    }
+    size_char len = StrLength(substring);
+    size_char now = Index(string, substring, 1);
+    while (now > 0) {
+        StrDelete(string, now, len);
+        StrInsert(string, now, restring);
+        now += StrLength(restring);
+        now = Index(string, substring, now);
+    }
+    return SUCCESS;
+}
 
 /*
 ** 操作：插入字符串
@@ -385,9 +424,32 @@ Status Replace(PSTRING string, CPSTRING substring, CPSTRING restring);
 ** 3. 插入的字符串
 ** 返回值：
 ** 1. 若插入位置不合理返回WRONGPOS
-** 2. 否则执行操作返回SUCCESS
+** 2. 若长度超过最大长度返回ISFULL
+** 3. 否则执行操作返回SUCCESS
 */
-Status StrInsert(PSTRING string, size_t pos, CPSTRING substring);
+Status StrInsert(STRING string, size_char pos, CSTRING substring)
+{
+    if (pos < 1 || pos > StrLength(string) + 1) {
+        return WRONGPOS;
+    }
+    size_t str_len = StrLength(string);
+    size_t sub_len = StrLength(substring);
+    size_t len = StrLength(string) + StrLength(substring);
+    if (len > MAXSIZE) {
+        return ISFULL;
+    }
+    string = (STRING) realloc(string, (len + 2) * sizeof(CHAR));
+    if (!string) {
+        exit(EXIT_FAILURE);
+    }
+    for (size_char i = len + 1, j = i - sub_len; j >= pos; i--, j--) {
+        string[i] = string[j];
+    }
+    for (size_char i = pos, j = 1; j <= sub_len; i++, j++) {
+        string[i] = substring[j];
+    }
+    return SUCCESS;
+}
 
 /*
 ** 操作：删除字符串
@@ -400,12 +462,31 @@ Status StrInsert(PSTRING string, size_t pos, CPSTRING substring);
 ** 2. 若删除长度或位置错误返回WRONGPOS
 ** 3. 否则执行操作返回SUCCESS
 */
-Status StrDelete(PSTRING string, size_t pos, size_t len);
+Status StrDelete(STRING string, size_char pos, size_char len)
+{
+    size_char str_len = StrLength(string);
+    size_char i = 0;
+    while (pos + len + i <= str_len + 1) {
+        string[pos + i] = string[pos + len + i];
+    }
+    string = (STRING) realloc(string, (str_len - len + 2) * sizeof(CHAR));
+    if (!string) {
+        exit(EXIT_FAILURE);
+    }
+    string[0] = str_len - len;
+    return SUCCESS;
+}
 
 /*
 ** 操作：打印字符串
 ** 参数：字符串
 */
-void PrintString(CPSTRING string);
+void PrintString(CSTRING string)
+{
+    size_char i = 1;
+    while (i <= StrLength(string)) {
+        putchar(string[i++]);
+    }
+}
 
 #endif
