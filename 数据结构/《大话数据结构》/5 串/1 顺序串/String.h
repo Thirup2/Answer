@@ -3,9 +3,9 @@
 #define _STRING_H_
 
 /* 预定义 */
-// #define KMP
+#define KMP
 #ifdef KMP
-// #define NEXT
+#define IMPROVE
 #endif
 
 /* 包含头文件 */
@@ -275,7 +275,7 @@ size_char StrCompare(CSTRING str1, CSTRING str2)
 {
     size_char len = (StrLength(str1) < StrLength(str2)) ? StrLength(str1) : StrLength(str2);
     size_char i = 1;
-    while (i <= len) {
+    while (i <= len + 1) {
         if (toupper(str1[i]) > toupper(str2[i])) {
             return i;
         } else if (toupper(str2[i]) > toupper(str1[i])) {
@@ -322,7 +322,7 @@ STRING Concat(CSTRING str1, CSTRING str2)
     while (j <= StrLength(str2)) {
         string[i++] = str2[j++];
     }
-    string[j] = '\0';
+    string[i] = '\0';
     return string;
 }
 
@@ -368,10 +368,53 @@ STRING SubString(CSTRING string, size_char pos, size_char len)
 */
 #ifndef KMP
 // 朴素的模式匹配算法
-size_char Index(CSTRING string, CSTRING substring, size_char pos);
+size_char Index(CSTRING string, CSTRING substring, size_char pos)
+{
+    if (StringEmpty(substring)) {
+        return -1;
+    }
+    size_char i = pos;
+    size_char j = 1;
+    while (i <= string[0] && j <= substring[0]) {
+        if (string[i] == substring[j]) {
+            ++i;
+            ++j;
+        } else {
+            i = i - j + 2;
+            j = 1;
+        }
+    }
+    if (j > substring[0]) {
+        return i - substring[0];
+    } else {
+        return -2;
+    }
+}
 #else
 // KMP模式匹配算法
-size_char Index(CSTRING string, CSTRING substring, size_char pos);
+size_char Index(CSTRING string, CSTRING substring, size_char pos)
+{
+    if (StringEmpty(substring)) {
+        return -1;
+    }
+    size_char i = pos;
+    size_char j = 1;
+    size_char next[MAXSIZE];
+    get_next(substring, next);
+    while (i <= string[0] && j <= substring[0]) {
+        if (j == 0 || string[i] == substring[j]) {
+            ++i;
+            ++j;
+        } else {
+            j = next[j];
+        }
+    }
+    if (j > substring[0]) {
+        return i - substring[0];
+    } else {
+        return -2;
+    }
+}
 #endif
 
 #ifdef KMP
@@ -381,12 +424,46 @@ size_char Index(CSTRING string, CSTRING substring, size_char pos);
 ** 1. 字符串
 ** 2. 下标数组
 */
-#ifndef NEXT
+#ifndef IMPROVE
 // 一般KMP模式匹配
-void get_next(CSTRING string, size_char *next);
+void get_next(CSTRING string, size_char *next)
+{
+    size_char i, k;
+    i = 1;
+    k = 0;
+    next[1] = 0;
+    while (i < string[0]) {
+        if (k == 0 || string[i] == string[k]) {
+            ++i;
+            ++k;
+            next[i] = k;
+        } else {
+            k = next[k];
+        }
+    }
+}
 #else
 // 改进的KMP模式匹配
-void get_next(CSTRING string, size_char *next);
+void get_next(CSTRING string, size_char *next)
+{
+    size_char i, k;
+    i = 1;
+    k = 0;
+    next[1] = 0;
+    while (i < string[0]) {
+        if (k == 0 || string[i] == string[k]) {
+            ++i;
+            ++k;
+            if (string[i] != string[k]) {
+                next[i] = k;
+            } else {
+                next[i] = next[k];
+            }
+        } else {
+            k = next[k];
+        }
+    }
+}
 #endif
 #endif
 
@@ -438,6 +515,7 @@ Status StrInsert(STRING string, size_char pos, CSTRING substring)
     if (len > MAXSIZE) {
         return ISFULL;
     }
+    string[0] = (size_char) len;
     string = (STRING) realloc(string, (len + 2) * sizeof(CHAR));
     if (!string) {
         exit(EXIT_FAILURE);
@@ -468,6 +546,7 @@ Status StrDelete(STRING string, size_char pos, size_char len)
     size_char i = 0;
     while (pos + len + i <= str_len + 1) {
         string[pos + i] = string[pos + len + i];
+        i++;
     }
     string = (STRING) realloc(string, (str_len - len + 2) * sizeof(CHAR));
     if (!string) {
@@ -485,7 +564,7 @@ void PrintString(CSTRING string)
 {
     size_char i = 1;
     while (i <= StrLength(string)) {
-        putchar(string[i++]);
+        printf("%c", string[i++]);
     }
 }
 
