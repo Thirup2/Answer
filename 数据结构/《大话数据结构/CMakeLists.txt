@@ -20,3 +20,11 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/src/2.链表/2.双向链表)
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/2.链表/3.循环链表)
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/2.链表/4.双向循环链表)
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/2.链表/5.静态链表)
+
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/3.栈/1.顺序栈)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/3.栈/2.链栈)
+
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/4.队列/1.循环队列)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/4.队列/2.链队列)
+
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/5.串/1.顺序串)
