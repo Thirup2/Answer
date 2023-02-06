@@ -9,7 +9,7 @@
 ** 操作：创建并初始化链表
 ** 返回值：链表指针
 */
-PtrLL InitList(void)
+PtrLL DLL_CALL InitList(void)
 {
     // 为List分配内存，不创建头结点
     PtrLL list = (PtrLL) malloc(sizeof(LinkList));
@@ -31,7 +31,7 @@ PtrLL InitList(void)
 ** 1. 若链表为空则返回true
 ** 2. 否则返回false
 */
-bool ListEmpty(cPtrLL list)
+bool DLL_CALL ListEmpty(cPtrLL list)
 {
     if (ListLength(list) == 0) {
         return true;
@@ -43,7 +43,7 @@ bool ListEmpty(cPtrLL list)
 ** 操作：清空链表
 ** 参数：链表指针
 */
-void ClearList(PtrLL list)
+void DLL_CALL ClearList(PtrLL list)
 {
     PtrNode p = list->head;
     PtrNode s;
@@ -60,7 +60,7 @@ void ClearList(PtrLL list)
 ** 操作：销毁链表
 ** 参数：链表指针
 */
-void DestroyList(PtrLL list)
+void DLL_CALL DestroyList(PtrLL list)
 {
     ClearList(list);
     free(list);
@@ -77,7 +77,7 @@ void DestroyList(PtrLL list)
 ** 2. 若指定位置不合理返回WRONGPOS
 ** 3. 否则执行操作返回SUCCESS
 */
-Status GetElem(cPtrLL list, size_t position, PtrElem elem)
+Status DLL_CALL GetElem(cPtrLL list, size_t position, PtrElem elem)
 {
     if (ListEmpty(list)) {
         return ISEMPTY;
@@ -104,7 +104,7 @@ Status GetElem(cPtrLL list, size_t position, PtrElem elem)
 ** 1. 若未找到，返回位序
 ** 2. 否则返回0
 */
-size_t LocateElem(cPtrLL list, cPtrElem elem)
+size_t DLL_CALL LocateElem(cPtrLL list, cPtrElem elem)
 {
     size_t i = 0;
     PtrNode p = list->head;
@@ -128,7 +128,7 @@ size_t LocateElem(cPtrLL list, cPtrElem elem)
 ** 1. 若插入位置不合理返回WRONGPOS
 ** 2. 否则执行操作返回SUCCESS
 */
-Status ListInsert(PtrLL list, size_t position, cPtrElem elem)
+Status DLL_CALL ListInsert(PtrLL list, size_t position, cPtrElem elem)
 {
     if (position < 1 || position > ListLength(list) + 1) {
         return WRONGPOS;
@@ -182,7 +182,7 @@ Status ListInsert(PtrLL list, size_t position, cPtrElem elem)
 ** 2. 若删除位置不合理返回WRONGPOS
 ** 3. 否则执行操作返回SUCCESS
 */
-Status ListDelete(PtrLL list, size_t position, PtrElem elem)
+Status DLL_CALL ListDelete(PtrLL list, size_t position, PtrElem elem)
 {
     if (ListEmpty(list)) {
         return ISEMPTY;
@@ -227,7 +227,7 @@ Status ListDelete(PtrLL list, size_t position, PtrElem elem)
 ** 参数：链表指针
 ** 返回值：链表表长
 */
-size_t ListLength(cPtrLL list)
+size_t DLL_CALL ListLength(cPtrLL list)
 {
     PtrNode p = list->head;
     size_t i = 0;
@@ -242,7 +242,7 @@ size_t ListLength(cPtrLL list)
 ** 操作：打印链表内容
 ** 参数：链表指针
 */
-void PrintList(cPtrLL list)
+void DLL_CALL PrintList(cPtrLL list)
 {
     PtrNode p = list->head;
     while (p) {
