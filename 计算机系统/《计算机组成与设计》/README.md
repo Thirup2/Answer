@@ -1,3 +1,0 @@
-- 书籍：《计算机组成与设计：硬件/软件接口》（RISC-V版）
-- 作者：David A. Patterson，John L. Hennessy
-- 出版社：机械工业出版社

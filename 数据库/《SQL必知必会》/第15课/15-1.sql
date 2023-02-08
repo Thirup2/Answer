@@ -1,2 +1,0 @@
-INSERT INTO Customers(cust_id, cust_name, cust_address, cust_city, cust_state, cust_zip, cust_country, cust_email)
-VALUES(1000000042, 'Ben''s Toys', '123 Main Street', 'Oak Park', 'MI', '48237', 'USA', 'ben@forta.com');
