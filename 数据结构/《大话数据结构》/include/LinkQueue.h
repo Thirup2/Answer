@@ -8,7 +8,7 @@
 #include <stdbool.h>
 #include <stddef.h>
 
-#ifdef WIN32
+#ifdef _WIN32
 #ifdef EXPORT
 #define LQ_API _declspec(dllexport)
 #else

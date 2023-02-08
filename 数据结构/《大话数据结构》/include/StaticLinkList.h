@@ -9,7 +9,7 @@
 #include <limits.h>
 
 /* 兼容配置 */
-#ifdef WIN32
+#ifdef _WIN32
 #ifdef EXPORT
 #define SLL_API _declspec(dllexport)
 #else

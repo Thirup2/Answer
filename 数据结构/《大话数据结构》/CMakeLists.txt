@@ -28,3 +28,5 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/src/4.队列/1.循环队列)
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/4.队列/2.链队列)
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/5.串/1.顺序串)
+
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/6.树/1.二叉树)
