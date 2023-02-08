@@ -1,0 +1,1 @@
+char *my_strcpy_end(char *dest, const char *src);
