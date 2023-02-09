@@ -1,6 +1,6 @@
-project(BinaryTree)
+project(ArrayBiTree)
 
-add_library(${PROJECT_NAME} SHARED ${PROJECT_NAME}.c)
+add_library(${PROJECT_NAME} SHARED ArrayBiTree.c)
 target_link_libraries(${PROJECT_NAME} PUBLIC ElemType)
 
 add_executable(${PROJECT_NAME}_test test.c)
