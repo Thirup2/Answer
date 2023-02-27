@@ -1,6 +1,6 @@
 /* 循环链表接口头文件 */
-#ifndef _CIRLINKLIST_H_
-#define _CIRLINKLIST_H_
+#ifndef CIRLINKLIST_H_
+#define CIRLINKLIST_H_
 
 /* 包含头文件 */
 #include "Status.h"

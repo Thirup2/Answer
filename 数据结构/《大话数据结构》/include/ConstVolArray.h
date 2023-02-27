@@ -1,6 +1,6 @@
 /* 定容数组接口头文件*/
-#ifndef _CONSTVOLARRAY_H_
-#define _CONSTVOLARRAY_H_
+#ifndef CONSTVOLARRAY_H_
+#define CONSTVOLARRAY_H_
 
 /* 包含头文件 */
 #include "ElemType.h"

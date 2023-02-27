@@ -1,6 +1,6 @@
 /* 双向链表接口头文件 */
-#ifndef _DOUBLELINKLIST_H_
-#define _DOUBLELINKLIST_H_
+#ifndef DOUBLELINKLIST_H_
+#define DOUBLELINKLIST_H_
 
 /* 包含头文件 */
 #include "ElemType.h"

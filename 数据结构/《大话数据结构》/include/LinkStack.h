@@ -1,6 +1,6 @@
 /* 链栈接口头文件 */
-#ifndef _LINKSTACK_H_
-#define _LINKSTACK_H_
+#ifndef LINKSTACK_H_
+#define LINKSTACK_H_
 
 /* 包含头文件 */
 #include "ElemType.h"

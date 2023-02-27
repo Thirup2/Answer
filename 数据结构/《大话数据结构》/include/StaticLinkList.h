@@ -1,6 +1,6 @@
 /* 静态链表接口头文件 */
-#ifndef _STATICLINKLIST_H_
-#define _STATICLINKLIST_H_
+#ifndef STATICLINKLIST_H_
+#define STATICLINKLIST_H_
 
 /* 包含头文件 */
 #include "Status.h"

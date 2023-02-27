@@ -1,6 +1,6 @@
 /* 双向循环链表接口头文件 */
-#ifndef _BIDIRECCIRLINKLIST_H_
-#define _BIDIRECCIRLINKLIST_H_
+#ifndef BIDIRECCIRLINKLIST_H_
+#define BIDIRECCIRLINKLIST_H_
 
 /* 包含头文件 */
 #include "Status.h"

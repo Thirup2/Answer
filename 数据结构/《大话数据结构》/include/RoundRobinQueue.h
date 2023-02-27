@@ -1,6 +1,6 @@
 /* 循环队列接口头文件 */
-#ifndef _ROUNDROBINQUEUE_H_
-#define _ROUNDROBINQUEUE_H_
+#ifndef ROUNDROBINQUEUE_H_
+#define ROUNDROBINQUEUE_H_
 
 /* 包含头文件 */
 #include "ElemType.h"

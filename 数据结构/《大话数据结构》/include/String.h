@@ -1,6 +1,6 @@
 /* 顺序串接口头文件 */
-#ifndef _STRING_H_
-#define _STRING_H_
+#ifndef STRING_H_
+#define STRING_H_
 
 /* 包含头文件 */
 #include "Status.h"

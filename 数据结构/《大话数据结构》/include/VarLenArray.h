@@ -1,6 +1,6 @@
 /* 变长数组接口头文件 */
-#ifndef _VARLENARRAY_H_
-#define _VARLENARRAY_H_
+#ifndef VARLENARRAY_H_
+#define VARLENARRAY_H_
 
 /* 包含头文件 */
 #include "Status.h"

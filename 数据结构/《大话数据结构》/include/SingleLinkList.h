@@ -1,6 +1,6 @@
 /* 单链表接口头文件 */
-#ifndef _SINGLELINKLIST_H_
-#define _SINGLELINKLIST_H_
+#ifndef SINGLELINKLIST_H_
+#define SINGLELINKLIST_H_
 
 /* 包含头文件 */
 #include "ElemType.h"

@@ -1,6 +1,6 @@
 /* 链队列接口头文件 */
-#ifndef _LINKQUEUE_H
-#define _LINKQUEUE_H
+#ifndef LINKQUEUE_H_
+#define LINKQUEUE_H_
 
 /* 包含头文件 */
 #include "ElemType.h"

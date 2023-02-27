@@ -1,6 +1,6 @@
 /* 数据元素接口头文件 */
-#ifndef _ELEMTYPE_H_
-#define _ELEMTYPE_H_
+#ifndef ELEMTYPE_H_
+#define ELEMTYPE_H_
 
 /* 包含头文件 */
 #include <stdbool.h>

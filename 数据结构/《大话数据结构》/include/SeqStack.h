@@ -1,6 +1,6 @@
 /* 顺序栈接口头文件 */
-#ifndef _SEQSTACK_H_
-#define _SEQSTACK_H_
+#ifndef SEQSTACK_H_
+#define SEQSTACK_H_
 
 /* 包含头文件 */
 #include "ElemType.h"
