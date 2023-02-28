@@ -254,11 +254,13 @@ Status DLL_CALL Assign(PtrTree tree, cPtrPos cur_e, cPtrElem elem)
 {
     size_t nodepos = TranslatePos(cur_e);
     size_t parentpos = ParentPos(nodepos);
-    if (parentpos < 1 || nodepos > tree->size || !NodeExist(&(tree->root[parentpos - 1]))) {
+    if (nodepos != 1 &&                                         // 非根结点 且
+        ((parentpos < 1 || nodepos > tree->size)                // (位置错误 或
+         || !NodeExist(&(tree->root[parentpos - 1])))) {  // 双亲不存在)
         return WRONGPOS;
     }
-    AssignElem(&(tree->root[nodepos].data), elem);
-    tree->root[nodepos].used = true;
+    AssignElem(&(tree->root[nodepos - 1].data), elem);
+    tree->root[nodepos - 1].used = true;
     return SUCCESS;
 }
 
@@ -501,7 +503,7 @@ static void PreOrderTraverse(cPtrTree tree, size_t size, void (*NodeManFun)(cPtr
     if (leftchild_pos < tree->size && NodeExist(&(tree->root[leftchild_pos - 1]))) {
         PreOrderTraverse(tree, leftchild_pos, NodeManFun);
     }
-    if (rightchild_pos < tree->size && NodeExist(&(tree->root[rightchild_pos - 1]))) {
+    if (rightchild_pos <= tree->size && NodeExist(&(tree->root[rightchild_pos - 1]))) {
         PreOrderTraverse(tree, rightchild_pos, NodeManFun);
     }
 }
@@ -520,7 +522,7 @@ static void InOrderTraverse(cPtrTree tree, size_t size, void (*NodeManFun)(cPtrN
         InOrderTraverse(tree, leftchild_pos, NodeManFun);
     }
     NodeManFun(&(tree->root[size - 1]));
-    if (rightchild_pos < tree->size && NodeExist(&(tree->root[rightchild_pos - 1]))) {
+    if (rightchild_pos <= tree->size && NodeExist(&(tree->root[rightchild_pos - 1]))) {
         InOrderTraverse(tree, rightchild_pos, NodeManFun);
     }
 }
@@ -538,7 +540,7 @@ static void PostOrderTraverse(cPtrTree tree, size_t size, void (*NodeManFun)(cPt
     if (leftchild_pos < tree->size && NodeExist(&(tree->root[leftchild_pos - 1]))) {
         PostOrderTraverse(tree, leftchild_pos, NodeManFun);
     }
-    if (rightchild_pos < tree->size && NodeExist(&(tree->root[rightchild_pos - 1]))) {
+    if (rightchild_pos <= tree->size && NodeExist(&(tree->root[rightchild_pos - 1]))) {
         PostOrderTraverse(tree, rightchild_pos, NodeManFun);
     }
     NodeManFun(&(tree->root[size - 1]));
