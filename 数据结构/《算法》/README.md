@@ -1,0 +1,3 @@
+- 书籍：《算法》（第 4 版）
+- 作者：Robert Sedgewick, Kevin Wayne
+- 出版社：人民邮电出版社

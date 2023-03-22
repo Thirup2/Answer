@@ -1,6 +1,7 @@
 ### - [编程语言](https://github.com/Thirup2/Answer/tree/main/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80)
    - [《C Primer Plus》](https://github.com/Thirup2/Answer/tree/main/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/%E3%80%8AC%20Primer%20Plus%E3%80%8B)
    - [《C和指针》](https://github.com/Thirup2/Answer/tree/main/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/%E3%80%8AC%E5%92%8C%E6%8C%87%E9%92%88%E3%80%8B)
+   - [《C++ Primer》](https://github.com/Thirup2/Answer/tree/main/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/%E3%80%8AC%2B%2B%20Primer%E3%80%8B)
    - [PTA 基础编程题目集](https://github.com/Thirup2/Answer/tree/main/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/PTA%20%E5%9F%BA%E7%A1%80%E7%BC%96%E7%A8%8B%E9%A2%98%E7%9B%AE%E9%9B%86)
 
 ### - [数据结构](https://github.com/Thirup2/Answer/tree/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84)
