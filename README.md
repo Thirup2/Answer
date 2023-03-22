@@ -7,6 +7,7 @@
 ### - [数据结构](https://github.com/Thirup2/Answer/tree/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84)
 
    - [《大话数据结构》](https://github.com/Thirup2/Answer/tree/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E3%80%8A%E5%A4%A7%E8%AF%9D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E3%80%8B)
+   - [《算法》](https://github.com/Thirup2/Answer/tree/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E3%80%8A%E7%AE%97%E6%B3%95%E3%80%8B)
    - [PTA 数据结构与算法题目集(中文)](https://github.com/Thirup2/Answer/tree/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/PTA%20%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95%E9%A2%98%E7%9B%AE%E9%9B%86(%E4%B8%AD%E6%96%87))
    - [PTA Data Structures and Algorithms(English)](https://github.com/Thirup2/Answer/tree/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/PTA%20Data%20Structures%20and%20Algorithms(English))
    - [PTA 团体程序设计天梯赛-练习集](https://github.com/Thirup2/Answer/tree/main/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/PTA%20%E5%9B%A2%E4%BD%93%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E5%A4%A9%E6%A2%AF%E8%B5%9B-%E7%BB%83%E4%B9%A0%E9%9B%86)
