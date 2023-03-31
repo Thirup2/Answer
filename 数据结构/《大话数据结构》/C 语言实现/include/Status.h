@@ -1,4 +1,6 @@
-/* 状态类型 */
+#ifndef Status_H_
+#define Status_H_
+
 enum status
 {
     SUCCESS,
@@ -6,6 +8,9 @@ enum status
     ISEMPTY,
     WRONGPOS,
     NOVALUE,
-    OVERFLOW
+    OVERFLOW,
+    ISIN
 };
 typedef enum status Status;
+
+#endif
