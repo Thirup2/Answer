@@ -9,7 +9,7 @@ enum status
     WRONGPOS,
     NOVALUE,
     OVERFLOW,
-    ISIN
+    REPEAT
 };
 typedef enum status Status;
 

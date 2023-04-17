@@ -11,4 +11,8 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 link_directories(${PROJECT_SOURCE_DIR}/share)
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/0.Prepare/1.ElemType)
-add_subdirectory(${PROJECT_SOURCE_DIR}/src/0.Prepare/2.Bag)
+
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/1.基本容器/1.数组/1.定容数组)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/1.基本容器/1.数组/2.变长数组)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/1.基本容器/2.链表/1.单向链表)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/1.基本容器/2.链表/2.双向链表)

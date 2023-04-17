@@ -1,49 +1,43 @@
 #define EXPORT
+
 // ----------------------包含头文件---------------------- //
 #include "Coordinate.h"
 #include <stdlib.h>
 #include <stdio.h>
 
-// ----------------------接口---------------------- //
+// ----------------------接口实现---------------------- //
 
-// 局部函数声明
-/*
- * 操作：整数转换为字符串
- * 参数：待转换整数
- * 返回：转换后的字符串
-*/
-static size_t bits(int i);
+// 函数接口定义
 
-// 接口函数定义
 PtrCoord DLL_CALL InitCoord(void)
 {
-    PtrCoord coord = (PtrCoord) malloc(sizeof(Coordinate));
-    if (!coord) {
+    PtrCoord cor = (PtrCoord) malloc(sizeof(Coordinate));
+    if (!cor) {
         exit(EXIT_FAILURE);
     }
-    return coord;
+    cor->x = 0;
+    cor->y = 0;
+    return cor;
 }
-
 PtrCoord DLL_CALL CreateCoord(int x, int y)
 {
-    PtrCoord coord = (PtrCoord) malloc(sizeof(Coordinate));
-    if (!coord) {
+    PtrCoord cor = (PtrCoord) malloc(sizeof(Coordinate));
+    if (!cor) {
         exit(EXIT_FAILURE);
     }
-    coord->x = x;
-    coord->y = y;
-    return coord;
+    cor->x = x;
+    cor->y = y;
+    return cor;
 }
-
 PtrCoord DLL_CALL CopyCoord(cPtrCoord coord)
 {
-    PtrCoord copycoord = (PtrCoord) malloc(sizeof(Coordinate));
-    if (!copycoord) {
+    PtrCoord cor = (PtrCoord) malloc(sizeof(Coordinate));
+    if (!cor) {
         exit(EXIT_FAILURE);
     }
-    copycoord->x = coord->x;
-    copycoord->y = coord->y;
-    return copycoord;
+    cor->x = coord->x;
+    cor->y = coord->y;
+    return cor;
 }
 
 void DLL_CALL DestroyCoord(PtrCoord coord)
@@ -56,58 +50,50 @@ void DLL_CALL AssignCoordByValue(PtrCoord coord, int x, int y)
     coord->x = x;
     coord->y = y;
 }
-
 void DLL_CALL AssignCoordByCopy(PtrCoord coord, cPtrCoord copycoord)
 {
     coord->x = copycoord->x;
     coord->y = copycoord->y;
 }
 
-const char *DLL_CALL CoordToString(cPtrCoord coord)
-{
-    size_t size = 5 + bits(coord->x) + bits(coord->y);
-    char *str = (char *) malloc(size * sizeof(char));
-    if (!str) {
-        exit(EXIT_FAILURE);
-    }
-    sprintf(str, "(%d, %d)", coord->x, coord->y);
-    return str;
-}
-
-bool DLL_CALL CompareCoords(cPtrCoord coord1, cPtrCoord coord2)
-{
-    if ((coord1->x == coord2->x) && (coord1->y == coord2->y)) {
-        return true;
-    }
-    return false;
-}
-
 bool DLL_CALL ReadCoord(PtrCoord coord)
 {
-    int x, y;
-    if (scanf("%d, %d", &x, &y) == 2) {
-        AssignCoordByValue(coord, x, y);
-        return true;
+    int x = coord->x;
+    int y = coord->y;
+    if (scanf("%d, %d", &coord->x, &coord->y) != 2) {
+        coord->x = x;
+        coord->y = y;
+        return false;
     }
-    return false;
+    return true;
+}
+void DLL_CALL PrintCoord(cPtrCoord coord)
+{
+    printf("(%d, %d)", coord->x, coord->y);
 }
 
-COORD_API void DLL_CALL PrintCoord(cPtrCoord coord)
+bool DLL_CALL Equals(cPtrCoord cor1, cPtrCoord cor2)
 {
-    printf("%s", CoordToString(coord));
+    return ((cor1->x == cor2->x) && (cor1->y == cor2->y));
+}
+bool DLL_CALL Nequal(cPtrCoord cor1, cPtrCoord cor2)
+{
+    return !Equals(cor1, cor2);
 }
 
-// 局部函数定义
-
-static size_t bits(int i)
+bool DLL_CALL Less(cPtrCoord cor1, cPtrCoord cor2)
 {
-    if (i == 0) {
-        return 1;
-    }
-    size_t bit = 0;
-    while (i != 0) {
-        bit++;
-        i /= 10;
-    }
-    return bit;
+    return ((cor1->x < cor2->x) || ((cor1->x == cor2->x) && (cor1->y < cor2->y)));
+}
+bool DLL_CALL Lequal(cPtrCoord cor1, cPtrCoord cor2)
+{
+    return (Less(cor1, cor2) || Equals(cor1, cor2));
+}
+bool DLL_CALL Greater(cPtrCoord cor1, cPtrCoord cor2)
+{
+    return !Lequal(cor1, cor2);
+}
+bool DLL_CALL Gequal(cPtrCoord cor1, cPtrCoord cor2)
+{
+    return !Less(cor1, cor2);
 }
