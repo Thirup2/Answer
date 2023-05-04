@@ -10,5 +10,4 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/share)
 include_directories(${PROJECT_SOURCE_DIR}/include)
 link_directories(${PROJECT_SOURCE_DIR}/share)
 
-add_subdirectory(${PROJECT_SOURCE_DIR}/src/0.Prepare/1.Coordinate)
-add_subdirectory(${PROJECT_SOURCE_DIR}/src/0.Prepare/2.Bag)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/1.数组/1.定容数组)
