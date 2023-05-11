@@ -28,10 +28,3 @@
 ### - [数据库](https://github.com/Thirup2/Answer/tree/main/%E6%95%B0%E6%8D%AE%E5%BA%93)
 
    - [《数据库系统概念》](https://github.com/Thirup2/Answer/tree/main/%E6%95%B0%E6%8D%AE%E5%BA%93/%E3%80%8A%E6%95%B0%E6%8D%AE%E5%BA%93%E7%B3%BB%E7%BB%9F%E6%A6%82%E5%BF%B5%E3%80%8B)
-
-### - [考研题目解析](https://github.com/Thirup2/Answer/tree/main/%E8%80%83%E7%A0%94%E9%A2%98%E7%9B%AE%E8%A7%A3%E6%9E%90)
-   
-   - [数据结构](https://github.com/Thirup2/Answer/tree/main/%E8%80%83%E7%A0%94%E9%A2%98%E7%9B%AE%E8%A7%A3%E6%9E%90/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84)
-   - [计算机组成原理](https://github.com/Thirup2/Answer/tree/main/%E8%80%83%E7%A0%94%E9%A2%98%E7%9B%AE%E8%A7%A3%E6%9E%90/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86)
-   - [计算机操作系统](https://github.com/Thirup2/Answer/tree/main/%E8%80%83%E7%A0%94%E9%A2%98%E7%9B%AE%E8%A7%A3%E6%9E%90/%E8%AE%A1%E7%AE%97%E6%9C%BA%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F)
-   - [计算机网络](https://github.com/Thirup2/Answer/tree/main/%E8%80%83%E7%A0%94%E9%A2%98%E7%9B%AE%E8%A7%A3%E6%9E%90/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C)
