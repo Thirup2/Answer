@@ -14,3 +14,10 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/Prepare/src/Coords)
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/1.集合/1.背包)
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/1.集合/2.链串)
+
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/2.基本线性表/1.静态顺序表)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/2.基本线性表/2.动态顺序表)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/2.基本线性表/3.单链表)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/2.基本线性表/4.双向链表)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/3.栈/1.顺序栈)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/3.栈/2.链栈)

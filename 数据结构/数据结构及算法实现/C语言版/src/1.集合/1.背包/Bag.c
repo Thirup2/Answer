@@ -9,7 +9,7 @@ static int Find(cPtrBag bag, cPtrElem elem);
 static bool BagFull(cPtrBag bag);
 
 // 接口函数定义
-PtrBag DLL_CALL CreateBag(void)
+BAG_API PtrBag CreateBag(void)
 {
     PtrBag bag = (PtrBag) malloc(sizeof(Bag));
     if (!bag) {
@@ -23,7 +23,7 @@ PtrBag DLL_CALL CreateBag(void)
     }
     return bag;
 }
-Status DLL_CALL Add(PtrBag bag, cPtrElem elem)
+BAG_API Status Add(PtrBag bag, cPtrElem elem)
 {
     if (Existed(bag, elem)) {
         return EXISTED;
@@ -38,40 +38,40 @@ Status DLL_CALL Add(PtrBag bag, cPtrElem elem)
     CopyElems(&(bag->data[++bag->length]), elem);
     return SUCCESS;
 }
-bool DLL_CALL BagEmpty(cPtrBag bag)
+BAG_API bool BagEmpty(cPtrBag bag)
 {
     return Size(bag) == 0;
 }
-int DLL_CALL Size(cPtrBag bag)
+BAG_API int Size(cPtrBag bag)
 {
     return bag->length;
 }
-void DLL_CALL DestroyBag(PtrBag bag)
+BAG_API void DestroyBag(PtrBag bag)
 {
     free(bag->data);
     free(bag);
 }
-Iterator DLL_CALL Begin(PtrBag bag)
+BAG_API Iterator Begin(PtrBag bag)
 {
     return &(bag->data[1]);
 }
-Iterator DLL_CALL End(PtrBag bag)
+BAG_API Iterator End(PtrBag bag)
 {
     return &(bag->data[bag->length + 1]);
 }
-Iterator DLL_CALL Next(Iterator pre)
+BAG_API Iterator Next(Iterator pre)
 {
     return pre + 1;
 }
-constIterator DLL_CALL cBegin(cPtrBag bag)
+BAG_API constIterator cBegin(cPtrBag bag)
 {
     return Begin((PtrBag) bag);
 }
-constIterator DLL_CALL cEnd(cPtrBag bag)
+BAG_API constIterator cEnd(cPtrBag bag)
 {
     return End((PtrBag) bag);
 }
-constIterator DLL_CALL cNext(constIterator pre)
+BAG_API constIterator cNext(constIterator pre)
 {
     return Next((Iterator) pre);
 }

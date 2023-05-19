@@ -8,7 +8,7 @@ static bool Existed(cPtrBunch bunch, cPtrElem elem);
 static int Find(cPtrBunch bunch, cPtrElem elem);
 
 // 接口函数定义
-PtrBunch DLL_CALL CreateBunch(void)
+BUNCH_API PtrBunch CreateBunch(void)
 {
     PtrBunch bunch = (PtrBunch) malloc(sizeof(Bunch));
     if (!bunch) {
@@ -18,7 +18,7 @@ PtrBunch DLL_CALL CreateBunch(void)
     bunch->head = NULL;
     return bunch;
 }
-Status DLL_CALL Add(PtrBunch bunch, cPtrElem elem)
+BUNCH_API Status Add(PtrBunch bunch, cPtrElem elem)
 {
     if (Existed(bunch, elem)) {
         return EXISTED;
@@ -33,15 +33,15 @@ Status DLL_CALL Add(PtrBunch bunch, cPtrElem elem)
     bunch->size++;
     return SUCCESS;
 }
-bool DLL_CALL BunchEmpty(cPtrBunch bunch)
+BUNCH_API bool BunchEmpty(cPtrBunch bunch)
 {
     return Size(bunch) == 0;
 }
-int DLL_CALL Size(cPtrBunch bunch)
+BUNCH_API int Size(cPtrBunch bunch)
 {
     return bunch->size;
 }
-void DLL_CALL DestroyBunch(PtrBunch bunch)
+BUNCH_API void DestroyBunch(PtrBunch bunch)
 {
     PtrNode node = bunch->head;
     PtrNode del;
@@ -52,35 +52,35 @@ void DLL_CALL DestroyBunch(PtrBunch bunch)
     }
     free(bunch);
 }
-PtrElem DLL_CALL StarIter(Iterator iter)
+BUNCH_API PtrElem StarIter(Iterator iter)
 {
     return &iter->data;
 }
-cPtrElem  DLL_CALL StarConstIter(constIterator iter)
+BUNCH_API cPtrElem StarConstIter(constIterator iter)
 {
     return StarIter((Iterator) iter);
 }
-Iterator DLL_CALL Begin(PtrBunch bunch)
+BUNCH_API Iterator Begin(PtrBunch bunch)
 {
     return bunch->head;
 }
-Iterator DLL_CALL End(PtrBunch bunch)
+BUNCH_API Iterator End(PtrBunch bunch)
 {
     return NULL;
 }
-Iterator DLL_CALL Next(Iterator pre)
+BUNCH_API Iterator Next(Iterator pre)
 {
     return pre->next;
 }
-constIterator DLL_CALL cBegin(cPtrBunch bunch)
+BUNCH_API constIterator cBegin(cPtrBunch bunch)
 {
     return Begin((PtrBunch) bunch);
 }
-constIterator DLL_CALL cEnd(cPtrBunch bunch)
+BUNCH_API constIterator cEnd(cPtrBunch bunch)
 {
     return End((PtrBunch) bunch);
 }
-constIterator DLL_CALL cNext(constIterator pre)
+BUNCH_API constIterator cNext(constIterator pre)
 {
     return Next((Iterator) pre);
 }

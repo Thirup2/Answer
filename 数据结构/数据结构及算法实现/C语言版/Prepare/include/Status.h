@@ -3,7 +3,10 @@
 
 enum status{
     EXISTED,
-    SUCCESS
+    SUCCESS,
+    ISFULL,
+    WRONGPOS,
+    ISEMPTY
 };
 typedef enum status Status;
 

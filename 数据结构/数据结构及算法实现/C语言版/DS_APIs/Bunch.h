@@ -1,11 +1,5 @@
 #ifndef BUNCH_H_
 #define BUNCH_H_
-
-// --------------------------- 包含头文件 --------------------------- //
-#include "Coords.h"
-#include "Status.h"
-#include <stdbool.h>
-
 // ---------------------------  兼容配置  --------------------------- //
 #ifdef _WIN32
 #ifdef EXPORT
@@ -21,6 +15,11 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+// --------------------------- 包含头文件 --------------------------- //
+#include "Coords.h"
+#include "Status.h"
+#include <stdbool.h>
 
 // ---------------------------    接口    --------------------------- //
 // 元素类型接口
