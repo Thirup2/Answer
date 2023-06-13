@@ -1,0 +1,3 @@
+- 书籍：《编译原理》，第 2 版
+- 作者：Alfred V. Aho, Monica S. Lam, Ravi Sethi, Jeffrey D. Ullman
+- 出版社：机械工业出版社

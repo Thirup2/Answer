@@ -1,4 +1,6 @@
 #include <iostream>
+using std::cout;
+using std::endl;
 
 int main()
 {
@@ -8,7 +10,7 @@ int main()
         sum += begin;
         begin++;
     }
-    std::cout << sum << std::endl;
+    cout << sum << endl;
 
     return 0;
 }

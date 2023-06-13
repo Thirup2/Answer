@@ -1,13 +1,16 @@
 #include <iostream>
+using std::cout;
+using std::cin;
+using std::endl;
 
 int main()
 {
     int some;
     int sum = 0;
-    while (std::cin >> some) {
+    while (cin >> some) {
         sum += some;
     }
-    std::cout << sum << std::endl;
+    cout << sum << endl;
 
     return 0;
 }

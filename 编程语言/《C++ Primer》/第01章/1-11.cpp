@@ -1,15 +1,18 @@
 #include <iostream>
+using std::cout;
+using std::cin;
+using std::endl;
 
 int main()
 {
     int a, b;
-    std::cout << "请输入两个整数 a, b (a <= b): " << std::endl;
-    std::cin >> a >> b;
+    cout << "请输入两个整数 a, b (a <= b): " << endl;
+    cin >> a >> b;
     if (a > b) {
-        std::cout << "输入错误，程序已退出！" << std::endl;
+        cout << "输入错误，程序已退出！" << endl;
     }
     while (a <= b) {
-        std::cout << a++ << std::endl;
+        cout << a++ << endl;
     }
     return 0;
 }
