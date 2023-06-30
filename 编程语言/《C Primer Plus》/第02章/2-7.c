@@ -1,17 +1,20 @@
 #include <stdio.h>
-void Smile(void);
+
+void sm(void);
+
 int main(void)
 {
-    Smile(); Smile(); Smile();
-    printf("\n");
-    Smile(); Smile();
-    printf("\n");
-    Smile();
-    printf("\n");
+    for (int i = 3; i > 0; i--) {           // 或者使用如下代码：
+        for (int j = 0; j < i; j++) {       // sm();sm();sm();printf("\n");
+            sm();                           // sm();sm();printf("\n");
+        }                                   // sm();printf("\n");
+        printf("\n");
+    }
 
     return 0;
 }
-void Smile(void)
+
+void sm(void)
 {
     printf("Smile!");
 }

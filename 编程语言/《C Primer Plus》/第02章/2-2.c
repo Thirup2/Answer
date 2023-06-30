@@ -1,10 +1,12 @@
 #include <stdio.h>
-#define NAME "唐传顺"
-#define ADDRESS "重庆市沙坪坝区"
+
+#define NAME "Syunn"
+#define ADDR "syunn.cn"
+
 int main(void)
 {
-    printf("姓名: %s\n", NAME);
-    printf("住址: %s\n", ADDRESS);
+    printf("My Name: %s\n", NAME);
+    printf("My Address: %s\n", ADDR);
 
     return 0;
 }
