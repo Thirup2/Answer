@@ -1,16 +1,14 @@
 #include <iostream>
-using std::cout;
-using std::cin;
-using std::endl;
 
 int main()
 {
-    int some;
     int sum = 0;
-    while (cin >> some) {
-        sum += some;
+    int value;
+    std::cout << "please input a set of integers: ";
+    while (std::cin >> value) {
+        sum += value;
     }
-    cout << sum << endl;
+    std::cout << "the sum of the set of integers you input is " << sum << std::endl;
 
     return 0;
 }

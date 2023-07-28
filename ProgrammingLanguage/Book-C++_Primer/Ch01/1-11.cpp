@@ -1,18 +1,34 @@
 #include <iostream>
-using std::cout;
-using std::cin;
-using std::endl;
+#include <string>
 
 int main()
 {
-    int a, b;
-    cout << "请输入两个整数 a, b (a <= b): " << endl;
-    cin >> a >> b;
-    if (a > b) {
-        cout << "输入错误，程序已退出！" << endl;
+    int min, max;
+    std::cout << "Please input two integer: ";
+    std::cin >> min >> max;
+    if (min > max) {
+        int tmp = min;
+        min = max;
+        max = tmp;
     }
-    while (a <= b) {
-        cout << a++ << endl;
+    std::string method("while");
+    std::cout << "Please input a loop method from while, for: ";
+    while (std::cin >> method) {
+        if (method == "while") {
+            while (min <= max) {
+                std::cout << min++ << std::endl;
+            }
+            break;
+        } else if (method == "for") {
+            for (; min <= max; min++) {
+                std::cout << min << std::endl;
+            }
+            break;
+        } else {
+            std::cout << "input error, please input a loop method from while, for: ";
+            continue;
+        }
     }
+
     return 0;
 }

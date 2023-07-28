@@ -11,3 +11,5 @@ include_directories(${PROJECT_SOURCE_DIR}/prepare/include ${PROJECT_SOURCE_DIR}/
 link_directories(${PROJECT_SOURCE_DIR}/share)
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/prepare/src/Coords)
+
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/LinearList/List/StaticSeqList)
