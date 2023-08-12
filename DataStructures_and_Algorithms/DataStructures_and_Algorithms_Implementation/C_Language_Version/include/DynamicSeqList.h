@@ -1,13 +1,13 @@
-#ifndef STATICSEQLIST_H_
-#define STATICSEQLIST_H_
+#ifndef DYNAMICSEQLIST_H_
+#define DYNAMICSEQLIST_H_
 
 #include "Compatible.h"
 
-// ----------------------------------- 头文件 ----------------------------------- //
+// ----------------------------------- 头文件 -----------------------------------//
 #include "Coords.h"
 #include "Status.h"
 
-// ----------------------------------- 接  口 ----------------------------------- //
+// ----------------------------------- 接  口 -----------------------------------//
 // 数据元素抽象
 typedef Coords ElemType;
 typedef PtrCoords PtrElem;
@@ -20,10 +20,11 @@ typedef PtrCoords PtrElem;
 #define ReadElem ReadCoords
 
 // 类型定义
-#define MAXSIZE 10
-typedef struct list
+#define INITSIZE 10
+typedef  struct list
 {
-    ElemType data[MAXSIZE + 1];
+    PtrElem data;
+    int capacity;
     int length;
 }List, * PtrList;
 
@@ -38,4 +39,4 @@ DLL_API void PrintList(PtrList list, FILE* out);
 DLL_API bool Empty(PtrList list);
 DLL_API void DestroyList(PtrList list);
 
-#endif
+#endif // !DYNAMICSEQLIST_H_

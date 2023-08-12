@@ -1,5 +1,10 @@
 bin
-build
+*build*
+out
 lib
 share
 .vscode
+.vs
+CMakeSettings.json
+*.output
+.idea

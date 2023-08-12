@@ -1,14 +1,14 @@
-#ifndef STATICSEQLIST_H_
-#define STATICSEQLIST_H_
+#ifndef SINGLELINKLIST_H_
+#define SINGLELINKLIST_H_
 
 #include "Compatible.h"
 
-// ----------------------------------- 头文件 ----------------------------------- //
+// ------------------------------ 头文件 ------------------------------ //
 #include "Coords.h"
 #include "Status.h"
 
-// ----------------------------------- 接  口 ----------------------------------- //
-// 数据元素抽象
+// ------------------------------ 接  口 ------------------------------ //
+// 数据元素接口
 typedef Coords ElemType;
 typedef PtrCoords PtrElem;
 #define MakeElem MakeCoords
@@ -20,12 +20,11 @@ typedef PtrCoords PtrElem;
 #define ReadElem ReadCoords
 
 // 类型定义
-#define MAXSIZE 10
-typedef struct list
+typedef struct node
 {
-    ElemType data[MAXSIZE + 1];
-    int length;
-}List, * PtrList;
+    ElemType data;
+    struct node* next;
+}Node, * PtrNode, * PtrList;
 
 // 函数接口
 DLL_API PtrList InitList(void);
@@ -38,4 +37,4 @@ DLL_API void PrintList(PtrList list, FILE* out);
 DLL_API bool Empty(PtrList list);
 DLL_API void DestroyList(PtrList list);
 
-#endif
+#endif // !SINGLELINKLIST_H_

@@ -1,19 +1,19 @@
+#define EXPORT
 #include "Coords.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 // 局部函数声明
 // 无
 
 // 接口函数定义
-PtrCoords CreateCoords(int x, int y)
+DLL_API PtrCoords MakeCoords(int x, int y)
 {
-    PtrCoords co = GetCoords();
+    PtrCoords co = CreateCoords();
     co->x = x;
     co->y = y;
     return co;
 }
-PtrCoords GetCoords(void)
+DLL_API PtrCoords CreateCoords(void)
 {
     PtrCoords co = (PtrCoords) malloc(sizeof(Coords));
     if (!co) {
@@ -22,37 +22,26 @@ PtrCoords GetCoords(void)
     }
     return co;
 }
-void DestroyCoords(PtrCoords elem)
+DLL_API void DestroyCoords(PtrCoords elem)
 {
     free(elem);
 }
-void CopyCoords(PtrCoords elem, cPtrCoords copied)
+DLL_API void CopyCoords(PtrCoords elem, PtrCoords copied)
 {
     elem->x = copied->x;
     elem->y = copied->y;
 }
-bool EqualCoords(cPtrCoords elem1, cPtrCoords elem2)
+DLL_API bool EqualCoords(PtrCoords elem1, PtrCoords elem2)
 {
     return elem1->x == elem2->x && elem1->y == elem2->y;
 }
-void PrintCoords(cPtrCoords elem)
+DLL_API void PrintCoords(PtrCoords elem, FILE* out)
 {
-    printf("(%d, %d)", elem->x, elem->y);
+    fprintf(out, "(%d, %d)", elem->x, elem->y);
 }
-bool ReadCoords(PtrCoords elem)
+DLL_API bool ReadCoords(PtrCoords elem, FILE* in)
 {
-    printf("Please input a coord like \"x, y\": ");
-    int x = elem->x;
-    int y = elem->y;
-    if (scanf("%d, %d", &elem->x, &elem->y) == 2) {
-        while (getchar() != '\n');
-        return true;
-    } else {
-        while (getchar() != '\n');
-        elem->x = x;
-        elem->y = y;
-        return false;
-    }
+    return fscanf(in, "%d,%d", &elem->x, &elem->y);
 }
 
 // 局部函数定义
