@@ -7,12 +7,23 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
 
-include_directories(${PROJECT_SOURCE_DIR}/prepare/include ${PROJECT_SOURCE_DIR}/include)
+include_directories(${PROJECT_SOURCE_DIR}/prepare/include)
+include_directories(${PROJECT_SOURCE_DIR}/include/List/List)
+include_directories(${PROJECT_SOURCE_DIR}/include/List/Stack)
+
 link_directories(${PROJECT_SOURCE_DIR}/lib)
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/prepare/src/Coords)
 
-add_subdirectory(${PROJECT_SOURCE_DIR}/src/LinearList/List)
-add_subdirectory(${PROJECT_SOURCE_DIR}/src/LinearList/List/StaticSeqList)
-add_subdirectory(${PROJECT_SOURCE_DIR}/src/LinearList/List/DynamicSeqList)
-add_subdirectory(${PROJECT_SOURCE_DIR}/src/LinearList/List/SingleLinkList)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/List)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/List/StaticSeqList)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/List/DynamicSeqList)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/List/SingleLinkList)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/List/DoubleLinkList)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/List/CycleLinkList)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/List/DoubleCycleLinkList)
+
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/Stack)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/Stack/StaticSeqStack)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/Stack/DynamicSeqStack)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/Stack/LinkStack)

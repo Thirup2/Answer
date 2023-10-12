@@ -12,15 +12,25 @@ void DrawALine(FILE *out);
 
 int main(void)
 {
-    FILE *in = fopen("../input/List.input", "r");
-    if (!in) {
-        printf("Error: Faild to open input file.\n");
-        exit(EXIT_FAILURE);
+    FILE *in;
+    FILE *out;
+    if (STDIN) {
+        in = stdin;
+    } else {
+        in = fopen("../input/List.input", "r");
+        if (!in) {
+            printf("Error: Faild to open input file.\n");
+            exit(EXIT_FAILURE);
+        }
     }
-    FILE *out = fopen("../output/List.output", "w");
-    if (!out) {
-        printf("Error: Faild to open output file.\n");
-        exit(EXIT_FAILURE);
+    if (STDOUT) {
+        out = stdout;
+    } else {
+        out = fopen("../output/List.output", "w");
+        if (!out) {
+            printf("Error: Faild to open output file.\n");
+            exit(EXIT_FAILURE);
+        }
     }
     PtrList list = InitList();
     ShowList(list, out);
@@ -59,8 +69,8 @@ void ShowList(PtrList list, FILE *out)
     DrawALine(out);
     fprintf(out, "Testing list:\n");
     fprintf(out, " >> Is it empty: %s\n", Empty(list) ? "Yes" : "No");
-    fprintf(out, " >> It's Length: %d\n", Length(list));
-    fprintf(out, " >> It's Content: ");
+    fprintf(out, " >> Its Length: %d\n", Length(list));
+    fprintf(out, " >> Its Content: ");
     PrintList(list, out);
     fprintf(out, "\n");
     DrawALine(out);

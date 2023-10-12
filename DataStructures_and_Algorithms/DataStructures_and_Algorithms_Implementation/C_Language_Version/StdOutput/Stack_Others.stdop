@@ -1,0 +1,67 @@
+--------------------------------------------------
+Testing stack:
+ >> Is it empty: Yes
+ >> Its Length: 0
+ >> Its top: NULL
+ >> Its Content: 
+--------------------------------------------------
+--------------------------------------------------
+Push: Element (1, 1) was successfully pushed.
+Push: Element (2, 2) was successfully pushed.
+Push: Element (3, 3) was successfully pushed.
+Push: Element (4, 4) was successfully pushed.
+Push: Element (5, 5) was successfully pushed.
+Push: Element (6, 6) was successfully pushed.
+Push: Element (7, 7) was successfully pushed.
+Push: Element (8, 8) was successfully pushed.
+Push: Element (9, 9) was successfully pushed.
+Push: Element (10, 10) was successfully pushed.
+Push: Element (11, 11) was successfully pushed.
+
+Pop: The top element to be poped is (11, 11).
+Pop: The top element to be poped is (10, 10).
+Pop: The top element to be poped is (9, 9).
+Pop: The top element to be poped is (8, 8).
+Pop: The top element to be poped is (7, 7).
+Pop: The top element to be poped is (6, 6).
+Pop: The top element to be poped is (5, 5).
+Pop: The top element to be poped is (4, 4).
+Pop: The top element to be poped is (3, 3).
+Pop: The top element to be poped is (2, 2).
+Pop: The top element to be poped is (1, 1).
+Pop: Stack is empty.
+
+Push: Element (1, 1) was successfully pushed.
+Push: Element (2, 2) was successfully pushed.
+Push: Element (5, 5) was successfully pushed.
+Pop: The top element to be poped is (5, 5).
+Push: Element (3, 3) was successfully pushed.
+Push: Element (6, 6) was successfully pushed.
+Pop: The top element to be poped is (6, 6).
+Push: Element (4, 4) was successfully pushed.
+Push: Element (5, 5) was successfully pushed.
+Push: Element (7, 7) was successfully pushed.
+Pop: The top element to be poped is (7, 7).
+Push: Element (6, 6) was successfully pushed.
+Push: Element (7, 7) was successfully pushed.
+Push: Element (9, 9) was successfully pushed.
+Pop: The top element to be poped is (9, 9).
+Push: Element (8, 8) was successfully pushed.
+Push: Element (9, 9) was successfully pushed.
+Push: Element (11, 11) was successfully pushed.
+Pop: The top element to be poped is (11, 11).
+Push: Element (10, 10) was successfully pushed.
+Push: Element (11, 11) was successfully pushed.
+Pop: The top element to be poped is (11, 11).
+
+EXIT: Program about to exit!
+--------------------------------------------------
+--------------------------------------------------
+Testing stack:
+ >> Is it empty: No
+ >> Its Length: 10
+ >> Its top: (10, 10)
+ >> Its Content: (1, 1) (2, 2) (3, 3) (4, 4) (5, 5) (6, 6) (7, 7) (8, 8) (9, 9) (10, 10)
+--------------------------------------------------
+DESTROY: The Stack is about to be destroyed...
+DESTROY: Destruction completed!
