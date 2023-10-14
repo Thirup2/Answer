@@ -19,11 +19,16 @@ typedef PtrCoords PtrElem;
 #define ReadElem ReadCoords
 
 // 数据类型定义
-typedef struct stack
+typedef struct node
 {
     ElemType data;
-    struct stack *toBottom;
-} Node, *PtrStack, *PtrNode;
+    struct node *toBottom;
+} Node, *PtrNode;
+typedef struct stack
+{
+    PtrNode top;
+    int length;
+} Stack, *PtrStack;
 
 // 函数接口
 DLL_API PtrStack InitStack(void);
