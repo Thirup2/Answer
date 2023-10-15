@@ -6,7 +6,7 @@
 
 // 如果要测试不同实现方式的队列，则修改下方的 #define
 // 并将 CMakeLists.txt 中的库依赖修改为目标链接库
-#define CQUEUE
+#define LQUEUE
 
 #ifdef CQUEUE
 #include "CycleQueue.h"

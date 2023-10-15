@@ -31,3 +31,4 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/Stack/LinkStack)
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/Queue)
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/Queue/CycleQueue)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/Queue/LinkQueue)

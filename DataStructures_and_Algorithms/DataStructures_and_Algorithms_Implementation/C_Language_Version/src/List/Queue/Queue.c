@@ -62,7 +62,6 @@ void ShowQueue(PtrQueue queue, FILE *out)
     DrawALine(out);
     fprintf(out, "Testing queue:\n");
     fprintf(out, " >> Is it empty: %s\n", QueueEmpty(queue) ? "Yes" : "No");
-    fprintf(out, " >> Is it full: %s\n", QueueFull(queue) ? "Yes" : "No");
     fprintf(out, " >> Its Length: %d\n", Length(queue));
     fprintf(out, " >> Its Head: ");
     ElemType head;

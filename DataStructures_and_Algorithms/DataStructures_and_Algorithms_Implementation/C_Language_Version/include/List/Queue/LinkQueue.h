@@ -1,5 +1,5 @@
-#ifndef CYCLEQUEUE_H_
-#define CYCLEQUEUE_H_
+#ifndef LINKQUEUE_H_
+#define LINKQUEUE_H_
 
 #include "Compatible.h"
 
@@ -20,12 +20,16 @@ typedef PtrCoords PtrElem;
 #define ReadElem ReadCoords
 
 // 数据类型定义
-#define MAXSIZE 10
+typedef struct node
+{
+    ElemType data;
+    struct node *toRear;
+} Node, *PtrNode;
 typedef struct queue
 {
-    ElemType data[MAXSIZE];
-    int front;
-    int rear;
+    PtrNode front;
+    PtrNode rear;
+    int length;
 } Queue, *PtrQueue;
 
 // 函数接口

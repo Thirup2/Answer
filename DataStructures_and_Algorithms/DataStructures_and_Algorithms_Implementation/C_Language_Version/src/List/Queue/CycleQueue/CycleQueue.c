@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 // 局部函数声明
-// 无
+static bool QueueFull(PtrQueue queue);
 
 // 接口函数定义
 DLL_API PtrQueue InitQueue(void)
@@ -17,10 +17,6 @@ DLL_API PtrQueue InitQueue(void)
     return queue;
 }
 // 采用标识相同时队空，留一个位置判断队满的方式
-DLL_API bool QueueFull(PtrQueue queue)
-{
-    return (queue->rear + 1) % MAXSIZE == queue->front;
-}
 DLL_API bool QueueEmpty(PtrQueue queue)
 {
     return queue->rear == queue->front;
@@ -75,4 +71,7 @@ DLL_API void PrintQueue(PtrQueue queue, FILE *out)
 }
 
 // 局部函数定义
-// 无
+static bool QueueFull(PtrQueue queue)
+{
+    return (queue->rear + 1) % MAXSIZE == queue->front;
+}
