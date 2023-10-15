@@ -2,23 +2,12 @@
 #define STATICSEQLIST_H_
 
 #include "Compatible.h"
+#include "ElemType.h"
 
 // ----------------------------------- 头文件 ----------------------------------- //
-#include "Coords.h"
 #include "Status.h"
 
 // ----------------------------------- 接  口 ----------------------------------- //
-// 数据元素抽象
-typedef Coords ElemType;
-typedef PtrCoords PtrElem;
-#define MakeElem MakeCoords
-#define CreateElem CreateCoords
-#define DestroyElem DestroyCoords
-#define CopyElems CopyCoords
-#define EqualElems EqualCoords
-#define PrintElem PrintCoords
-#define ReadElem ReadCoords
-
 // 类型定义
 #define MAXSIZE 10
 typedef struct list

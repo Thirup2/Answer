@@ -2,22 +2,12 @@
 #define LINKSTACK_H_
 
 #include "Compatible.h"
+#include "ElemType.h"
 
 // -------------------------------------- 头文件 -------------------------------------- //
-#include "Coords.h"
 #include "Status.h"
 
 // -------------------------------------- 接  口 -------------------------------------- //
-typedef Coords ElemType;
-typedef PtrCoords PtrElem;
-#define MakeElem MakeCoords
-#define CreateElem CreateCoords
-#define DestroyElem DestroyCoords
-#define CopyElems CopyCoords
-#define EqualElems EqualCoords
-#define PrintElem PrintCoords
-#define ReadElem ReadCoords
-
 // 数据类型定义
 typedef struct node
 {

@@ -1,6 +1,6 @@
 #include "Queue.h"
-#include "stdlib.h"
-#include "ctype.h"
+#include <stdlib.h>
+#include <ctype.h>
 
 void ShowQueue(PtrQueue queue, FILE *out);
 char GetChoice(FILE *in);
