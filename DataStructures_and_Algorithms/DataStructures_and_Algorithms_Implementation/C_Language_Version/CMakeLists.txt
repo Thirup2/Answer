@@ -10,6 +10,7 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${PROJECT_SOURCE_DIR}/bin)
 include_directories(${PROJECT_SOURCE_DIR}/prepare/include)
 include_directories(${PROJECT_SOURCE_DIR}/include/List/List)
 include_directories(${PROJECT_SOURCE_DIR}/include/List/Stack)
+include_directories(${PROJECT_SOURCE_DIR}/include/List/Queue)
 
 link_directories(${PROJECT_SOURCE_DIR}/lib)
 
@@ -27,3 +28,6 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/Stack)
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/Stack/StaticSeqStack)
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/Stack/DynamicSeqStack)
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/Stack/LinkStack)
+
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/Queue)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/Queue/CycleQueue)

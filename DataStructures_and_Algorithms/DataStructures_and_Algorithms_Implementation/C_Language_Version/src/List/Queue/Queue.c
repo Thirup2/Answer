@@ -1,11 +1,11 @@
-#include "Stack.h"
-#include <stdlib.h>
-#include <ctype.h>
+#include "Queue.h"
+#include "stdlib.h"
+#include "ctype.h"
 
-void ShowStack(PtrStack stack, FILE *out);
+void ShowQueue(PtrQueue queue, FILE *out);
 char GetChoice(FILE *in);
-void Insert(PtrStack stack, FILE *in, FILE *out);
-void Delete(PtrStack stack, FILE *in, FILE *out);
+void Insert(PtrQueue queue, FILE *in, FILE *out);
+void Delete(PtrQueue queue, FILE *in, FILE *out);
 void DrawALine(FILE *out);
 
 int main(void)
@@ -15,7 +15,7 @@ int main(void)
     if (STDIN) {
         in = stdin;
     } else {
-        in = fopen("../input/Stack.input", "r");
+        in = fopen("../input/Queue.input", "r");
         if (!in) {
             printf("Error: Faild to open input file.\n");
             exit(EXIT_FAILURE);
@@ -24,25 +24,25 @@ int main(void)
     if (STDOUT) {
         out = stdout;
     } else {
-        out = fopen("../output/Stack.output", "w");
+        out = fopen("../output/Queue.output", "w");
         if (!out) {
             printf("Error: Faild to open output file.\n");
             exit(EXIT_FAILURE);
         }
     }
-    PtrStack stack = InitStack();
-    ShowStack(stack, out);
+    PtrQueue queue = InitQueue();
+    ShowQueue(queue, out);
     char ch;
     DrawALine(out);
     while (ch = GetChoice(in)) {
         if (ch == 'I') {
-            Insert(stack, in, out);
+            Insert(queue, in, out);
         } else if (ch == 'D') {
-            Delete(stack, in, out);
+            Delete(queue, in, out);
         } else if (ch == '\n') {
             fprintf(out, "\n");
             continue;
-        } else if (ch == '#') {     // 注释符
+        } else if (ch == '#') {   // 注释符
         } else {
             fprintf(out, "EXIT: Program about to exit!\n");
             break;
@@ -51,66 +51,64 @@ int main(void)
     }
     fclose(in);
     DrawALine(out);
-    ShowStack(stack, out);
-    fprintf(out, "DESTROY: The Stack is about to be destroyed...\n");
-    DestroyStack(stack);
+    ShowQueue(queue, out);
+    fprintf(out, "DESTROY: The Queue is about to be destroyed...\n");
+    DestroyQueue(queue);
     fprintf(out, "DESTROY: Destruction completed!\n");
     fclose(out);
-
-    return 0;
 }
-void ShowStack(PtrStack stack, FILE *out)
+void ShowQueue(PtrQueue queue, FILE *out)
 {
     DrawALine(out);
-    fprintf(out, "Testing stack:\n");
-    fprintf(out, " >> Is it empty: %s\n", StackEmpty(stack) ? "Yes" : "No");
-    fprintf(out, " >> Its Length: %d\n", Length(stack));
-    fprintf(out, " >> Its top: ");
-    ElemType top;
-    Status sta = GetTop(stack, &top);
+    fprintf(out, "Testing queue:\n");
+    fprintf(out, " >> Is it empty: %s\n", QueueEmpty(queue) ? "Yes" : "No");
+    fprintf(out, " >> Is it full: %s\n", QueueFull(queue) ? "Yes" : "No");
+    fprintf(out, " >> Its Length: %d\n", Length(queue));
+    fprintf(out, " >> Its Head: ");
+    ElemType head;
+    Status sta = GetHead(queue, &head);
     if (sta == ISEMPTY) {
         fprintf(out, "NULL");
     } else {
-        PrintElem(&top, out);
+        PrintElem(&head, out);
     }
     fprintf(out, "\n");
     fprintf(out, " >> Its Content: ");
-    PrintStack(stack, out);
+    PrintQueue(queue, out);
     fprintf(out, "\n");
     DrawALine(out);
 }
 char GetChoice(FILE *in)
 {
-    char ch;
-    ch = toupper(getc(in));
+    char ch = toupper(getc(in));
     return ch;
 }
-void Insert(PtrStack stack, FILE *in, FILE *out)
+void Insert(PtrQueue queue, FILE *in, FILE *out)
 {
     PtrElem elem = CreateElem();
     Status sta;
     ReadElem(elem, in);
-    sta = Push(stack, elem);
-    fprintf(out, "Push: ");
+    sta = EnQueue(queue, elem);
+    fprintf(out, "Enqueue: ");
     if (sta == ISFULL) {
-        fprintf(out, "Stack is full.\n");
+        fprintf(out, "Queue is full.\n");
     } else {
         fprintf(out, "Element ");
         PrintElem(elem, out);
-        fprintf(out, " was successfully pushed.\n");
+        fprintf(out, " was successfully enqueued.\n");
     }
     DestroyElem(elem);
 }
-void Delete(PtrStack stack, FILE *in, FILE *out)
+void Delete(PtrQueue queue, FILE *in, FILE *out)
 {
     PtrElem elem = CreateElem();
     Status sta;
-    sta = Pop(stack, elem);
-    fprintf(out, "Pop: ");
+    sta = DeQueue(queue, elem);
+    fprintf(out, "Dequeue: ");
     if (sta == ISEMPTY) {
-        fprintf(out, "Stack is empty.\n");
+        fprintf(out, "Queue is empty.\n");
     } else {
-        fprintf(out, "The top element to be poped is ");
+        fprintf(out, "The head element to be dequeued is ");
         PrintElem(elem, out);
         fprintf(out, ".\n");
     }

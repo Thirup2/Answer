@@ -48,6 +48,7 @@ int main(void)
         } else if (ch == '\n') {
             fprintf(out, "\n");
             continue;
+        } else if (ch == '#') {     // 注释符
         } else {
             fprintf(out, "EXIT: Program about to exit!\n");
             break;
