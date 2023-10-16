@@ -6,13 +6,6 @@
 // 无
 
 // 接口函数定义
-DLL_API PtrCoords MakeCoords(int x, int y)
-{
-    PtrCoords co = CreateCoords();
-    co->x = x;
-    co->y = y;
-    return co;
-}
 DLL_API PtrCoords CreateCoords(void)
 {
     PtrCoords co = (PtrCoords) malloc(sizeof(Coords));

@@ -7,7 +7,6 @@
 #include "Coords.h"
 typedef Coords ElemType;
 typedef PtrCoords PtrElem;
-#define MakeElem MakeCoords
 #define CreateElem CreateCoords
 #define DestroyElem DestroyCoords
 #define CopyElems CopyCoords

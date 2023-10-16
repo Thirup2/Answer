@@ -11,6 +11,7 @@ include_directories(${PROJECT_SOURCE_DIR}/prepare/include)
 include_directories(${PROJECT_SOURCE_DIR}/include/List/List)
 include_directories(${PROJECT_SOURCE_DIR}/include/List/Stack)
 include_directories(${PROJECT_SOURCE_DIR}/include/List/Queue)
+include_directories(${PROJECT_SOURCE_DIR}/include/List/Matrix)
 
 link_directories(${PROJECT_SOURCE_DIR}/lib)
 
@@ -32,3 +33,6 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/Stack/LinkStack)
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/Queue)
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/Queue/CycleQueue)
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/Queue/LinkQueue)
+
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/Matrix)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/Matrix/SymMatrix)

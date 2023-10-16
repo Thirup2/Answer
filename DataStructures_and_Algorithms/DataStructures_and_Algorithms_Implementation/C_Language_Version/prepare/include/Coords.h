@@ -16,7 +16,6 @@ typedef struct coords
 }Coords, * PtrCoords;
 
 // 函数接口
-DLL_API PtrCoords MakeCoords(int x, int y);
 DLL_API PtrCoords CreateCoords(void);
 DLL_API void DestroyCoords(PtrCoords elem);
 DLL_API void CopyCoords(PtrCoords elem, PtrCoords copied);

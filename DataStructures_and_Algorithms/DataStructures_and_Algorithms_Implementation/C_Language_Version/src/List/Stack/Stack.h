@@ -5,7 +5,7 @@
 #define STDIN false
 
 // 如果要测试不同实现方式的栈，则修改下方的 #define
-// 并将 CMakeListx.txt 中的库依赖修改为目标链接库
+// 并将 CMakeLists.txt 中的库依赖修改为目标链接库
 #define LSTACK
 
 #ifdef SSSTACK
