@@ -11,7 +11,7 @@
 // 数据类型定义
 typedef struct matrix
 {
-    PtrElem data;
+    PtrElem rows;
     int order;
     int n;
 } Matrix, *PtrMatrix;

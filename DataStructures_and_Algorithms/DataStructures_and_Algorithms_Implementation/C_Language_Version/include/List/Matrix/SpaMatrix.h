@@ -1,5 +1,5 @@
-#ifndef TRIMATRIX_H_
-#define TRIMATRIX_H_
+#ifndef SPAMATRIX_H_
+#define SPAMATRIX_H_
 
 #include "Compatible.h"
 #include "ElemType.h"
@@ -9,13 +9,18 @@
 
 // --------------------------------------- 接 口 --------------------------------------- //
 // 数据类型定义
+typedef struct node
+{
+    ElemType data;
+    int col;
+    struct node *next;
+} Node, *PtrNode;
+
 typedef struct matrix
 {
-    PtrElem rows;
+    PtrNode *rows;
     int order;
-    int n;
-    bool down;
-}Matrix, *PtrMatrix;
+} Matrix, *PtrMatrix;
 
 // 函数接口声明
 DLL_API PtrMatrix InitMatrix(int order);

@@ -18,8 +18,8 @@ DLL_API PtrMatrix InitMatrix(int order)
         exit(EXIT_FAILURE);
     }
     matrix->n = GetN(order);
-    matrix->data = (PtrElem) malloc(matrix->n * sizeof(ElemType));
-    if (!matrix->data) {
+    matrix->rows = (PtrElem) malloc(matrix->n * sizeof(ElemType));
+    if (!matrix->rows) {
         exit(EXIT_FAILURE);
     }
     matrix->order = order;
@@ -28,7 +28,7 @@ DLL_API PtrMatrix InitMatrix(int order)
 DLL_API bool ReadMatrix(PtrMatrix matrix, FILE *in)
 {
     for (int k = 0; k < matrix->n; k++) {
-        if (!ReadElem(&(matrix->data[k]), in)) {
+        if (!ReadElem(&(matrix->rows[k]), in)) {
             return false;
         }
     }
@@ -40,7 +40,7 @@ DLL_API Status GetElem(PtrMatrix matrix, int i, int j, PtrElem elem)
         return WRONGPOS;
     }
     int k = GetK(i, j);
-    CopyElems(elem, &(matrix->data[k]));
+    CopyElems(elem, &(matrix->rows[k]));
     return SUCCESS;
 }
 DLL_API Status UpdateElem(PtrMatrix matrix, int i, int j, PtrElem elem)
@@ -49,12 +49,12 @@ DLL_API Status UpdateElem(PtrMatrix matrix, int i, int j, PtrElem elem)
         return WRONGPOS;
     }
     int k = GetK(i, j);
-    CopyElems(&(matrix->data[k]), elem);
+    CopyElems(&(matrix->rows[k]), elem);
     return SUCCESS;
 }
 DLL_API void DestroyMatrix(PtrMatrix matrix)
 {
-    free(matrix->data);
+    free(matrix->rows);
     free(matrix);
 }
 DLL_API void PrintMatrix(PtrMatrix matrix, FILE *out)
@@ -66,7 +66,7 @@ DLL_API void PrintMatrix(PtrMatrix matrix, FILE *out)
             if (j != 1) {
                 fprintf(out, " ");
             }
-            PrintElem(&(matrix->data[k]), out);
+            PrintElem(&(matrix->rows[k]), out);
         }
         fprintf(out, "\n");
     }

@@ -6,7 +6,7 @@
 
 // 如果要测试不同实现方式的矩阵，则修改下方的 #define
 // 并将 CMakeLists.txt 中的依赖库修改为目标链接库
-#define TDMATRIX
+#define SPMATRIX
 
 #ifdef SMATRIX
 #include "SymMatrix.h"
@@ -16,6 +16,10 @@
 #else
 #ifdef TDMATRIX
 #include "TriDiaMatrix.h"
+#else
+#ifdef SPMATRIX
+#include "SpaMatrix.h"
+#endif // SPMATRIX
 #endif // TDMATRIX
 #endif // TMATRIX
 #endif // SMATRIX
