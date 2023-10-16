@@ -15,7 +15,7 @@ int main(void)
     if (STDIN) {
         in = stdin;
     } else {
-        in = fopen("../input/Matrix/SymMatrix.input", "r");
+        in = fopen("../input/Matrix/TriDiaMatrix.input", "r");
         if (!in) {
             printf("Error: Faild to open input file.\n");
             exit(EXIT_FAILURE);

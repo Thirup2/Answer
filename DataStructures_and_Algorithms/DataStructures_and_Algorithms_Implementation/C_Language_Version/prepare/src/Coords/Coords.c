@@ -1,4 +1,5 @@
 #define EXPORT
+
 #include "Coords.h"
 #include <stdlib.h>
 
@@ -15,6 +16,13 @@ DLL_API PtrCoords CreateCoords(void)
     }
     return co;
 }
+DLL_API PtrCoords MakeCoords(int x, int y)
+{
+    PtrCoords co = CreateCoords();
+    co->x = x;
+    co->y = y;
+    return co;
+}
 DLL_API void DestroyCoords(PtrCoords elem)
 {
     free(elem);
@@ -28,11 +36,11 @@ DLL_API bool EqualCoords(PtrCoords elem1, PtrCoords elem2)
 {
     return elem1->x == elem2->x && elem1->y == elem2->y;
 }
-DLL_API void PrintCoords(PtrCoords elem, FILE* out)
+DLL_API void PrintCoords(PtrCoords elem, FILE *out)
 {
     fprintf(out, "(%d, %d)", elem->x, elem->y);
 }
-DLL_API bool ReadCoords(PtrCoords elem, FILE* in)
+DLL_API bool ReadCoords(PtrCoords elem, FILE *in)
 {
     return fscanf(in, "%d,%d", &elem->x, &elem->y);
 }

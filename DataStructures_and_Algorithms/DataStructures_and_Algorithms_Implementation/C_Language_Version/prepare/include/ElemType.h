@@ -8,6 +8,7 @@
 typedef Coords ElemType;
 typedef PtrCoords PtrElem;
 #define CreateElem CreateCoords
+#define MakeElem MakeCoords
 #define DestroyElem DestroyCoords
 #define CopyElems CopyCoords
 #define EqualElems EqualCoords
