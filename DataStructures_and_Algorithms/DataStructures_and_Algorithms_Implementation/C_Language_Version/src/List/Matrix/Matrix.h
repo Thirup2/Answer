@@ -10,6 +10,10 @@
 
 #ifdef SMATRIX
 #include "SymMatrix.h"
+#else
+#ifdef TMATRIX
+#include "TriMatrix.h"
+#endif // TMATRIX
 #endif // SMATRIX
 
 #endif

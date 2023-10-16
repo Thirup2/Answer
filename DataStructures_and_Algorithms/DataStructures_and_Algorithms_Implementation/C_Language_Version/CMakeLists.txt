@@ -36,3 +36,4 @@ add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/Queue/LinkQueue)
 
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/Matrix)
 add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/Matrix/SymMatrix)
+add_subdirectory(${PROJECT_SOURCE_DIR}/src/List/Matrix/TriMatrix)

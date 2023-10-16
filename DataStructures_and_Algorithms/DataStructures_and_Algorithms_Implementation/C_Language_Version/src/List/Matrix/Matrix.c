@@ -15,7 +15,7 @@ int main(void)
     if (STDIN) {
         in = stdin;
     } else {
-        in = fopen("../input/Matrix.input", "r");
+        in = fopen("../input/Matrix/SymMatrix.input", "r");
         if (!in) {
             printf("Error: Faild to open input file.\n");
             exit(EXIT_FAILURE);
@@ -34,6 +34,7 @@ int main(void)
     // 读取矩阵阶数
     int order;
     fscanf(in, "%d", &order);
+    while (getc(in) != '\n');
 
     // 获取矩阵内容并打印
     PtrMatrix matrix = InitMatrix(order);
@@ -49,6 +50,7 @@ int main(void)
     fprintf(out, "Read: End of reading matrix. Its content follows:\n");
     PrintMatrix(matrix, out);
     DrawALine(out);
+    while (getc(in) != '\n');
 
     // 测试开始
     char ch;
