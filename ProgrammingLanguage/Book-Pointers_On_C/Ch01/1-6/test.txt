@@ -1,6 +1,0 @@
-9 4 12 -1
-abcdefghijklmnopqrstuvwxyz
-Hello there, how are you?
-I am fine, thanks.
-See you!
-Bye

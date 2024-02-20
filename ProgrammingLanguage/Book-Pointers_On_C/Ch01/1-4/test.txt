@@ -1,4 +1,0 @@
-this is a test text.
-It's aim is to find the longest string.
-so I will Provide some strings.
-there are all four strings.

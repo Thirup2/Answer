@@ -1,1 +1,0 @@
-void my_strncat(char *dest, char *src, int dest_len);
